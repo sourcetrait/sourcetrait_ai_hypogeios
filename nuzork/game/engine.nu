@@ -333,6 +333,17 @@ def run-demons [state: record, out: list]: nothing -> record {
 # --- one turn: parse -> obj-fn intercept (PRSI, PRSO) -> verb handler ->
 # the fight phase (villains strike). Returns {state, out, finished}.
 export def step [state: record, input: string]: nothing -> record {
+    # zoom <ROOMID>: faithful rdcom debug-teleport - pre-parse, counts no move,
+    # LOOK-only (no enter-phase), matching the port's (currently unscored) entry.
+    let z = ($input | str trim)
+    if ($z | str downcase | str starts-with "zoom ") {
+        let rid = ($z | str substring 5.. | str trim | str upcase)
+        if ((find-room $rid) == null) {
+            return { state: $state, out: [$"Room ($rid) not found."], finished: false }
+        }
+        let ri = (room-info ($state | update here $rid))
+        return { state: $ri.state, out: $ri.out, finished: false }
+    }
     let st0 = ($state | update moves ($state.moves + 1))
     let p = (parse-input $st0 $input)
     if (not $p.ok) { return { state: $p.state, out: $p.out, finished: false } }
