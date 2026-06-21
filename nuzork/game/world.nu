@@ -31,7 +31,7 @@ export def score-max []: nothing -> int {
 # {at,id} placement overrides), `oflags` (oid -> [bit] flag overrides), and
 # `flags` (game FlagId bools). Reads fall back to the static tables.
 export def new-state []: nothing -> record {
-    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {}, pstr: 0, vstr: {}, clocks: {} }
+    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {}, pstr: 0, vstr: {}, clocks: {}, cyclowrath: 0 }
 }
 
 # Object location is the static data placement, overridden by `moved` for any
@@ -109,6 +109,21 @@ export def room-fn-desc [state: record, roomf: string]: nothing -> list {
         [($base + $status)]
     } else if $roomf == "cellar" {
         ["You are in a dark and damp cellar with a narrow passageway leading\neast, and a crawlway to the south.  On the west is the bottom of a\nsteep metal ramp which is unclimbable."]
+    } else if $roomf == "cyclops_room" {
+        mut o = ["This room has an exit on the west side, and a staircase leading up."]
+        let wrath = ($state.cyclowrath? | default 0)
+        if (gflag $state "magic_flag") {
+            $o = ($o | append "The north wall, previously solid, now has a cyclops-sized hole in it.")
+        } else if ((gflag $state "cyclops_flag") and (oflag $state "CYCLO" "sleepbit")) {
+            $o = ($o | append "The cyclops is sleeping blissfully at the foot of the stairs.")
+        } else if ($wrath == 0) {
+            $o = ($o | append "A cyclops, who looks prepared to eat horses (much less mere\nadventurers), blocks the staircase.  From his state of health, and\nthe bloodstains on the walls, you gather that he is not very\nfriendly, though he likes people.")
+        } else if ($wrath > 0) {
+            $o = ($o | append "The cyclops is standing in the corner, eyeing you closely.  I don't\nthink he likes you very much.  He looks extremely hungry even for a\ncyclops.")
+        } else {
+            $o = ($o | append "The cyclops, having eaten the hot peppers, appears to be gasping.\nHis enflamed tongue protrudes from his man-sized mouth.")
+        }
+        $o
     } else { [] }
 }
 

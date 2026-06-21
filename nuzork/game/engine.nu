@@ -66,7 +66,7 @@ def open-close-obj [state: record, oid: string, verb: string, openmsg: string, c
 # handled=false -> fall through to the generic verb handler. `verb` is the
 # syntax sfcn verb (prsa()->w(): OPEN/CLOSE/MOVE/RAISE/TAKE/LKUND/...), which is
 # what the C++ verbq() tests. Extension point as obj_funcs are ported.
-export def obj-fn [state: record, oid: string, verb: string]: nothing -> record {
+export def obj-fn [state: record, oid: string, verb: string, prso: any, prsi: any]: nothing -> record {
     let fn = ((find-obj $oid).objfn? | default null)
     if $fn == "window_function" {
         open-close-obj $state $oid $verb "With great effort, you open the window far enough to allow entry." "The window closes (more easily than it opened)."
@@ -103,7 +103,61 @@ export def obj-fn [state: record, oid: string, verb: string]: nothing -> record 
         if ($verb in ["LIGHT", "TRNON"]) { { handled: false, state: (lamp-on $state), out: [] }
         } else if ($verb == "TRNOF") { { handled: false, state: (lamp-off $state), out: [] }
         } else { { handled: false, state: $state, out: [] } }
+    } else if $fn == "cyclops" {
+        cyclops-fn $state $oid $verb $prso
     } else { { handled: false, state: $state, out: [] } }
+}
+
+# act1.cpp:cyclops obj_func - the Cyclops Room villain. Weapon-proof (ATTACK is
+# shrugged off); the solutions are GIVE food then water (sleep) or saying
+# "Ulysses"/"Odysseus" (sinbad, flee). `prso` is the verb's direct object (the
+# thing given). cyclowrath: 0 neutral, <0 fed-and-thirsty, >0 angered. The cycin
+# anger clock (escalation -> cyclokill) is deferred with the full fight_demon.
+def cyclops-fn [state: record, oid: string, verb: string, prso: any]: nothing -> record {
+    let count = ($state.cyclowrath? | default 0)
+    if (oflag $state $oid "sleepbit") {
+        if ($verb in ["WAKE" "KICK" "ATTAC" "BURN" "DESTR"]) {
+            let s0 = ($state | upsert cyclowrath ($count | math abs))
+            let s1 = (set-oflag $s0 $oid "sleepbit" false)
+            let s2 = (set-oflag $s1 $oid "fightbit" true)
+            let s3 = (set-gflag $s2 "cyclops_flag" false)
+            { handled: true, state: $s3, out: ["The cyclops yawns and stares at the thing that woke him up."] }
+        } else { { handled: false, state: $state, out: [] } }
+    } else if $verb == "GIVE" {
+        cyclops-give $state $count $prso
+    } else if ($verb in ["KILL" "THROW" "ATTAC" "DESTR" "POKE"]) {
+        let msg = (if $verb == "POKE" { "'Do you think I'm as stupid as my father was?', he says, dodging." } else { "The cyclops ignores all injury to his body with a shrug." })
+        { handled: true, state: $state, out: [$msg] }
+    } else if $verb == "TAKE" {
+        { handled: true, state: $state, out: ["The cyclops doesn't take kindly to being grabbed."] }
+    } else if $verb == "TIE" {
+        { handled: true, state: $state, out: ["You cannot tie the cyclops, though he is fit to be tied."] }
+    } else { { handled: false, state: $state, out: [] } }
+}
+# The GIVE branch: the hot-pepper lunch makes him thirsty (cyclowrath ->
+# min(-1, -count)); water then puts him to sleep (cyclops_flag set -> the Up
+# staircase to the treasure room opens). Garlic / anything else is refused.
+def cyclops-give [state: record, count: int, prso: any]: nothing -> record {
+    if ($prso == "FOOD") {
+        if ($count >= 0) {
+            let st = (set-loc ($state | upsert cyclowrath ([(-1), (0 - $count)] | math min)) "FOOD" { at: "gone", id: "" })
+            { handled: true, state: $st, out: ["The cyclops says 'Mmm Mmm.  I love hot peppers!  But oh, could I use\na drink.  Perhaps I could drink the blood of that thing'.  From the\ngleam in his eye, it could be surmised that you are 'that thing'."] }
+        } else { { handled: true, state: $state, out: [] } }
+    } else if ($prso == "WATER") {
+        if ($count < 0) {
+            let s0 = (set-loc $state "WATER" { at: "gone", id: "" })
+            let s1 = (set-oflag $s0 "CYCLO" "sleepbit" true)
+            let s2 = (set-oflag $s1 "CYCLO" "fightbit" false)
+            let s3 = (set-gflag $s2 "cyclops_flag" true)
+            { handled: true, state: $s3, out: ["The cyclops looks tired and quickly falls fast asleep (what did you\nput in that drink, anyway?)."] }
+        } else {
+            { handled: true, state: $state, out: ["The cyclops apparently is not thirsty and refuses your generosity."] }
+        }
+    } else if ($prso == "GARLI") {
+        { handled: true, state: $state, out: ["The cyclops may be hungry, but there is a limit."] }
+    } else {
+        { handled: true, state: $state, out: ["The cyclops is not so stupid as to eat THAT!"] }
+    }
 }
 
 # --- verb handlers --------------------------------------------------------
@@ -292,6 +346,21 @@ export def do-score [state: record]: nothing -> record {
     ] }
 }
 
+# act1.cpp:sinbad - saying "Ulysses"/"Odysseus" routs the cyclops: he flees and
+# knocks down the north wall (magic_flag -> the north hole; cyclops_flag -> the
+# Up staircase to the treasure room), and is removed from the room.
+def do-sinbad [state: record]: nothing -> record {
+    if (($state.here == "CYCLO") and ("CYCLO" in (room-objs $state $state.here))) {
+        let s0 = (set-gflag $state "cyclops_flag" true)
+        let s1 = (set-gflag $s0 "magic_flag" true)
+        let s2 = (set-oflag $s1 "CYCLO" "fightbit" false)
+        let s3 = (set-loc $s2 "CYCLO" { at: "gone", id: "" })
+        { state: $s3, out: ["The cyclops, hearing the name of his father's deadly nemesis, flees the room\nby knocking down the wall on the north of the room."] }
+    } else {
+        { state: $state, out: ["Wasn't he a sailor?"] }
+    }
+}
+
 # --- handler dispatch (syntax sfcn -> a verb handler) ---------------------
 def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi: any]: nothing -> record {
     if ($sfcn in ["room_desc" "room_info" "look_inside" "look_under"]) {
@@ -312,6 +381,7 @@ def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi
     } else if $sfcn == "diagnose" { do-diagnose $state
     } else if $sfcn == "attacker" { do-attack $state "attack" $prso $prsi
     } else if $sfcn == "killer" { do-attack $state "kill" $prso $prsi
+    } else if $sfcn == "sinbad" { do-sinbad $state
     } else if $sfcn == "walk" { do-walk $state null
     } else {
         { state: $state, out: [$"You can't ($action | str downcase) that yet."] }
@@ -354,12 +424,12 @@ export def step [state: record, input: string]: nothing -> record {
         return (run-demons $r.state ($out0 | append $r.out))
     }
     if ($p.prsi != null) {
-        let f = (obj-fn $st $p.prsi $p.sverb)
+        let f = (obj-fn $st $p.prsi $p.sverb $p.prso $p.prsi)
         if $f.handled { return (run-demons $f.state ($out0 | append $f.out)) }
         $st = $f.state
     }
     if ($p.prso != null) {
-        let f = (obj-fn $st $p.prso $p.sverb)
+        let f = (obj-fn $st $p.prso $p.sverb $p.prso $p.prsi)
         if $f.handled { return (run-demons $f.state ($out0 | append $f.out)) }
         $st = $f.state
     }
