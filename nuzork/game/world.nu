@@ -210,6 +210,20 @@ export def score-room [state: record, rid: string]: nothing -> record {
         $state
     }
 }
+# C++ otval_frob: recursive sum of the deposit value (otval) of a list of
+# objects and their nested contents.
+export def otval-frob [state: record, oids: list]: nothing -> int {
+    $oids | reduce --fold 0 {|oid, acc|
+        $acc + ((find-obj $oid).otval? | default 0) + (otval-frob $state (cont-of $state $oid))
+    }
+}
+# The displayed score (C++ ascore, recomputed by rooms.cpp:living_room): the
+# accumulated find + room value (state.score) plus the deposit value of the
+# treasures currently in the trophy case. The win/endgame trigger (score_bless
+# -> egher) is deferred.
+export def displayed-score [state: record]: nothing -> int {
+    $state.score + (otval-frob $state (cont-of $state "TCASE"))
+}
 # The container currently holding oid (by moved override, else static), or null
 # if oid is loose in a room / inventory / nowhere.
 export def container-of [state: record, oid: string]: nothing -> any {

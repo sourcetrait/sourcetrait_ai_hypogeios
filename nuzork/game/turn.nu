@@ -30,7 +30,7 @@ export def main [args: record<session: string, input: string>]: nothing -> recor
     {
         output: ($out | str join (char nl)),
         room: (find-room $state.here | get desc2),
-        score: $state.score,
+        score: (displayed-score $state),
         moves: $state.moves,
         finished: $finished
     }

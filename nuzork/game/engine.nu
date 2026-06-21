@@ -339,10 +339,11 @@ def score-rank [pct: int]: nothing -> string {
 }
 export def do-score [state: record]: nothing -> record {
     let smax = (score-max)
-    let pct = (if ($smax == 0) { 0 } else { ($state.score * 100) // $smax })
+    let sc = (displayed-score $state)
+    let pct = (if ($smax == 0) { 0 } else { ($sc * 100) // $smax })
     let mv = (if ($state.moves == 1) { "move" } else { "moves" })
     { state: $state, out: [
-        $"Your score is ($state.score) [total of ($smax) points], in ($state.moves) ($mv).",
+        $"Your score is ($sc) [total of ($smax) points], in ($state.moves) ($mv).",
         $"This score gives you the rank of (score-rank $pct)."
     ] }
 }
