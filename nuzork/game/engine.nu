@@ -208,6 +208,34 @@ export def do-move [state: record, oid: any]: nothing -> record {
     let o = (find-obj $oid)
     { state: $state, out: [$"Moving the ($o.desc) reveals nothing."] }
 }
+# EAT food / DRINK liquid (act1.cpp:eat). Food must be in hand (consumed);
+# a drink must be reachable - a global, or in an open container in inventory.
+# A removed object goes to a `gone` location (out of every room/inv/container).
+export def do-eat [state: record, sverb: string, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    let is_food = (oflag $state $oid "foodbit")
+    let is_drink = (oflag $state $oid "drinkbit")
+    if ($is_food and ($oid in (player-inv $state))) {
+        if $sverb == "DRINK" {
+            { state: $state, out: ["How can I drink that?"] }
+        } else {
+            { state: (set-loc $state $oid { at: "gone", id: "" }), out: ["Thank you very much.  It really hit the spot."] }
+        }
+    } else if $is_drink {
+        let cont = (container-of $state $oid)
+        let reachable = (($o.is_global? | default false) or (($cont != null) and ($cont in (player-inv $state)) and (oflag $state $cont "openbit")))
+        if $reachable {
+            { state: (set-loc $state $oid { at: "gone", id: "" }), out: ["Thank you very much.  I was rather thirsty (from all this talking\nprobably)."] }
+        } else {
+            { state: $state, out: ["I'd like to, but I can't get to it."] }
+        }
+    } else if (not ($is_food or $is_drink)) {
+        { state: $state, out: [$"I don't think the ($o.desc) would agree with you."] }
+    } else {
+        { state: $state, out: ["I think you should get that first."] }
+    }
+}
 # EXAMINE / LOOK AT an object (basic: containers show state; else nothing).
 export def describe-obj [state: record, oid: any]: nothing -> record {
     if ($oid == null) { return { state: $state, out: ["You can't see that here."] } }
@@ -234,7 +262,7 @@ export def do-inven [state: record]: nothing -> record {
 }
 
 # --- handler dispatch (syntax sfcn -> a verb handler) ---------------------
-def dispatch [state: record, sfcn: any, action: any, prso: any, prsi: any]: nothing -> record {
+def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi: any]: nothing -> record {
     if ($sfcn in ["room_desc" "room_info" "look_inside" "look_under"]) {
         if ($prso != null) { describe-obj $state $prso
         } else { let ri = (room-info $state); { state: $ri.state, out: $ri.out } }
@@ -248,6 +276,7 @@ def dispatch [state: record, sfcn: any, action: any, prso: any, prsi: any]: noth
     } else if $sfcn == "lamp_off" { do-extinguish $state $prso
     } else if $sfcn == "putter" { do-put $state $prso $prsi
     } else if $sfcn == "move" { do-move $state $prso
+    } else if $sfcn == "eat" { do-eat $state $sverb $prso
     } else if $sfcn == "walk" { do-walk $state null
     } else {
         { state: $state, out: [$"You can't ($action | str downcase) that yet."] }
@@ -275,6 +304,6 @@ export def step [state: record, input: string]: nothing -> record {
         if $f.handled { return { state: $f.state, out: ($out0 | append $f.out) } }
         $st = $f.state
     }
-    let r = (dispatch $st $p.sfcn $p.action $p.prso $p.prsi)
+    let r = (dispatch $st $p.sfcn $p.sverb $p.action $p.prso $p.prsi)
     { state: $r.state, out: ($out0 | append $r.out) }
 }

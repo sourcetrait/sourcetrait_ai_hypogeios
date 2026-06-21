@@ -160,6 +160,17 @@ export def set-loc [state: record, oid: string, place: record]: nothing -> recor
 export def set-gflag [state: record, name: string, val: bool]: nothing -> record {
     $state | update flags ($state.flags | upsert $name $val)
 }
+# The container currently holding oid (by moved override, else static), or null
+# if oid is loose in a room / inventory / nowhere.
+export def container-of [state: record, oid: string]: nothing -> any {
+    let m = (obj-moved $state $oid)
+    if ($m != null) {
+        if ($m.at == "cont") { $m.id } else { null }
+    } else {
+        let c = ($OBJECTS | where {|o| $oid in ($o.contents? | default []) } | get oid)
+        if ($c | is-empty) { null } else { $c | first }
+    }
+}
 
 # --- "a X, a Y, and a Z" / "a X and a Y" / "a X" (C++ print_contents) ------
 export def print-list [items: list]: nothing -> string {
