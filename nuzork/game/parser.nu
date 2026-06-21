@@ -141,7 +141,7 @@ def take-it [state: record, oid: string, varg: record]: nothing -> record {
     if ($varg.vtbit and (oflag $state $oid "takebit") and ($oid in (room-objs $state $state.here)) and ($oid not-in (player-inv $state))) {
         if (lit $state $state.here) {
             let st = (set-loc (set-oflag $state $oid "touchbit" true) $oid { at: "player", id: "" })
-            { ok: true, state: $st, out: ["Taken."] }
+            { ok: true, state: (score-take $st $oid), out: ["Taken."] }
         } else {
             { ok: false, state: $state, out: ["It is too dark in here to see."] }
         }

@@ -201,7 +201,7 @@ export def do-take [state: record, oid: any]: nothing -> record {
         { state: $state, out: ["You can't take that."] }
     } else {
         let st = (set-loc (set-oflag $state $oid "touchbit" true) $oid { at: "player", id: "" })
-        { state: $st, out: ["Taken."] }
+        { state: (score-take $st $oid), out: ["Taken."] }
     }
 }
 export def do-drop [state: record, oid: any]: nothing -> record {

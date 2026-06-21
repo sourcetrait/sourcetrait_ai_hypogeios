@@ -31,7 +31,7 @@ export def score-max []: nothing -> int {
 # {at,id} placement overrides), `oflags` (oid -> [bit] flag overrides), and
 # `flags` (game FlagId bools). Reads fall back to the static tables.
 export def new-state []: nothing -> record {
-    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {}, pstr: 0, vstr: {}, clocks: {}, cyclowrath: 0 }
+    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {}, pstr: 0, vstr: {}, clocks: {}, cyclowrath: 0, scored: [] }
 }
 
 # Object location is the static data placement, overridden by `moved` for any
@@ -185,6 +185,18 @@ export def set-loc [state: record, oid: string, place: record]: nothing -> recor
 }
 export def set-gflag [state: record, name: string, val: bool]: nothing -> record {
     $state | update flags ($state.flags | upsert $name $val)
+}
+# C++ score_obj: taking a treasure adds its find value (ofval) to the score,
+# once per object (tracked in state.scored, since the static ofval can't be
+# zeroed in place). The deposit value (otval, via the trophy case) is separate.
+export def score-take [state: record, oid: string]: nothing -> record {
+    let ofval = ((find-obj $oid).ofval? | default 0)
+    let scored = ($state.scored? | default [])
+    if (($ofval > 0) and ($oid not-in $scored)) {
+        $state | update score ($state.score + $ofval) | upsert scored ($scored | append $oid)
+    } else {
+        $state
+    }
 }
 # The container currently holding oid (by moved override, else static), or null
 # if oid is loose in a room / inventory / nowhere.
