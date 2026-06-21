@@ -235,7 +235,7 @@ def finish-syntax [state: record, syn: record, action: string, p0: any, p1: any]
     let prso = (if ($p0 == null) { null } else { $p0.obj })
     let prsi = (if ($p1 == null) { null } else { $p1.obj })
     let t = (take-slots $state $syn $prso $prsi)
-    { ok: $t.ok, sfcn: $syn.sfcn, action: $action, prso: $prso, prsi: $prsi, dir: null, state: $t.state, out: $t.out }
+    { ok: $t.ok, sfcn: $syn.sfcn, sverb: $syn.sverb, action: $action, prso: $prso, prsi: $prsi, dir: null, state: $t.state, out: $t.out }
 }
 
 # --- sparse: classify tokens, build the parse vector, then syn_match ------
@@ -286,7 +286,7 @@ export def parse-input [state: record, input: string]: nothing -> record {
         }
     }
     if (($action == "WALK") and ($dir != null) and ($objs | is-empty)) {
-        return { ok: true, sfcn: "walk", action: "WALK", prso: null, prsi: null, dir: $dir, state: $state, out: [] }
+        return { ok: true, sfcn: "walk", sverb: "WALK", action: "WALK", prso: null, prsi: null, dir: $dir, state: $state, out: [] }
     }
     if ($action == null) {
         if ($objs | is-empty) {

@@ -9,6 +9,13 @@ export use ./world.nu *
 use ./parser.nu *
 
 # --- movement -------------------------------------------------------------
+# Enter a destination room: describe it (LOOK phase), then run the room's
+# ENTER phase (room-fn-enter), appending its output after the description.
+def enter-room [state: record, dest: string]: nothing -> record {
+    let ri = (room-info ($state | update here $dest))
+    let en = (room-fn-enter $ri.state)
+    { state: $en.state, out: ($ri.out | append $en.out) }
+}
 export def do-walk [state: record, dir: any]: nothing -> record {
     if $dir == null { return { state: $state, out: ["You can't go that way."] } }
     let rm = (find-room $state.here)
@@ -16,14 +23,14 @@ export def do-walk [state: record, dir: any]: nothing -> record {
     if ($exm | is-empty) { return { state: $state, out: ["You can't go that way."] } }
     let to = ($exm | first | get to)
     if $to.kind == "room" {
-        let ri = (room-info ($state | update here $to.to))
+        let ri = (enter-room $state $to.to)
         { state: $ri.state, out: $ri.out }
     } else if $to.kind == "nexit" {
         { state: $state, out: [$to.msg] }
     } else if $to.kind == "door" {
         if (oflag $state $to.obj "openbit") {
             let dest = (if $to.rm1 == $state.here { $to.rm2 } else { $to.rm1 })
-            let ri = (room-info ($state | update here $dest))
+            let ri = (enter-room $state $dest)
             { state: $ri.state, out: $ri.out }
         } else {
             { state: $state, out: [(if ($to.msg == "") { "You can't go that way." } else { $to.msg })] }
@@ -40,20 +47,53 @@ export def do-walk [state: record, dir: any]: nothing -> record {
     }
 }
 
+# C++ act1.cpp:open_close - toggle openbit with the given messages. The
+# already-open / already-closed paths render pick_one(dummy) as a fixed
+# deterministic stand-in (the dummy message table is not yet ported).
+def open-close-obj [state: record, oid: string, verb: string, openmsg: string, closemsg: string]: nothing -> record {
+    if $verb == "OPEN" {
+        if (oflag $state $oid "openbit") { { handled: true, state: $state, out: ["It is already open."] }
+        } else { { handled: true, state: (set-oflag $state $oid "openbit" true), out: [$openmsg] } }
+    } else if $verb == "CLOSE" {
+        if (oflag $state $oid "openbit") { { handled: true, state: (set-oflag $state $oid "openbit" false), out: [$closemsg] }
+        } else { { handled: true, state: $state, out: ["It is already closed."] } }
+    } else { { handled: false, state: $state, out: [] } }
+}
+
 # --- object functions: a ported obj_func may intercept a verb ----------------
 # handled=false -> fall through to the generic verb handler. `verb` is the
-# canonical action (OPEN/CLOSE/...). Extension point as obj_funcs are ported.
+# syntax sfcn verb (prsa()->w(): OPEN/CLOSE/MOVE/RAISE/TAKE/LKUND/...), which is
+# what the C++ verbq() tests. Extension point as obj_funcs are ported.
 export def obj-fn [state: record, oid: string, verb: string]: nothing -> record {
     let fn = ((find-obj $oid).objfn? | default null)
     if $fn == "window_function" {
-        if $verb == "OPEN" {
-            if (oflag $state $oid "openbit") { { handled: true, state: $state, out: ["It is already open."] }
-            } else { { handled: true, state: (set-oflag $state $oid "openbit" true), out: ["With great effort, you open the window far enough to allow entry."] } }
-        } else if $verb == "CLOSE" {
-            { handled: true, state: (set-oflag $state $oid "openbit" false), out: ["The window closes (more easily than it opened)."] }
-        } else { { handled: false, state: $state, out: [] } }
+        open-close-obj $state $oid $verb "With great effort, you open the window far enough to allow entry." "The window closes (more easily than it opened)."
     } else if $fn == "ddoor_function" {
         if $verb == "OPEN" { { handled: true, state: $state, out: ["The door cannot be opened."] }
+        } else { { handled: false, state: $state, out: [] } }
+    } else if $fn == "rug" {
+        if $verb == "RAISE" {
+            { handled: true, state: $state, out: ["The rug is too heavy to lift, but in trying to take it you have\nnoticed an irregularity beneath it."] }
+        } else if $verb == "MOVE" {
+            if (gflag $state "rug_moved") {
+                { handled: true, state: $state, out: ["Having moved the carpet previously, you find it impossible to move\nit again."] }
+            } else {
+                let st = (set-gflag (set-oflag $state "DOOR" "ovison" true) "rug_moved" true)
+                { handled: true, state: $st, out: ["With a great effort, the rug is moved to one side of the room.\nWith the rug moved, the dusty cover of a closed trap-door appears."] }
+            }
+        } else if $verb == "TAKE" {
+            { handled: true, state: $state, out: ["The rug is extremely heavy and cannot be carried."] }
+        } else if $verb == "LKUND" {
+            if ((not (gflag $state "rug_moved")) and (not (oflag $state "DOOR" "openbit"))) {
+                { handled: true, state: $state, out: ["Underneath the rug is a closed trap door."] }
+            } else { { handled: false, state: $state, out: [] } }
+        } else { { handled: false, state: $state, out: [] } }
+    } else if $fn == "trap_door" {
+        if (($verb in ["OPEN" "CLOSE"]) and ($state.here == "LROOM")) {
+            open-close-obj $state $oid $verb "The door reluctantly opens to reveal a rickety staircase descending\ninto darkness." "The door swings shut and closes."
+        } else if ($state.here == "CELLA") {
+            if $verb == "OPEN" { { handled: true, state: $state, out: ["The door is locked from above."] }
+            } else { { handled: true, state: $state, out: ["You can't do that."] } }
         } else { { handled: false, state: $state, out: [] } }
     } else { { handled: false, state: $state, out: [] } }
 }
@@ -226,12 +266,12 @@ export def step [state: record, input: string]: nothing -> record {
         return { state: $r.state, out: ($out0 | append $r.out) }
     }
     if ($p.prsi != null) {
-        let f = (obj-fn $st $p.prsi $p.action)
+        let f = (obj-fn $st $p.prsi $p.sverb)
         if $f.handled { return { state: $f.state, out: ($out0 | append $f.out) } }
         $st = $f.state
     }
     if ($p.prso != null) {
-        let f = (obj-fn $st $p.prso $p.action)
+        let f = (obj-fn $st $p.prso $p.sverb)
         if $f.handled { return { state: $f.state, out: ($out0 | append $f.out) } }
         $st = $f.state
     }

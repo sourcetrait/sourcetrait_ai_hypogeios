@@ -96,7 +96,23 @@ export def room-fn-desc [state: record, roomf: string]: nothing -> list {
             } else if $door_open { "and an open trap-door at your feet."
             } else { "and a large oriental rug in the center of the room." })
         [($base + $status)]
+    } else if $roomf == "cellar" {
+        ["You are in a dark and damp cellar with a narrow passageway leading\neast, and a crawlway to the south.  On the west is the bottom of a\nsteep metal ramp which is unclimbable."]
     } else { [] }
+}
+
+# --- room-function ENTER phase (GO-IN): runs as the player enters a room ----
+# Mutates state and may prepend output, after the room is described. Companion
+# to room-fn-desc (the LOOK phase); the incremental extension point for
+# enter-triggered room behavior (e.g. the cellar trap door barring itself).
+export def room-fn-enter [state: record]: nothing -> record {
+    let roomf = ((find-room $state.here).roomf? | default null)
+    if $roomf == "cellar" {
+        if ((oflag $state "DOOR" "openbit") and (not (oflag $state "DOOR" "touchbit"))) {
+            let st = (set-oflag (set-oflag $state "DOOR" "openbit" false) "DOOR" "touchbit" true)
+            { state: $st, out: ["The trap door crashes shut, and you hear someone barring it."] }
+        } else { { state: $state, out: [] } }
+    } else { { state: $state, out: [] } }
 }
 
 # --- room display (room_info, full=3) -------------------------------------
@@ -140,6 +156,9 @@ export def set-oflag [state: record, oid: string, bit: string, on: bool]: nothin
 }
 export def set-loc [state: record, oid: string, place: record]: nothing -> record {
     $state | update moved ($state.moved | upsert $oid $place)
+}
+export def set-gflag [state: record, name: string, val: bool]: nothing -> record {
+    $state | update flags ($state.flags | upsert $name $val)
 }
 
 # --- "a X, a Y, and a Z" / "a X and a Y" / "a X" (C++ print_contents) ------
