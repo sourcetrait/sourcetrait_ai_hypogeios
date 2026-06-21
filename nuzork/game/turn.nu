@@ -17,7 +17,7 @@ export def main [args: record<session: string, input: string>]: nothing -> recor
     if $fresh {
         let ri = (room-info $state)
         $state = $ri.state
-        $out = $ri.out
+        $out = ([$BANNER] | append $ri.out)
     }
     if (($args.input | str trim) != "") {
         let r = (step $state $args.input)

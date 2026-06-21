@@ -10,11 +10,13 @@ export def run [session?: string]: nothing -> nothing {
     mkdir $dir
     let sid = ($session | default "play")
     let path = ($dir | path join $"($sid).nuon")
-    mut state = (if ($path | path exists) { open $path } else { new-state })
+    let fresh = (not ($path | path exists))
+    mut state = (if $fresh { new-state } else { open $path })
     let ri = (room-info $state)
     $state = $ri.state
     $state | save -f $path
-    print ($ri.out | str join (char nl))
+    let intro = (if $fresh { [$BANNER] | append $ri.out } else { $ri.out })
+    print ($intro | str join (char nl))
     loop {
         let line = (input "> ")
         if ($line | is-empty) { continue }

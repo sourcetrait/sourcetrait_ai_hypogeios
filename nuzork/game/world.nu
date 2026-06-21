@@ -5,6 +5,9 @@
 use ./data_rooms.nu *
 use ./data_objects.nu *
 
+# The startup banner (mdlfun.cpp:run_zork -> version.h sVersion).
+export const BANNER = "ZORK++ version 1.2"
+
 # --- static-world lookups -------------------------------------------------
 export def find-room [rid: string]: nothing -> any {
     let m = ($ROOMS | where rid == $rid)
@@ -13,6 +16,14 @@ export def find-room [rid: string]: nothing -> any {
 export def find-obj [oid: string]: nothing -> any {
     let m = ($OBJECTS | where oid == $oid)
     if ($m | is-empty) { null } else { $m | first }
+}
+# Maximum attainable score (the C++ inc_score_max tally): every object's find +
+# treasure value, every NON-endgame room's first-entry value (endgame rval goes
+# to eg_score_max), plus the static +10 from the light shaft (act2.cpp).
+export def score-max []: nothing -> int {
+    let ov = ($OBJECTS | each {|o| (($o.ofval? | default 0) + ($o.otval? | default 0)) } | math sum)
+    let rv = ($ROOMS | where {|r| "rendgame" not-in ($r.rbits? | default []) } | each {|r| ($r.rval? | default 0) } | math sum)
+    $ov + $rv + 10
 }
 
 # --- new game -------------------------------------------------------------

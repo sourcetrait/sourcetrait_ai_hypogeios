@@ -260,6 +260,29 @@ export def do-inven [state: record]: nothing -> record {
     if ($inv | is-empty) { { state: $state, out: ["You are empty handed."] }
     } else { { state: $state, out: (["You are carrying:"] | append ($inv | each {|oid| $"A ((find-obj $oid).desc)" })) } }
 }
+# SCORE (rooms.cpp:score, non-endgame): the score line + the player's rank.
+def score-rank [pct: int]: nothing -> string {
+    if $pct == 100 { "Cheater"
+    } else if $pct > 95 { "Wizard"
+    } else if $pct > 89 { "Master"
+    } else if $pct > 79 { "Winner"
+    } else if $pct > 60 { "Hacker"
+    } else if $pct > 39 { "Adventurer"
+    } else if $pct > 19 { "Junior Adventurer"
+    } else if $pct > 9 { "Novice Adventurer"
+    } else if $pct > 4 { "Amateur Adventurer"
+    } else if $pct >= 0 { "Beginner"
+    } else { "Incompetent" }
+}
+export def do-score [state: record]: nothing -> record {
+    let smax = (score-max)
+    let pct = (if ($smax == 0) { 0 } else { ($state.score * 100) // $smax })
+    let mv = (if ($state.moves == 1) { "move" } else { "moves" })
+    { state: $state, out: [
+        $"Your score is ($state.score) [total of ($smax) points], in ($state.moves) ($mv).",
+        $"This score gives you the rank of (score-rank $pct)."
+    ] }
+}
 
 # --- handler dispatch (syntax sfcn -> a verb handler) ---------------------
 def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi: any]: nothing -> record {
@@ -277,6 +300,7 @@ def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi
     } else if $sfcn == "putter" { do-put $state $prso $prsi
     } else if $sfcn == "move" { do-move $state $prso
     } else if $sfcn == "eat" { do-eat $state $sverb $prso
+    } else if $sfcn == "score" { do-score $state
     } else if $sfcn == "walk" { do-walk $state null
     } else {
         { state: $state, out: [$"You can't ($action | str downcase) that yet."] }
