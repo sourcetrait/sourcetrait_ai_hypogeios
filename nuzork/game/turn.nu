@@ -19,10 +19,12 @@ export def main [args: record<session: string, input: string>]: nothing -> recor
         $state = $ri.state
         $out = ([$BANNER] | append $ri.out)
     }
+    mut finished = false
     if (($args.input | str trim) != "") {
         let r = (step $state $args.input)
         $state = $r.state
         $out = ($out | append $r.out)
+        $finished = ($r.finished? | default false)
     }
     $state | save -f $path
     {
@@ -30,6 +32,6 @@ export def main [args: record<session: string, input: string>]: nothing -> recor
         room: (find-room $state.here | get desc2),
         score: $state.score,
         moves: $state.moves,
-        finished: false
+        finished: $finished
     }
 }

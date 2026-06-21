@@ -7,6 +7,7 @@
 # and expand incrementally; unported verbs fall through to a stub.
 export use ./world.nu *
 use ./parser.nu *
+use ./combat.nu *
 
 # --- movement -------------------------------------------------------------
 # Enter a destination room: describe it (LOOK phase), then run the room's
@@ -301,33 +302,43 @@ def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi
     } else if $sfcn == "move" { do-move $state $prso
     } else if $sfcn == "eat" { do-eat $state $sverb $prso
     } else if $sfcn == "score" { do-score $state
+    } else if $sfcn == "attacker" { do-attack $state "attack" $prso $prsi
+    } else if $sfcn == "killer" { do-attack $state "kill" $prso $prsi
     } else if $sfcn == "walk" { do-walk $state null
     } else {
         { state: $state, out: [$"You can't ($action | str downcase) that yet."] }
     }
 }
 
-# --- one turn: parse -> obj-fn intercept (PRSI, PRSO) -> verb handler ------
+# Run the per-turn fight phase (the demon phase) after a parse-won command.
+def run-fight [state: record, out: list]: nothing -> record {
+    let fr = (fight-phase $state)
+    { state: $fr.state, out: ($out | append $fr.out), finished: $fr.finished }
+}
+
+# --- one turn: parse -> obj-fn intercept (PRSI, PRSO) -> verb handler ->
+# the fight phase (villains strike). Returns {state, out, finished}.
 export def step [state: record, input: string]: nothing -> record {
     let st0 = ($state | update moves ($state.moves + 1))
     let p = (parse-input $st0 $input)
-    if (not $p.ok) { return { state: $p.state, out: $p.out } }
+    if (not $p.ok) { return { state: $p.state, out: $p.out, finished: false } }
     mut st = $p.state
     let out0 = $p.out
     if (($p.sfcn == "walk") and ($p.dir != null)) {
         let r = (do-walk $st $p.dir)
-        return { state: $r.state, out: ($out0 | append $r.out) }
+        return (run-fight $r.state ($out0 | append $r.out))
     }
     if ($p.prsi != null) {
         let f = (obj-fn $st $p.prsi $p.sverb)
-        if $f.handled { return { state: $f.state, out: ($out0 | append $f.out) } }
+        if $f.handled { return (run-fight $f.state ($out0 | append $f.out)) }
         $st = $f.state
     }
     if ($p.prso != null) {
         let f = (obj-fn $st $p.prso $p.sverb)
-        if $f.handled { return { state: $f.state, out: ($out0 | append $f.out) } }
+        if $f.handled { return (run-fight $f.state ($out0 | append $f.out)) }
         $st = $f.state
     }
     let r = (dispatch $st $p.sfcn $p.sverb $p.action $p.prso $p.prsi)
-    { state: $r.state, out: ($out0 | append $r.out) }
+    if (($r.finished? | default false)) { return { state: $r.state, out: ($out0 | append $r.out), finished: true } }
+    run-fight $r.state ($out0 | append $r.out)
 }

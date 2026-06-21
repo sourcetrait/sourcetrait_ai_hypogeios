@@ -26,5 +26,9 @@ export def run [session?: string]: nothing -> nothing {
         $state = $r.state
         $state | save -f $path
         print ($r.out | str join (char nl))
+        if ($r.finished? | default false) {
+            print "** You have died. **"
+            break
+        }
     }
 }
