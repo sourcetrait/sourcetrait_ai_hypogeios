@@ -19,24 +19,19 @@ export def find-obj [oid: string]: nothing -> any {
 # Materialize the live world: loc (oid -> {at,id}) from static placement, and
 # oflags (oid -> [bit]) from static bits. Mutations overwrite these in place.
 export def new-state []: nothing -> record {
-    mut loc = {}
-    for rm in $ROOMS {
-        for oid in $rm.contents { $loc = ($loc | upsert $oid { at: "room", id: $rm.rid }) }
-    }
-    for o in $OBJECTS {
-        for oid in $o.contents { $loc = ($loc | upsert $oid { at: "cont", id: $o.oid }) }
-    }
-    mut oflags = {}
-    for o in $OBJECTS { $oflags = ($oflags | upsert $o.oid $o.bits) }
-    {
-        here: "WHOUS", moves: 0, score: 0, deaths: 0,
-        seen: [], loc: $loc, oflags: $oflags, flags: {}
-    }
+    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {} }
+}
+
+# Object location is the static data placement, overridden by `moved` for any
+# object that has moved (shared boundary objects stay in both static rooms).
+export def obj-moved [state: record, oid: string]: nothing -> any {
+    if ($oid in ($state.moved | columns)) { $state.moved | get $oid } else { null }
 }
 
 # --- flag helpers ---------------------------------------------------------
 export def oflag [state: record, oid: string, bit: string]: nothing -> bool {
-    if ($oid in ($state.oflags | columns)) { $bit in ($state.oflags | get $oid) } else { false }
+    let cur = (if ($oid in ($state.oflags | columns)) { $state.oflags | get $oid } else { (find-obj $oid).bits })
+    $bit in $cur
 }
 export def gflag [state: record, name: string]: nothing -> bool {
     ($name in ($state.flags | columns)) and (($state.flags | get $name) == true)
@@ -44,7 +39,12 @@ export def gflag [state: record, name: string]: nothing -> bool {
 
 # --- objects currently in a room -----------------------------------------
 export def room-objs [state: record, rid: string]: nothing -> list {
-    $state.loc | transpose oid place | where {|r| ($r.place.at == "room") and ($r.place.id == $rid) } | get oid
+    let r = (find-room $rid)
+    let stat = (if $r == null { [] } else { $r.contents | where {|o|
+        let m = (obj-moved $state $o); ($m == null) or (($m.at == "room") and ($m.id == $rid))
+    } })
+    let movedin = ($state.moved | transpose o p | where {|x| ($x.p.at == "room") and ($x.p.id == $rid) } | get o)
+    ($stat | append $movedin | uniq)
 }
 
 # --- one object's listing line (room_info full=3 path) --------------------
@@ -70,6 +70,22 @@ export def room-fn-desc [state: record, roomf: string]: nothing -> list {
             $o = ($o | append "There is a grating securely fastened into the ground.")
         }
         $o
+    } else if $roomf == "kitchen" {
+        let w = (if (oflag $state "WINDO" "openbit") { "open." } else { "slightly ajar." })
+        [$"You are in the kitchen of the white house.  A table seems to have\nbeen used recently for the preparation of food.  A passage leads to\nthe west and a dark staircase can be seen leading upward.  To the\neast is a small window which is ($w)"]
+    } else if $roomf == "living_room" {
+        let door_open = (oflag $state "DOOR" "openbit")
+        let rug_moved = (gflag $state "rug_moved")
+        let base = (if (gflag $state "magic_flag") {
+            "You are in the living room.  There is a door to the east.  To the\nwest is a cyclops-shaped hole in an old wooden door, above which is\nsome strange gothic lettering "
+        } else {
+            "You are in the living room.  There is a door to the east, a wooden\ndoor with strange gothic lettering to the west, which appears to be\nnailed shut, "
+        })
+        let status = (if ($rug_moved and $door_open) { "and a rug lying beside an open trap-door."
+            } else if $rug_moved { "and a closed trap-door at your feet."
+            } else if $door_open { "and an open trap-door at your feet."
+            } else { "and a large oriental rug in the center of the room." })
+        [($base + $status)]
     } else { [] }
 }
 
@@ -149,10 +165,15 @@ export def do-walk [state: record, dir: any]: nothing -> record {
 
 # --- object resolution ----------------------------------------------------
 export def player-inv [state: record]: nothing -> list {
-    $state.loc | transpose o p | where {|r| $r.p.at == "player" } | get o
+    $state.moved | transpose o p | where {|r| $r.p.at == "player" } | get o
 }
 export def cont-of [state: record, oid: string]: nothing -> list {
-    $state.loc | transpose o p | where {|r| ($r.p.at == "cont") and ($r.p.id == $oid) } | get o
+    let o = (find-obj $oid)
+    let stat = (if $o == null { [] } else { $o.contents | where {|c|
+        let m = (obj-moved $state $c); ($m == null) or (($m.at == "cont") and ($m.id == $oid))
+    } })
+    let movedin = ($state.moved | transpose o2 p | where {|x| ($x.p.at == "cont") and ($x.p.id == $oid) } | get o2)
+    ($stat | append $movedin | uniq)
 }
 export def resolve-obj [state: record, name: string]: nothing -> any {
     let reach = ((room-objs $state $state.here) | append (player-inv $state))
@@ -175,7 +196,7 @@ export def set-oflag [state: record, oid: string, bit: string, on: bool]: nothin
     $state | update oflags ($state.oflags | upsert $oid $new)
 }
 export def set-loc [state: record, oid: string, place: record]: nothing -> record {
-    $state | update loc ($state.loc | upsert $oid $place)
+    $state | update moved ($state.moved | upsert $oid $place)
 }
 
 # --- "a X, a Y, and a Z" / "a X and a Y" / "a X" (C++ print_contents) ------
@@ -191,8 +212,25 @@ export def print-list [items: list]: nothing -> string {
 }
 
 # --- object verbs ---------------------------------------------------------
+# Dispatch a verb to a ported object-function. handled=false -> generic verb.
+export def obj-fn [state: record, oid: string, verb: string]: nothing -> record {
+    let fn = ((find-obj $oid).objfn? | default null)
+    if $fn == "window_function" {
+        if $verb == "OPEN" {
+            if (oflag $state $oid "openbit") { { handled: true, state: $state, out: ["It is already open."] }
+            } else { { handled: true, state: (set-oflag $state $oid "openbit" true), out: ["With great effort, you open the window far enough to allow entry."] } }
+        } else if $verb == "CLOSE" {
+            { handled: true, state: (set-oflag $state $oid "openbit" false), out: ["The window closes (more easily than it opened)."] }
+        } else { { handled: false, state: $state, out: [] } }
+    } else if $fn == "ddoor_function" {
+        if $verb == "OPEN" { { handled: true, state: $state, out: ["The door cannot be opened."] }
+        } else { { handled: false, state: $state, out: [] } }
+    } else { { handled: false, state: $state, out: [] } }
+}
 export def do-open [state: record, oid: any]: nothing -> record {
     if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let f = (obj-fn $state $oid "OPEN")
+    if $f.handled { return { state: $f.state, out: $f.out } }
     let o = (find-obj $oid)
     if (not (oflag $state $oid "contbit")) {
         { state: $state, out: [$"You must tell me how to do that to a ($o.desc)."] }
