@@ -37,6 +37,15 @@ export def gflag [state: record, name: string]: nothing -> bool {
     ($name in ($state.flags | columns)) and (($state.flags | get $name) == true)
 }
 
+# A room is lit if it is self-lit (rlightbit) or an `on` light source is in the
+# room or the player's inventory.
+export def lit [state: record, rid: string]: nothing -> bool {
+    let rm = (find-room $rid)
+    if (($rm != null) and ("rlightbit" in $rm.rbits)) { return true }
+    let all = ((room-objs $state $rid) | append (player-inv $state) | uniq)
+    ($all | any {|oid| oflag $state $oid "onbit" })
+}
+
 # --- objects currently in a room -----------------------------------------
 export def room-objs [state: record, rid: string]: nothing -> list {
     let r = (find-room $rid)
@@ -92,6 +101,9 @@ export def room-fn-desc [state: record, roomf: string]: nothing -> list {
 # --- room display (room_info, full=3) -------------------------------------
 export def room-info [state: record]: nothing -> record {
     let rm = (find-room $state.here)
+    if (not (lit $state $state.here)) {
+        return { state: $state, out: ["It is pitch black.  You are likely to be eaten by a grue."] }
+    }
     mut out = [$rm.desc2]
     if ($rm.desc1 == "") {
         if ($rm.roomf != null) { $out = ($out | append (room-fn-desc $state $rm.roomf)) }
@@ -291,6 +303,31 @@ export def do-read [state: record, oid: any]: nothing -> record {
     }
 }
 
+export def do-light [state: record, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    if ((not (oflag $state $oid "lightbit")) or ($oid not-in (player-inv $state))) {
+        { state: $state, out: ["You can't turn that on."] }
+    } else if (oflag $state $oid "onbit") {
+        { state: $state, out: ["It is already on."] }
+    } else {
+        { state: (set-oflag $state $oid "onbit" true), out: [$"The ($o.desc) is now on."] }
+    }
+}
+export def do-extinguish [state: record, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    if ((not (oflag $state $oid "lightbit")) or ($oid not-in (player-inv $state))) {
+        { state: $state, out: ["You can't turn that off."] }
+    } else if (not (oflag $state $oid "onbit")) {
+        { state: $state, out: ["It is already off."] }
+    } else {
+        let st = (set-oflag $state $oid "onbit" false)
+        if (lit $st $st.here) { { state: $st, out: [$"The ($o.desc) is now off."] }
+        } else { { state: $st, out: [$"The ($o.desc) is now off.", "It is now pitch black."] } }
+    }
+}
+
 # --- one turn -------------------------------------------------------------
 export def step [state: record, input: string]: nothing -> record {
     let p = (parse-cmd $state $input)
@@ -306,13 +343,15 @@ export def step [state: record, input: string]: nothing -> record {
         let inv = (player-inv $st)
         if ($inv | is-empty) { { state: $st, out: ["You are empty handed."] }
         } else { { state: $st, out: (["You are carrying:"] | append ($inv | each {|oid| $"A ((find-obj $oid).desc)" })) } }
-    } else if ($v in ["OPEN", "CLOSE", "TAKE", "DROP", "READ"]) {
+    } else if ($v in ["OPEN", "CLOSE", "TAKE", "DROP", "READ", "LIGHT", "EXTIN"]) {
         let oid = (resolve-name $st ($p.rest? | default []))
         if $v == "OPEN" { do-open $st $oid
         } else if $v == "CLOSE" { do-close $st $oid
         } else if $v == "TAKE" { do-take $st $oid
         } else if $v == "DROP" { do-drop $st $oid
-        } else { do-read $st $oid }
+        } else if $v == "READ" { do-read $st $oid
+        } else if $v == "LIGHT" { do-light $st $oid
+        } else { do-extinguish $st $oid }
     } else {
         { state: $st, out: [$"You can't ($v | str downcase) that yet."] }
     }

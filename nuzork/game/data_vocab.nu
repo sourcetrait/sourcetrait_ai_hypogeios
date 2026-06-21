@@ -15,6 +15,7 @@ export const VERBS = {
     "INVEN": "INVEN", "I": "INVEN", "LIST": "INVEN",
     "OPEN": "OPEN", "CLOSE": "CLOSE", "READ": "READ",
     "TAKE": "TAKE", "GET": "TAKE", "GRAB": "TAKE", "HOLD": "TAKE",
-    "CARRY": "TAKE", "REMOV": "TAKE", "DROP": "DROP", "PUT": "DROP"
+    "CARRY": "TAKE", "REMOV": "TAKE", "DROP": "DROP", "PUT": "DROP",
+    "LIGHT": "LIGHT", "EXTIN": "EXTIN", "DOUSE": "EXTIN"
 }
 export const NOISE = ["THE", "A", "AN", "MY", "AT", "OF", "UP"]
