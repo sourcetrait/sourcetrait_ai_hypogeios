@@ -1,5 +1,35 @@
-# one-line summary (<= 80 chars); becomes this function's doc
-export def main [args: record<>]: nothing -> record<> {
-    # logic here; replace each record<> with real fields (or `nothing` for void)
-    {}
+# Advance one non-interactive turn for a session and return the result.
+#
+# A fresh session id starts a new game (the player at West-of-House); empty
+# input yields the opening room with no command. Session state persists as NUON
+# at $XDG_STATE_HOME/sourcetrait/nuzork/<session>.nuon (the C++ save/restore
+# delta model). `output` is the turn's accumulated text; `finished` flags game
+# end (quit / final death).
+use ./engine.nu *
+
+export def main [args: record<session: string, input: string>]: nothing -> record<output: string, room: string, score: int, moves: int, finished: bool> {
+    let dir = ($env.XDG_STATE_HOME | path join "sourcetrait" "nuzork")
+    mkdir $dir
+    let path = ($dir | path join $"($args.session).nuon")
+    let fresh = (not ($path | path exists))
+    mut state = (if $fresh { new-state } else { open $path })
+    mut out = []
+    if $fresh {
+        let ri = (room-info $state)
+        $state = $ri.state
+        $out = $ri.out
+    }
+    if (($args.input | str trim) != "") {
+        let r = (step $state $args.input)
+        $state = $r.state
+        $out = ($out | append $r.out)
+    }
+    $state | save -f $path
+    {
+        output: ($out | str join (char nl)),
+        room: (find-room $state.here | get desc2),
+        score: $state.score,
+        moves: $state.moves,
+        finished: false
+    }
 }
