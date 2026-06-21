@@ -362,6 +362,18 @@ def do-sinbad [state: record]: nothing -> record {
 }
 
 # --- handler dispatch (syntax sfcn -> a verb handler) ---------------------
+# Fixed-message flavor verbs (act1/act3/act4): each sfcn -> one canned line.
+const FLAVOR_MSGS = {
+    jargon: "Well, FOO, BAR, and BLETCH to you too!",
+    zork: "At your service!",
+    frobozz: "The FROBOZZ Corporation created, owns, and operates this dungeon.",
+    yell: "Aaaarrrrrrrrgggggggggggggghhhhhhhhhhhhhh!",
+    win: "Naturally!",
+    chomp: "I don't know how to do that.  I win in all cases!",
+    advent: "A hollow voice says 'Cretin.'",
+    repent: "It could very well be too late!",
+    mumbler: "You'll have to speak up if you expect me to hear you!"
+}
 def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi: any]: nothing -> record {
     if ($sfcn in ["room_desc" "room_info" "look_inside" "look_under"]) {
         if ($prso != null) { describe-obj $state $prso
@@ -383,6 +395,7 @@ def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi
     } else if $sfcn == "killer" { do-attack $state "kill" $prso $prsi
     } else if $sfcn == "sinbad" { do-sinbad $state
     } else if $sfcn == "walk" { do-walk $state null
+    } else if ($sfcn in ($FLAVOR_MSGS | columns)) { { state: $state, out: [($FLAVOR_MSGS | get $sfcn)] }
     } else {
         { state: $state, out: [$"You can't ($action | str downcase) that yet."] }
     }
