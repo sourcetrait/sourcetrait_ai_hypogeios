@@ -1,0 +1,28 @@
+name = "hypogeios"
+title = "Hypogeios"
+version = "0.0.9"
+
+[nushell]
+version = "0.113.1"
+
+[description]
+summary = "Classic preservation of classic terminal games written in Nu"
+keywords = ["ai", "twist", "hypogeios"]
+
+[author]
+name = "sourcetrait"
+title = "SourceTrait"
+email = "development@sourcetrait.com"
+
+[license]
+spdx = "mit"
+file = "LICENSE.MIT.txt"
+
+[mcp]
+calls = [
+  "hypogeios:game:turn"
+]
+
+[[bin]]
+name = "play"
+
