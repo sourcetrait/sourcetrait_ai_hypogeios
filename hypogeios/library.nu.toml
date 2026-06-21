@@ -26,3 +26,7 @@ calls = [
 [[bin]]
 name = "play"
 
+[dependencies]
+arche = { author = "sourcetrait", path = "../arche" }
+pelos = { author = "sourcetrait", path = "../pelos" }
+speos = { author = "sourcetrait", path = "../speos" }

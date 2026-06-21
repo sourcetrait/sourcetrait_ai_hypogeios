@@ -1,6 +1,7 @@
 libraries = [
-  "hypogeios",
   "arche",
+  "hypogeios",
+  "pelos",
   "speos"
 ]
 
