@@ -31,7 +31,7 @@ export def score-max []: nothing -> int {
 # {at,id} placement overrides), `oflags` (oid -> [bit] flag overrides), and
 # `flags` (game FlagId bools). Reads fall back to the static tables.
 export def new-state []: nothing -> record {
-    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {}, pstr: 0, vstr: {} }
+    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {}, pstr: 0, vstr: {}, clocks: {} }
 }
 
 # Object location is the static data placement, overridden by `moved` for any

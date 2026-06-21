@@ -8,6 +8,7 @@
 export use ./world.nu *
 use ./parser.nu *
 use ./combat.nu *
+use ./clocks.nu *
 
 # --- movement -------------------------------------------------------------
 # Enter a destination room: describe it (LOOK phase), then run the room's
@@ -95,6 +96,12 @@ export def obj-fn [state: record, oid: string, verb: string]: nothing -> record 
         } else if ($state.here == "CELLA") {
             if $verb == "OPEN" { { handled: true, state: $state, out: ["The door is locked from above."] }
             } else { { handled: true, state: $state, out: ["You can't do that."] } }
+        } else { { handled: false, state: $state, out: [] } }
+    } else if $fn == "lantern" {
+        # manage the lamp dimming clock; not handled, so the generic light
+        # handler (do-light / do-extinguish) still runs and reports.
+        if ($verb in ["LIGHT", "TRNON"]) { { handled: false, state: (lamp-on $state), out: [] }
+        } else if ($verb == "TRNOF") { { handled: false, state: (lamp-off $state), out: [] }
         } else { { handled: false, state: $state, out: [] } }
     } else { { handled: false, state: $state, out: [] } }
 }
@@ -310,10 +317,16 @@ def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi
     }
 }
 
-# Run the per-turn fight phase (the demon phase) after a parse-won command.
-def run-fight [state: record, out: list]: nothing -> record {
+# The per-turn demon phase after a parse-won command: villains strike (the fight
+# phase), then the clock events tick (the lamp dimming).
+def run-demons [state: record, out: list]: nothing -> record {
     let fr = (fight-phase $state)
-    { state: $fr.state, out: ($out | append $fr.out), finished: $fr.finished }
+    if $fr.finished {
+        { state: $fr.state, out: ($out | append $fr.out), finished: true }
+    } else {
+        let ct = (clock-tick $fr.state)
+        { state: $ct.state, out: ($out | append $fr.out | append $ct.out), finished: false }
+    }
 }
 
 # --- one turn: parse -> obj-fn intercept (PRSI, PRSO) -> verb handler ->
@@ -326,19 +339,19 @@ export def step [state: record, input: string]: nothing -> record {
     let out0 = $p.out
     if (($p.sfcn == "walk") and ($p.dir != null)) {
         let r = (do-walk $st $p.dir)
-        return (run-fight $r.state ($out0 | append $r.out))
+        return (run-demons $r.state ($out0 | append $r.out))
     }
     if ($p.prsi != null) {
         let f = (obj-fn $st $p.prsi $p.sverb)
-        if $f.handled { return (run-fight $f.state ($out0 | append $f.out)) }
+        if $f.handled { return (run-demons $f.state ($out0 | append $f.out)) }
         $st = $f.state
     }
     if ($p.prso != null) {
         let f = (obj-fn $st $p.prso $p.sverb)
-        if $f.handled { return (run-fight $f.state ($out0 | append $f.out)) }
+        if $f.handled { return (run-demons $f.state ($out0 | append $f.out)) }
         $st = $f.state
     }
     let r = (dispatch $st $p.sfcn $p.sverb $p.action $p.prso $p.prsi)
     if (($r.finished? | default false)) { return { state: $r.state, out: ($out0 | append $r.out), finished: true } }
-    run-fight $r.state ($out0 | append $r.out)
+    run-demons $r.state ($out0 | append $r.out)
 }
