@@ -15,8 +15,8 @@ title = "SourceTrait"
 email = "development@sourcetrait.com"
 
 [license]
-spdx = "mit"
-file = "LICENSE.MIT.txt"
+spdx = "agpl3"
+file = "LICENSE-AGPL3.txt"
 
 [mcp]
 calls = [
