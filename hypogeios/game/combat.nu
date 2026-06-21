@@ -1,4 +1,4 @@
-# nuzork combat (melee), ported from ~/repo/zork melee.cpp + the ATTACK/KILL
+# hypogeios combat (melee), ported from ~/repo/github/jclaar/zork melee.cpp + the ATTACK/KILL
 # handlers (act1.cpp killer/attacker) + jigs_up (rooms.cpp). Faithful to the
 # port's NON-determinism: every roll uses nushell `random` (the C++ seeds
 # rand() from the clock, so combat varies per playthrough). Player wound level

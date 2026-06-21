@@ -1,5 +1,5 @@
-# nuzork MDL parser: turns an input line into (PRSA, PRSO, PRSI) and matches
-# it against the verb syntax tables (data_syntax.nu). Ported from ~/repo/zork
+# hypogeios MDL parser: turns an input line into (PRSA, PRSO, PRSI) and matches
+# it against the verb syntax tables (data_syntax.nu). Ported from ~/repo/github/jclaar/zork
 # parser.cpp (lex / sparse / get_object / search_list / syn_match / syn_equal /
 # gwim / take_it) and makstr.cpp. The world model (world.nu) supplies object
 # location, flags, and lighting; this module is pure of verb handlers.

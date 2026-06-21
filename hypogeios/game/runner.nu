@@ -6,7 +6,7 @@
 use ./engine.nu *
 
 export def run [session?: string]: nothing -> nothing {
-    let dir = ($env.XDG_STATE_HOME | path join "sourcetrait" "nuzork")
+    let dir = ($env.XDG_STATE_HOME | path join "sourcetrait" "hypogeios")
     mkdir $dir
     let sid = ($session | default "play")
     let path = ($dir | path join $"($sid).nuon")

@@ -1,9 +1,9 @@
-# nuzork game engine: verb handlers plus the turn dispatcher. The world model
+# hypogeios game engine: verb handlers plus the turn dispatcher. The world model
 # (world.nu) is re-exported so turn.nu / runner.nu get it via `use ./engine.nu
 # *`; the MDL parser (parser.nu) turns input into (action, prso, prsi, dir).
 # step() runs the C++ rdcom turn shape: parse -> object-function intercept
 # (PRSI then PRSO) -> the verb handler (keyed on the syntax sfcn). Handlers are
-# ported against ~/repo/zork (working knowledge in iter/nuzork/working/zorkcpp)
+# ported against ~/repo/github/jclaar/zork (working knowledge in iter/hypogeios/working/zorkcpp)
 # and expand incrementally; unported verbs fall through to a stub.
 export use ./world.nu *
 use ./parser.nu *

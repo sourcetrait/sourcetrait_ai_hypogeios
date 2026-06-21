@@ -1,4 +1,4 @@
-# nuzork world model: static-data lookups plus the session-state delta layer
+# hypogeios world model: static-data lookups plus the session-state delta layer
 # (moved / oflags / flags overrides over the static tables) and the room
 # display. Kept free of parsing and verb handlers so both the parser
 # (parser.nu) and the engine (engine.nu) can use it without an import cycle.

@@ -1,4 +1,4 @@
-# nuzork clock events (the CLOCKER demon), ported from ~/repo/zork cevent.cpp +
+# hypogeios clock events (the CLOCKER demon), ported from ~/repo/github/jclaar/zork cevent.cpp +
 # rooms.cpp (clock_int / clock_demon) + act1.cpp (light_int, the lantern fn).
 # Per-turn timed events live in state.clocks (cid -> {tick, enabled, val}); the
 # clock-tick phase decrements each enabled event and fires it on reaching 0.

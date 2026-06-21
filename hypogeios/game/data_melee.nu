@@ -1,4 +1,4 @@
-# Combat data, hand-ported from ~/repo/zork. The attack-outcome def tables
+# Combat data, hand-ported from ~/repo/github/jclaar/zork. The attack-outcome def tables
 # (dung.cpp def1/def2/def3 + the *_res spans) and the per-weapon/villain melee
 # message tables (strings.cpp tofmsgs; D="%D%" defender, W="%W%" weapon). Only
 # the tables the troll fight needs (sword + troll) are ported so far; the other
