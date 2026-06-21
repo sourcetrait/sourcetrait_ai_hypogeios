@@ -51,15 +51,55 @@ def lamp-fire [state: record]: nothing -> record {
     }
 }
 
+# Fire an event whose tick reached 0: dispatch by cid to its action.
+def clock-fire [state: record, cid: string]: nothing -> record {
+    if ($cid == "LNTIN") { lamp-fire $state
+    } else if ($cid == "CURIN") { cure-fire $state
+    } else { { state: $state, out: [] } }
+}
+
 # The clock-tick demon phase (rooms.cpp clock_demon): tick each enabled event,
 # fire it on reaching 0 (tick 0 is inactive; negative would be recurring).
 export def clock-tick [state: record]: nothing -> record {
-    let c = (clock-get $state "LNTIN")
-    if ((not $c.enabled) or ($c.tick <= 0)) {
-        { state: $state, out: [] }
-    } else {
-        let nt = ($c.tick - 1)
-        let st = (clock-set $state "LNTIN" ($c | update tick $nt))
-        if ($nt == 0) { lamp-fire $st } else { { state: $st, out: [] } }
+    mut st = $state
+    mut out = []
+    for cid in (($state.clocks? | default {}) | columns) {
+        let c = (clock-get $st $cid)
+        if ($c.enabled and ($c.tick > 0)) {
+            let nt = ($c.tick - 1)
+            $st = (clock-set $st $cid ($c | update tick $nt))
+            if ($nt == 0) {
+                let f = (clock-fire $st $cid)
+                $st = $f.state
+                $out = ($out | append $f.out)
+            }
+        }
     }
+    { state: $st, out: $out }
+}
+
+# cure_clock (melee.cpp): heal one wound level per cure_wait (30) turns;
+# reschedule while still wounded, else disable. Silent (DIAGNOSE reports it).
+def cure-fire [state: record]: nothing -> record {
+    let p = ($state.pstr? | default 0)
+    if ($p < 0) {
+        let np = ($p + 1)
+        let st = ($state | update pstr $np)
+        if ($np < 0) {
+            { state: (clock-set $st "CURIN" ((clock-get $st "CURIN") | update tick 30 | update enabled true)), out: [] }
+        } else {
+            { state: (clock-set $st "CURIN" ((clock-get $st "CURIN") | update tick 0 | update enabled false)), out: [] }
+        }
+    } else {
+        { state: (clock-set $state "CURIN" ((clock-get $state "CURIN") | update tick 0 | update enabled false)), out: [] }
+    }
+}
+# Enable the cure clock when the player is wounded (combat.nu blow calls this).
+export def cure-on [state: record]: nothing -> record {
+    clock-set $state "CURIN" { tick: 30, enabled: true, val: 0 }
+}
+# {enabled, tick} of the cure clock - for DIAGNOSE.
+export def cure-info [state: record]: nothing -> record {
+    let c = (clock-get $state "CURIN")
+    { enabled: $c.enabled, tick: $c.tick }
 }

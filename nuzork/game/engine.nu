@@ -309,6 +309,7 @@ def dispatch [state: record, sfcn: any, sverb: any, action: any, prso: any, prsi
     } else if $sfcn == "move" { do-move $state $prso
     } else if $sfcn == "eat" { do-eat $state $sverb $prso
     } else if $sfcn == "score" { do-score $state
+    } else if $sfcn == "diagnose" { do-diagnose $state
     } else if $sfcn == "attacker" { do-attack $state "attack" $prso $prsi
     } else if $sfcn == "killer" { do-attack $state "kill" $prso $prsi
     } else if $sfcn == "walk" { do-walk $state null

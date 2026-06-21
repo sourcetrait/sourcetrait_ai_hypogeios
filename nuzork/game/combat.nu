@@ -13,6 +13,7 @@
 # other villains (thief, cyclops).
 use ./world.nu *
 use ./data_melee.nu *
+use ./clocks.nu *
 
 # prob(good) with the default lucky flag set: a percent roll under `good`.
 def prob1 [good: int]: nothing -> bool { (random int 0..99) < $good }
@@ -141,6 +142,7 @@ export def blow [state: record, vid: string, weapon: any, heroq: bool]: nothing 
     if (not $heroq) {
         let np = (if ($newdef == 0) { -10000 } else { $newdef - $od })
         $st = ($st | update pstr $np)
+        if ($np < 0) { $st = (cure-on $st) }
         if ((fight-strength $st true) < 0) {
             return (jigs-up $st "It appears that that last blow was too much for you.  I'm afraid you\nare dead.")
         }
@@ -179,4 +181,28 @@ export def fight-phase [state: record]: nothing -> record {
     } else {
         { state: $state, out: [], finished: false }
     }
+}
+
+# DIAGNOSE (melee.cpp): wound level + cure time + survivability + death count.
+export def do-diagnose [state: record]: nothing -> record {
+    let pstr = ($state.pstr? | default 0)
+    let ci = (cure-info $state)
+    let rs = ((fight-strength $state false) + $pstr + $pstr)
+    let wd = (if $ci.enabled { 0 - $pstr } else { 0 })
+    mut out = []
+    if ($wd == 0) {
+        $out = ($out | append "You are in perfect health.")
+    } else {
+        let lvl = (if ($wd == 1) { "a light wound" } else if ($wd == 2) { "a serious wound" } else if ($wd == 3) { "several wounds" } else { "serious wounds" })
+        $out = ($out | append $"You have ($lvl), which will be cured after ((30 * ($wd - 1)) + $ci.tick) moves.")
+    }
+    if ($rs >= 0) {
+        let msgs = ["You are at death's door.", "You can be killed by one more light wound.", "You can be killed by a serious wound.", "You can survive one serious wound.", "You are strong enough to take several wounds."]
+        $out = ($out | append ($msgs | get (if ($rs < (($msgs | length) - 1)) { $rs } else { (($msgs | length) - 1) })))
+    }
+    if (($state.deaths) > 0) {
+        let kmsg = (if (($state.deaths) == 1) { "once." } else { "twice." })
+        $out = ($out | append $"You have been killed ($kmsg)")
+    }
+    { state: $state, out: $out }
 }
