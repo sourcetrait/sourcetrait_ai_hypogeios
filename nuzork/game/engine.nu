@@ -30,7 +30,7 @@ export def new-state []: nothing -> record {
     for o in $OBJECTS { $oflags = ($oflags | upsert $o.oid $o.bits) }
     {
         here: "WHOUS", moves: 0, score: 0, deaths: 0,
-        seen: [], inv: [], loc: $loc, oflags: $oflags, flags: {}
+        seen: [], loc: $loc, oflags: $oflags, flags: {}
     }
 }
 
@@ -147,24 +147,135 @@ export def do-walk [state: record, dir: any]: nothing -> record {
     }
 }
 
+# --- object resolution ----------------------------------------------------
+export def player-inv [state: record]: nothing -> list {
+    $state.loc | transpose o p | where {|r| $r.p.at == "player" } | get o
+}
+export def cont-of [state: record, oid: string]: nothing -> list {
+    $state.loc | transpose o p | where {|r| ($r.p.at == "cont") and ($r.p.id == $oid) } | get o
+}
+export def resolve-obj [state: record, name: string]: nothing -> any {
+    let reach = ((room-objs $state $state.here) | append (player-inv $state))
+    let nested = ($reach | each {|oid|
+        if ((oflag $state $oid "openbit") or (oflag $state $oid "transbit")) { cont-of $state $oid } else { [] }
+    } | flatten)
+    let m = (($reach | append $nested | uniq) | where {|oid| $name in (find-obj $oid).syns })
+    if ($m | is-empty) { null } else { $m | first }
+}
+export def resolve-name [state: record, names: list]: nothing -> any {
+    mut found = null
+    for n in $names { if ($found == null) { $found = (resolve-obj $state $n) } }
+    $found
+}
+
+# --- state mutators -------------------------------------------------------
+export def set-oflag [state: record, oid: string, bit: string, on: bool]: nothing -> record {
+    let cur = (if ($oid in ($state.oflags | columns)) { $state.oflags | get $oid } else { (find-obj $oid).bits })
+    let new = (if $on { $cur | append $bit | uniq } else { $cur | where {|b| $b != $bit } })
+    $state | update oflags ($state.oflags | upsert $oid $new)
+}
+export def set-loc [state: record, oid: string, place: record]: nothing -> record {
+    $state | update loc ($state.loc | upsert $oid $place)
+}
+
+# --- "a X, a Y, and a Z" / "a X and a Y" / "a X" (C++ print_contents) ------
+export def print-list [items: list]: nothing -> string {
+    mut s = ""
+    mut count = ($items | length)
+    for it in $items {
+        $s = $s + $it
+        if $count > 2 { $s = $s + ", " } else if $count == 2 { $s = $s + " and " }
+        $count = $count - 1
+    }
+    $s
+}
+
+# --- object verbs ---------------------------------------------------------
+export def do-open [state: record, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    if (not (oflag $state $oid "contbit")) {
+        { state: $state, out: [$"You must tell me how to do that to a ($o.desc)."] }
+    } else if (($o.ocapac? | default 0) == 0) {
+        { state: $state, out: [$"The ($o.desc) cannot be opened."] }
+    } else if (oflag $state $oid "openbit") {
+        { state: $state, out: ["It is already open."] }
+    } else {
+        let st = (set-oflag $state $oid "openbit" true)
+        let contents = (cont-of $st $oid)
+        if (($contents | is-empty) or (oflag $st $oid "transbit")) {
+            { state: $st, out: ["Opened."] }
+        } else {
+            let names = ($contents | each {|c| $"a ((find-obj $c).desc)" })
+            { state: $st, out: [$"Opening the ($o.desc) reveals (print-list $names)."] }
+        }
+    }
+}
+export def do-close [state: record, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    if (not (oflag $state $oid "contbit")) {
+        { state: $state, out: [$"You must tell me how to do that to a ($o.desc)."] }
+    } else if (oflag $state $oid "openbit") {
+        { state: (set-oflag $state $oid "openbit" false), out: ["Closed."] }
+    } else {
+        { state: $state, out: ["It is already closed."] }
+    }
+}
+export def do-take [state: record, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    if ($oid in (player-inv $state)) {
+        { state: $state, out: ["You already have it."] }
+    } else if (not (oflag $state $oid "takebit")) {
+        { state: $state, out: ["You can't take that."] }
+    } else {
+        let st = (set-loc (set-oflag $state $oid "touchbit" true) $oid { at: "player", id: "" })
+        { state: $st, out: ["Taken."] }
+    }
+}
+export def do-drop [state: record, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    if ($oid not-in (player-inv $state)) {
+        { state: $state, out: [$"You don't have the ($o.desc)."] }
+    } else {
+        { state: (set-loc $state $oid { at: "room", id: $state.here }), out: ["Dropped."] }
+    }
+}
+export def do-read [state: record, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    if (not (oflag $state $oid "readbit")) {
+        { state: $state, out: [$"How can I read a ($o.desc)?"] }
+    } else {
+        { state: $state, out: [($o.oread? | default "")] }
+    }
+}
+
 # --- one turn -------------------------------------------------------------
 export def step [state: record, input: string]: nothing -> record {
     let p = (parse-cmd $state $input)
     let st = ($state | update moves ($state.moves + 1))
-    if ($p.verb == null) {
+    let v = $p.verb
+    if ($v == null) {
         { state: $st, out: [($p.msg? | default "I don't understand that.")] }
-    } else if $p.verb == "WALK" {
+    } else if $v == "WALK" {
         do-walk $st ($p.dir? | default null)
-    } else if $p.verb == "LOOK" {
-        let ri = (room-info $st)
-        { state: $ri.state, out: $ri.out }
-    } else if $p.verb == "INVEN" {
-        if ($st.inv | is-empty) {
-            { state: $st, out: ["You are empty handed."] }
-        } else {
-            { state: $st, out: (["You are carrying:"] | append ($st.inv | each {|oid| $"A ((find-obj $oid).desc)" })) }
-        }
+    } else if $v == "LOOK" {
+        let ri = (room-info $st); { state: $ri.state, out: $ri.out }
+    } else if $v == "INVEN" {
+        let inv = (player-inv $st)
+        if ($inv | is-empty) { { state: $st, out: ["You are empty handed."] }
+        } else { { state: $st, out: (["You are carrying:"] | append ($inv | each {|oid| $"A ((find-obj $oid).desc)" })) } }
+    } else if ($v in ["OPEN", "CLOSE", "TAKE", "DROP", "READ"]) {
+        let oid = (resolve-name $st ($p.rest? | default []))
+        if $v == "OPEN" { do-open $st $oid
+        } else if $v == "CLOSE" { do-close $st $oid
+        } else if $v == "TAKE" { do-take $st $oid
+        } else if $v == "DROP" { do-drop $st $oid
+        } else { do-read $st $oid }
     } else {
-        { state: $st, out: [$"You can't ($p.verb | str downcase) that yet."] }
+        { state: $st, out: [$"You can't ($v | str downcase) that yet."] }
     }
 }
