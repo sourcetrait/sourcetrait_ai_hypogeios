@@ -220,6 +220,140 @@ def parse_objects(objdefs, gobjs, consts):
         out.append(parse_objrow(split_top(row), consts, True))
     return out
 
+# --- actions / syntax tables (the parser data, from dung.cpp:init_actions) -
+# Replicates makstr.cpp:parse_item / make_action. Each verb -> an Action
+# {vstr, vdecl:[syntax]}; each syntax {syn:[varg,varg], sfcn (handler fn),
+# sverb, sdriver, sflip}; each varg {vbit, vfwim ({any,bits} sets), vprep,
+# v{a,r,t,c,f}bit}. evarg = an empty slot (vbit none -> matches only "no obj").
+PREP_CANON = {'THROU': 'WITH', 'USING': 'WITH', 'INTO': 'IN', 'INSID': 'IN'}
+def canon_prep(p): return PREP_CANON.get(p, p)
+
+def handler_name(expr):           # last identifier before the trailing ()
+    e = expr.strip()
+    m = re.search(r'([A-Za-z_]\w*)\s*\(\s*\)\s*$', e)
+    if m: return m.group(1)
+    ids = re.findall(r'[A-Za-z_]\w*', e)
+    return ids[-1] if ids else None
+
+def evarg():
+    return {'vbit': {'any': False, 'bits': []}, 'vfwim': {'any': False, 'bits': []},
+            'vprep': None, 'vabit': False, 'vrbit': False, 'vtbit': False,
+            'vcbit': False, 'vfbit': False}
+
+def bits_of(tok):                 # a0 -> a {any,bits} bitset (-1 == any)
+    if tok.strip() == '-1': return {'any': True, 'bits': []}
+    return {'any': False, 'bits': re.findall(r'Bits::(\w+)', tok)}
+
+def single_bit(tok):              # 'Bits::X' (exactly) -> 'X', else None
+    if tok is None: return None
+    m = re.fullmatch(r'Bits::(\w+)', tok.strip())
+    return m.group(1) if m else None
+
+def collect_tags(elements):
+    tags = set()
+    for e in elements:
+        m = re.match(r'(reach|robjs|aobjs|have|take|try_|no_take)\b', e.strip())
+        if m: tags.add(m.group(1))
+    return tags
+
+def build_varg(elements, prep):   # makstr.cpp:parse_item, AL branch
+    a0 = elements[0]
+    a1b = single_bit(elements[1] if len(elements) > 1 else None)
+    if a1b is not None:           # second Bits present (KNOCK/STRIKE/OPEN-with)
+        vbit = bits_of(a0); vfwim = {'any': False, 'bits': [a1b]}
+    else:                         # vbit forced to any; vfwim from a0
+        vbit = {'any': True, 'bits': []}; vfwim = bits_of(a0)
+    tags = collect_tags(elements)
+    return {'vbit': vbit, 'vfwim': vfwim, 'vprep': prep,
+            'vabit': 'aobjs' in tags, 'vrbit': 'robjs' in tags,
+            'vtbit': ('try_' in tags) or ('take' in tags),
+            'vcbit': ('have' in tags) or ('take' in tags),
+            'vfbit': 'reach' in tags}
+
+def al_inner(it):                 # contents of an AL{...}
+    j = it.find('{')
+    return it[j+1:balanced(it, j, '{', '}')-1]
+
+def anyv_bodies(decl):            # each AnyV{...} / AnyV({...}) inner body
+    out = []; i = 0
+    while True:
+        k = decl.find('AnyV', i)
+        if k < 0: break
+        j = k + 4
+        while j < len(decl) and decl[j] in ' \t\n(': j += 1
+        if j >= len(decl) or decl[j] != '{': i = k + 4; continue
+        end = balanced(decl, j, '{', '}')
+        out.append(decl[j+1:end-1]); i = end
+    return out
+
+def parse_anyv(body):             # one accepted syntax line
+    items = [i.strip() for i in split_top(body) if i.strip()]
+    syn = [evarg(), evarg()]; whr = 0; prep = None
+    sfcn = sverb = None; sdriver = sflip = False
+    for it in items:
+        s = cstr(it)
+        if s is not None: prep = canon_prep(s); continue
+        if it.startswith('AVSyntax'):
+            m = re.search(r'AVSyntax\s*[({]\s*"(\w+)"\s*,\s*(.+)[)}]\s*$', it, re.S)
+            sverb = m.group(1); sfcn = handler_name(m.group(2)); continue
+        if it.startswith('driver'): sdriver = True; continue
+        if it.startswith('flip'): sflip = True; continue
+        if it.startswith('obj('): elements = ['-1', 'reach()', 'robjs()', 'aobjs()']
+        elif it.startswith('nrobj('): elements = ['-1', 'robjs()', 'aobjs()']
+        elif it.startswith('AL'): elements = [e.strip() for e in split_top(al_inner(it)) if e.strip()]
+        else: continue
+        if whr < 2: syn[whr] = build_varg(elements, prep); whr += 1
+        prep = None
+    return {'syn': syn, 'sfcn': sfcn, 'sverb': sverb, 'sdriver': sdriver, 'sflip': sflip}
+
+CALL_RE = re.compile(r'(?<![A-Za-z0-9_])(add_action|sadd_action|oneadd_action|onenradd_action|vsynonym)\s*\(')
+def parse_actions(dung):
+    m = re.search(r'void\s+init_actions\s*\(\s*\)', dung)
+    start = dung.find('{', m.end())
+    body = dung[start+1:balanced(dung, start, '{', '}')-1]
+    di = body.find('#ifdef _DEBUG')
+    if di >= 0: body = body[:di]          # drop debug-only actions (lambdas)
+    actions = {}; verb_words = {}
+    for mm in CALL_RE.finditer(body):
+        name = mm.group(1); op = mm.end() - 1
+        args = split_top(body[op+1:balanced(body, op, '(', ')')-1])
+        if name == 'vsynonym':
+            verb = cstr(args[0])
+            for a in args[1:]:
+                s = cstr(a)
+                if s: verb_words[s] = verb
+        elif name == 'sadd_action':
+            nm = cstr(args[0])
+            actions[nm] = {'vstr': '', 'vdecl': [{'syn': [evarg(), evarg()],
+                'sfcn': handler_name(args[1]), 'sverb': nm, 'sdriver': False, 'sflip': False}]}
+            verb_words[nm] = nm
+        elif name == 'oneadd_action':
+            nm = cstr(args[0])
+            actions[nm] = {'vstr': cstr(args[1]), 'vdecl': [{'syn':
+                [build_varg(['-1', 'reach()', 'robjs()', 'aobjs()'], None), evarg()],
+                'sfcn': handler_name(args[2]), 'sverb': nm, 'sdriver': False, 'sflip': False}]}
+            verb_words[nm] = nm
+        elif name == 'onenradd_action':
+            nm = cstr(args[0])
+            actions[nm] = {'vstr': cstr(args[1]), 'vdecl': [{'syn':
+                [build_varg(['-1', 'robjs()', 'aobjs()'], None), evarg()],
+                'sfcn': handler_name(args[2]), 'sverb': nm, 'sdriver': False, 'sflip': False}]}
+            verb_words[nm] = nm
+        elif name == 'add_action':
+            nm = cstr(args[0]); decl = args[2] if len(args) > 2 else ''
+            actions[nm] = {'vstr': cstr(args[1]),
+                           'vdecl': [parse_anyv(b) for b in anyv_bodies(decl)]}
+            verb_words[nm] = nm
+    return actions, verb_words
+
+def emit_syntax(actions, verb_words, path):
+    a_body = '{\n' + '\n'.join(f'    {nuon_key(k)}: {to_nuon(v)},'
+                               for k, v in actions.items()) + '\n}'
+    open(path, 'w').write(
+        '# Generated by tools/port_zork.py from ~/repo/zork - do not edit by hand.\n'
+        f'export const ACTIONS = {a_body}\n\n'
+        f'export const VERB_WORDS = {to_nuon(verb_words)}\n')
+
 def to_nuon(v):
     if v is None: return 'null'
     if v is True: return 'true'
@@ -231,8 +365,11 @@ def to_nuon(v):
         return '"' + e + '"'
     if isinstance(v, list): return '[' + ', '.join(to_nuon(x) for x in v) + ']'
     if isinstance(v, dict):
-        return '{' + ', '.join(f'{k}: {to_nuon(val)}' for k, val in v.items()) + '}'
+        return '{' + ', '.join(f'{nuon_key(k)}: {to_nuon(val)}' for k, val in v.items()) + '}'
     return '"' + str(v) + '"'
+
+def nuon_key(k):                  # bareword if a plain identifier, else quoted
+    return k if re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*', k) else to_nuon(k)
 
 def emit_nu(rows, name, path):
     body = '[\n' + '\n'.join('    ' + to_nuon(r) + ',' for r in rows) + '\n]'
@@ -249,12 +386,15 @@ def main():
     rooms = parse_rooms(read(os.path.join(z, 'roomdefs.h')), consts, macros)
     objects = parse_objects(read(os.path.join(z, 'objdefs.h')),
                             read(os.path.join(z, 'gobject.h')), consts)
+    actions, verb_words = parse_actions(read(os.path.join(z, 'dung.cpp')))
     json.dump(rooms, open(os.path.join(out, 'rooms.json'), 'w'), indent=1)
     json.dump(objects, open(os.path.join(out, 'objects.json'), 'w'), indent=1)
+    json.dump(actions, open(os.path.join(out, 'actions.json'), 'w'), indent=1)
     if game:
         os.makedirs(game, exist_ok=True)
         emit_nu(rooms, 'ROOMS', os.path.join(game, 'data_rooms.nu'))
         emit_nu(objects, 'OBJECTS', os.path.join(game, 'data_objects.nu'))
+        emit_syntax(actions, verb_words, os.path.join(game, 'data_syntax.nu'))
 
     def unresolved_exits():
         u = []
@@ -266,6 +406,7 @@ def main():
     bad_desc = [r['rid'] for r in rooms if isinstance(r['desc1'], dict)]
     ue = unresolved_exits()
     print(f"rooms={len(rooms)} objects={len(objects)} consts={len(consts)} macros={len(macros)}")
+    print(f"actions={len(actions)} verb_words={len(verb_words)}")
     print(f"unresolved_desc1={len(bad_desc)} {bad_desc[:10]}")
     print(f"unresolved_exits={len(ue)}")
     for x in ue[:25]: print("  ", x)
