@@ -1,49 +1,12 @@
 # nuzork game engine: verb handlers plus the turn dispatcher. The world model
-# (static data lookups, the session-state delta layer, and room display) lives
-# in world.nu and is re-exported here so turn.nu / runner.nu get it via
-# `use ./engine.nu *`. Ported against ~/repo/zork (working knowledge in
-# iter/nuzork/working/zorkcpp). Verb handlers expand incrementally.
+# (world.nu) is re-exported so turn.nu / runner.nu get it via `use ./engine.nu
+# *`; the MDL parser (parser.nu) turns input into (action, prso, prsi, dir).
+# step() runs the C++ rdcom turn shape: parse -> object-function intercept
+# (PRSI then PRSO) -> the verb handler (keyed on the syntax sfcn). Handlers are
+# ported against ~/repo/zork (working knowledge in iter/nuzork/working/zorkcpp)
+# and expand incrementally; unported verbs fall through to a stub.
 export use ./world.nu *
-use ./data_vocab.nu *
-
-# --- lexer: input -> tokens (uppercase, 5-char truncated) -----------------
-export def lex [input: string]: nothing -> list {
-    $input | str upcase | split row -r '[^A-Z0-9]+' | where {|w| $w != "" } | each {|w| $w | split chars | first 5 | str join }
-}
-
-# --- parse: input -> {verb, dir?, rest?, msg?} ----------------------------
-export def parse-cmd [state: record, input: string]: nothing -> record {
-    let toks = (lex $input)
-    if ($toks | is-empty) { return { verb: null, msg: null } }
-    let first = ($toks | first)
-    if ($first in ($DIRS | columns)) { return { verb: "WALK", dir: ($DIRS | get $first) } }
-    if ($first not-in ($VERBS | columns)) {
-        return { verb: null, msg: $"I don't know the word '($first | str downcase)'." }
-    }
-    let v = ($VERBS | get $first)
-    let rest = ($toks | skip 1 | where {|t| $t not-in $NOISE })
-    if $v == "WALK" {
-        let d = (if ($rest | is-empty) { null
-            } else if (($rest | first) in ($DIRS | columns)) { $DIRS | get ($rest | first)
-            } else { null })
-        return { verb: "WALK", dir: $d }
-    }
-    { verb: $v, rest: $rest }
-}
-
-export def resolve-obj [state: record, name: string]: nothing -> any {
-    let reach = ((room-objs $state $state.here) | append (player-inv $state))
-    let nested = ($reach | each {|oid|
-        if ((oflag $state $oid "openbit") or (oflag $state $oid "transbit")) { cont-of $state $oid } else { [] }
-    } | flatten)
-    let m = (($reach | append $nested | uniq) | where {|oid| $name in (find-obj $oid).syns })
-    if ($m | is-empty) { null } else { $m | first }
-}
-export def resolve-name [state: record, names: list]: nothing -> any {
-    mut found = null
-    for n in $names { if ($found == null) { $found = (resolve-obj $state $n) } }
-    $found
-}
+use ./parser.nu *
 
 # --- movement -------------------------------------------------------------
 export def do-walk [state: record, dir: any]: nothing -> record {
@@ -77,8 +40,9 @@ export def do-walk [state: record, dir: any]: nothing -> record {
     }
 }
 
-# --- object verbs ---------------------------------------------------------
-# Dispatch a verb to a ported object-function. handled=false -> generic verb.
+# --- object functions: a ported obj_func may intercept a verb ----------------
+# handled=false -> fall through to the generic verb handler. `verb` is the
+# canonical action (OPEN/CLOSE/...). Extension point as obj_funcs are ported.
 export def obj-fn [state: record, oid: string, verb: string]: nothing -> record {
     let fn = ((find-obj $oid).objfn? | default null)
     if $fn == "window_function" {
@@ -93,10 +57,10 @@ export def obj-fn [state: record, oid: string, verb: string]: nothing -> record 
         } else { { handled: false, state: $state, out: [] } }
     } else { { handled: false, state: $state, out: [] } }
 }
+
+# --- verb handlers --------------------------------------------------------
 export def do-open [state: record, oid: any]: nothing -> record {
     if $oid == null { return { state: $state, out: ["You can't see that here."] } }
-    let f = (obj-fn $state $oid "OPEN")
-    if $f.handled { return { state: $f.state, out: $f.out } }
     let o = (find-obj $oid)
     if (not (oflag $state $oid "contbit")) {
         { state: $state, out: [$"You must tell me how to do that to a ($o.desc)."] }
@@ -156,7 +120,6 @@ export def do-read [state: record, oid: any]: nothing -> record {
         { state: $state, out: [($o.oread? | default "")] }
     }
 }
-
 export def do-light [state: record, oid: any]: nothing -> record {
     if $oid == null { return { state: $state, out: ["You can't see that here."] } }
     let o = (find-obj $oid)
@@ -181,32 +144,97 @@ export def do-extinguish [state: record, oid: any]: nothing -> record {
         } else { { state: $st, out: [$"The ($o.desc) is now off.", "It is now pitch black."] } }
     }
 }
-
-# --- one turn -------------------------------------------------------------
-export def step [state: record, input: string]: nothing -> record {
-    let p = (parse-cmd $state $input)
-    let st = ($state | update moves ($state.moves + 1))
-    let v = $p.verb
-    if ($v == null) {
-        { state: $st, out: [($p.msg? | default "I don't understand that.")] }
-    } else if $v == "WALK" {
-        do-walk $st ($p.dir? | default null)
-    } else if $v == "LOOK" {
-        let ri = (room-info $st); { state: $ri.state, out: $ri.out }
-    } else if $v == "INVEN" {
-        let inv = (player-inv $st)
-        if ($inv | is-empty) { { state: $st, out: ["You are empty handed."] }
-        } else { { state: $st, out: (["You are carrying:"] | append ($inv | each {|oid| $"A ((find-obj $oid).desc)" })) } }
-    } else if ($v in ["OPEN", "CLOSE", "TAKE", "DROP", "READ", "LIGHT", "EXTIN"]) {
-        let oid = (resolve-name $st ($p.rest? | default []))
-        if $v == "OPEN" { do-open $st $oid
-        } else if $v == "CLOSE" { do-close $st $oid
-        } else if $v == "TAKE" { do-take $st $oid
-        } else if $v == "DROP" { do-drop $st $oid
-        } else if $v == "READ" { do-read $st $oid
-        } else if $v == "LIGHT" { do-light $st $oid
-        } else { do-extinguish $st $oid }
+# put PRSO in/on PRSI (a container).
+export def do-put [state: record, prso: any, prsi: any]: nothing -> record {
+    if ($prso == null) { return { state: $state, out: ["You can't see that here."] } }
+    if ($prsi == null) { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $prso)
+    let c = (find-obj $prsi)
+    if ($prso not-in (player-inv $state)) {
+        { state: $state, out: [$"You don't have the ($o.desc)."] }
+    } else if ($prso == $prsi) {
+        { state: $state, out: ["You can't put something in itself."] }
+    } else if (not (oflag $state $prsi "contbit")) {
+        { state: $state, out: [$"You can't put anything in the ($c.desc)."] }
+    } else if (not (oflag $state $prsi "openbit")) {
+        { state: $state, out: [$"The ($c.desc) is closed."] }
     } else {
-        { state: $st, out: [$"You can't ($v | str downcase) that yet."] }
+        { state: (set-loc (set-oflag $state $prso "touchbit" true) $prso { at: "cont", id: $prsi }), out: ["Done."] }
     }
+}
+# move PRSO (the generic case; object-specific reveals live in obj_funcs).
+export def do-move [state: record, oid: any]: nothing -> record {
+    if $oid == null { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    { state: $state, out: [$"Moving the ($o.desc) reveals nothing."] }
+}
+# EXAMINE / LOOK AT an object (basic: containers show state; else nothing).
+export def describe-obj [state: record, oid: any]: nothing -> record {
+    if ($oid == null) { return { state: $state, out: ["You can't see that here."] } }
+    let o = (find-obj $oid)
+    if (oflag $state $oid "contbit") {
+        if (oflag $state $oid "openbit") {
+            let c = (cont-of $state $oid)
+            if ($c | is-empty) { { state: $state, out: [$"The ($o.desc) is empty."] }
+            } else {
+                let names = ($c | each {|x| $"a ((find-obj $x).desc)" })
+                { state: $state, out: [$"The ($o.desc) contains (print-list $names)."] }
+            }
+        } else {
+            { state: $state, out: [$"The ($o.desc) is closed."] }
+        }
+    } else {
+        { state: $state, out: [$"There is nothing special about the ($o.desc)."] }
+    }
+}
+export def do-inven [state: record]: nothing -> record {
+    let inv = (player-inv $state)
+    if ($inv | is-empty) { { state: $state, out: ["You are empty handed."] }
+    } else { { state: $state, out: (["You are carrying:"] | append ($inv | each {|oid| $"A ((find-obj $oid).desc)" })) } }
+}
+
+# --- handler dispatch (syntax sfcn -> a verb handler) ---------------------
+def dispatch [state: record, sfcn: any, action: any, prso: any, prsi: any]: nothing -> record {
+    if ($sfcn in ["room_desc" "room_info" "look_inside" "look_under"]) {
+        if ($prso != null) { describe-obj $state $prso
+        } else { let ri = (room-info $state); { state: $ri.state, out: $ri.out } }
+    } else if $sfcn == "invent" { do-inven $state
+    } else if $sfcn == "opener" { do-open $state $prso
+    } else if $sfcn == "closer" { do-close $state $prso
+    } else if $sfcn == "takefn" { do-take $state $prso
+    } else if $sfcn == "dropper" { do-drop $state $prso
+    } else if $sfcn == "reader" { do-read $state $prso
+    } else if $sfcn == "lamp_on" { do-light $state $prso
+    } else if $sfcn == "lamp_off" { do-extinguish $state $prso
+    } else if $sfcn == "putter" { do-put $state $prso $prsi
+    } else if $sfcn == "move" { do-move $state $prso
+    } else if $sfcn == "walk" { do-walk $state null
+    } else {
+        { state: $state, out: [$"You can't ($action | str downcase) that yet."] }
+    }
+}
+
+# --- one turn: parse -> obj-fn intercept (PRSI, PRSO) -> verb handler ------
+export def step [state: record, input: string]: nothing -> record {
+    let st0 = ($state | update moves ($state.moves + 1))
+    let p = (parse-input $st0 $input)
+    if (not $p.ok) { return { state: $p.state, out: $p.out } }
+    mut st = $p.state
+    let out0 = $p.out
+    if (($p.sfcn == "walk") and ($p.dir != null)) {
+        let r = (do-walk $st $p.dir)
+        return { state: $r.state, out: ($out0 | append $r.out) }
+    }
+    if ($p.prsi != null) {
+        let f = (obj-fn $st $p.prsi $p.action)
+        if $f.handled { return { state: $f.state, out: ($out0 | append $f.out) } }
+        $st = $f.state
+    }
+    if ($p.prso != null) {
+        let f = (obj-fn $st $p.prso $p.action)
+        if $f.handled { return { state: $f.state, out: ($out0 | append $f.out) } }
+        $st = $f.state
+    }
+    let r = (dispatch $st $p.sfcn $p.action $p.prso $p.prsi)
+    { state: $r.state, out: ($out0 | append $r.out) }
 }
