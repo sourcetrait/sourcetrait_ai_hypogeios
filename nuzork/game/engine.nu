@@ -14,7 +14,8 @@ use ./clocks.nu *
 # Enter a destination room: describe it (LOOK phase), then run the room's
 # ENTER phase (room-fn-enter), appending its output after the description.
 def enter-room [state: record, dest: string]: nothing -> record {
-    let ri = (room-info ($state | update here $dest))
+    let st = (score-room ($state | update here $dest) $dest)
+    let ri = (room-info $st)
     let en = (room-fn-enter $ri.state)
     { state: $en.state, out: ($ri.out | append $en.out) }
 }
@@ -39,7 +40,7 @@ export def do-walk [state: record, dir: any]: nothing -> record {
         }
     } else if $to.kind == "cexit" {
         if (($to.flag != null) and (gflag $state $to.flag) and ($to.to != null)) {
-            let ri = (room-info ($state | update here $to.to))
+            let ri = (enter-room $state $to.to)
             { state: $ri.state, out: $ri.out }
         } else {
             { state: $state, out: [(if ($to.msg == "") { "You can't go that way." } else { $to.msg })] }

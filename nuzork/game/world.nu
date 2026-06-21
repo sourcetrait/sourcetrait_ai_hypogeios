@@ -31,7 +31,7 @@ export def score-max []: nothing -> int {
 # {at,id} placement overrides), `oflags` (oid -> [bit] flag overrides), and
 # `flags` (game FlagId bools). Reads fall back to the static tables.
 export def new-state []: nothing -> record {
-    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {}, pstr: 0, vstr: {}, clocks: {}, cyclowrath: 0, scored: [] }
+    { here: "WHOUS", moves: 0, score: 0, deaths: 0, seen: [], moved: {}, oflags: {}, flags: {}, pstr: 0, vstr: {}, clocks: {}, cyclowrath: 0, scored: [], rscored: [] }
 }
 
 # Object location is the static data placement, overridden by `moved` for any
@@ -194,6 +194,18 @@ export def score-take [state: record, oid: string]: nothing -> record {
     let scored = ($state.scored? | default [])
     if (($ofval > 0) and ($oid not-in $scored)) {
         $state | update score ($state.score + $ofval) | upsert scored ($scored | append $oid)
+    } else {
+        $state
+    }
+}
+# C++ score_room (goto_): the first walk-entry into a room with a visit value
+# (rval) adds it to the score, once (state.rscored, since the static rval can't
+# be zeroed). Silent. Endgame rooms (eg_score) are out of scope here.
+export def score-room [state: record, rid: string]: nothing -> record {
+    let rval = ((find-room $rid).rval? | default 0)
+    let rscored = ($state.rscored? | default [])
+    if (($rval > 0) and ($rid not-in $rscored)) {
+        $state | update score ($state.score + $rval) | upsert rscored ($rscored | append $rid)
     } else {
         $state
     }
