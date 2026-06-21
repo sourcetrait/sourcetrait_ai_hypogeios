@@ -1,0 +1,27 @@
+name = "nuzork"
+title = "Nuzork"
+
+[nushell]
+version = "0.113.1"
+
+[description]
+summary = "Classic preservation of Zork written in Nu"
+keywords = ["ai", "twist", "zork"]
+
+[author]
+name = "sourcetrait"
+title = "SourceTrait"
+email = "development@sourcetrait.com"
+
+[license]
+spdx = "mit"
+file = "LICENSE.MIT.txt"
+
+[mcp]
+calls = [
+  "nuzork:game:turn"
+]
+
+[[bin]]
+name = "play"
+

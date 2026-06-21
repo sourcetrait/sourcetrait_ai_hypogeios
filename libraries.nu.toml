@@ -1,0 +1,7 @@
+libraries = [
+  "nuzork"
+]
+
+[author]
+name = "SourceTrait"
+email = "development@sourcetrait.com"
