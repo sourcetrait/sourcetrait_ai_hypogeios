@@ -16,7 +16,7 @@ email = "development@sourcetrait.com"
 
 [license]
 spdx = "agpl3"
-file = "LICENSE-AGPL3.txt"
+file = "LICENSE-AGPL-3.txt"
 
 [mcp]
 calls = [
