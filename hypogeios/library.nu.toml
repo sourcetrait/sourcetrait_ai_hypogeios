@@ -7,7 +7,7 @@ version = "0.113.1"
 
 [description]
 summary = "Classic preservation of classic terminal games written in Nu"
-keywords = ["ai", "twist", "hypogeios"]
+keywords = []
 
 [author]
 name = "sourcetrait"
@@ -18,6 +18,9 @@ email = "development@sourcetrait.com"
 spdx = "agpl3"
 file = "LICENSE-AGPL-3.txt"
 
+[provider]
+name = "github"
+
 [mcp]
 calls = [
   "hypogeios:game:turn"
@@ -27,6 +30,6 @@ calls = [
 name = "play"
 
 [dependencies]
-arche = { author = "sourcetrait", path = "../arche" }
-pelos = { author = "sourcetrait", path = "../pelos" }
-speos = { author = "sourcetrait", path = "../speos" }
+arche = { provider = "github", author = "sourcetrait", path = "../arche" }
+pelos = { provider = "github", author = "sourcetrait", path = "../pelos" }
+speos = { provider = "github", author = "sourcetrait", path = "../speos" }

@@ -6,5 +6,10 @@ libraries = [
 ]
 
 [author]
-name = "SourceTrait"
+name = "sourcetrait"
+title = "SourceTrait"
 email = "development@sourcetrait.com"
+
+[provider]
+name = "github"
+
