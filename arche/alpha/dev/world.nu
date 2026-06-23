@@ -2,10 +2,12 @@
 #
 # Consume from a run()/interact() body: `use arche alpha dev world *` then
 # `zil world <zil_path> <out_dir>`. Writes <out_dir>/map.nuon ({rooms: [{name,
-# links: [{room, name, conditions}], flags, value, globals, action}]}) and
-# conditions.nuon ({conditions: [{name, kind}]}, kind flag|door|fn). Blocked
-# dead-ends (message-only exits) are not links; their prose belongs in locale. PER
-# (function) exits resolve to a static target via the zork1 routine map in zw-per.
+# links: [{room, name, conditions}], blocked: [{name}], flags, value, globals,
+# action}]}) and conditions.nuon ({conditions: [{name, kind}]}, kind
+# flag|door|fn). Blocked dead-ends (message-only exits) are captured per room as
+# blocked direction names (not real links); their specific prose belongs in
+# locale, keyed by room+direction. PER (function) exits resolve to a static
+# target via the zork1 routine map in zw-per.
 # All "..." strings are stripped before parsing (message prose drops to locale),
 # leaving a skeleton parseable with native parse --regex + split - no char-level
 # tokenizer. Re-runnable; the data is segmented per episode (out_dir = the
@@ -28,6 +30,7 @@ export def "zil world" [
         let rname = (zw-snake ($rb.body | str trim | split row --regex '\s+' | first))
         let props = ($rb.body | parse --regex '\((?<p>[^)]*)\)')
         mut links = []
+        mut blocked = []
         mut flags = []
         mut globals = []
         mut value = 0
@@ -43,7 +46,10 @@ export def "zil world" [
                     $links = ($links | append $r.link)
                     $link_total = $link_total + 1
                 }
-                if $r.blocked { $blocked_total = $blocked_total + 1 }
+                if $r.blocked {
+                    $blocked_total = $blocked_total + 1
+                    $blocked = ($blocked | append {name: (zw-snake $head)})
+                }
                 for cd in $r.conds { $cond_kinds = ($cond_kinds | merge {($cd.name): $cd.kind}) }
                 if ($r.warn != "") { $warnings = ($warnings | append $r.warn) }
             } else if ($head == "FLAGS") {
@@ -56,7 +62,7 @@ export def "zil world" [
                 $action = (if ($rest | is-empty) { null } else { zw-snake ($rest | first) })
             }
         }
-        $rooms = ($rooms | append {name: $rname, links: $links, flags: $flags, value: $value, globals: $globals, action: $action})
+        $rooms = ($rooms | append {name: $rname, links: $links, blocked: $blocked, flags: $flags, value: $value, globals: $globals, action: $action})
     }
     let conditions = ($cond_kinds | transpose name kind | sort-by name)
     mkdir $out_dir

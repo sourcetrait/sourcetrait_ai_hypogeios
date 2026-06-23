@@ -6,3 +6,4 @@
 # front, and its dev tooling (e.g. alpha/dev). Depends on pelos by name.
 
 export module alpha
+export module dev
