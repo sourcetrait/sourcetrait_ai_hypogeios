@@ -1,6 +1,8 @@
 # Zork port (alpha = Zork I): the Great Underground Empire as idiomatic nu.
 #
-# Data-first: the world dataset lives under .assets/world (map.nuon +
-# conditions.nuon, extracted from the preserved ZIL via emptwo:tools:zil_world).
-# The engine (parser, verbs, turn) and the localized markdown front land in later
-# increments and depend on pelos by name.
+# Data-first: the world dataset lives under .assets/world/<episode> (map.nuon +
+# conditions.nuon). Episodes are submodules - alpha (Zork I), beta (II), gamma
+# (III); each holds its engine (parser, verbs, turn), the localized markdown
+# front, and its dev tooling (e.g. alpha/dev). Depends on pelos by name.
+
+export module alpha
