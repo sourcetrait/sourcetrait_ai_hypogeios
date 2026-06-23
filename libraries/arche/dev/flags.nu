@@ -40,9 +40,8 @@ export def "zil flags" [
         | parse --regex ',(?<f>[A-Z][A-Z0-9]*BIT)'
         | get f)
     let names: list<string> = ($in_flags | append $bit_refs | uniq | sort)
-    let rows: table<name: string> = ($names | each {|n| {name: $n} })
     let preserved_dir = ($out_dir | path join "preserved")
     mkdir $preserved_dir
-    $rows | to nuon --list-of-records --indent 2 | save -f ($preserved_dir | path join "flags.nuon")
+    $names | to nuon --indent 2 | save -f ($preserved_dir | path join "flags.nuon")
     {flags: ($names | length), names: $names}
 }
