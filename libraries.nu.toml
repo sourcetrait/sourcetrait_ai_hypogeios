@@ -12,4 +12,3 @@ email = "development@sourcetrait.com"
 
 [provider]
 name = "github"
-
