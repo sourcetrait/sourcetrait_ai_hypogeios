@@ -1,0 +1,25 @@
+name = "arche"
+title = "Arche"
+version = "0.0.1"
+
+[nushell]
+version = "0.113.1"
+
+[description]
+summary = "Zork port (alpha = Zork I): the Great Underground Empire as idiomatic nu."
+keywords = []
+
+[author]
+name = "sourcetrait"
+title = "SourceTrait"
+email = "development@sourcetrait.com"
+
+[license]
+spdx = "mit"
+file = "LICENSE-MIT.txt"
+
+[provider]
+name = "github"
+
+[dependencies]
+pelos = { provider = "github", author = "sourcetrait", path = "../pelos" }
