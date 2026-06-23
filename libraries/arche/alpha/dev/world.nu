@@ -1,36 +1,47 @@
 # ZIL -> arche alpha (Zork I) world dataset extractor (dev tool; read source to use).
 #
 # Consume from a run()/interact() body: `use arche alpha dev world *` then
-# `zil world <zil_path> <out_dir>`. Writes <out_dir>/map.nuon ({rooms: [{name,
-# links: [{room, name, conditions}], blocked: [{name}], flags, value, globals,
-# action}]}) and conditions.nuon ({conditions: [{name, kind}]}, kind
-# flag|door|fn). Blocked dead-ends (message-only exits) are captured per room as
-# blocked direction names (not real links); their specific prose belongs in
-# locale, keyed by room+direction. PER (function) exits resolve to a static
-# target via the zork1 routine map in zw-per.
-# All "..." strings are stripped before parsing (message prose drops to locale),
-# leaving a skeleton parseable with native parse --regex + split - no char-level
-# tokenizer. Re-runnable; the data is segmented per episode (out_dir = the
-# episode's world dir). Working knowledge: emptwo iter/hypogeios/working/06.
+# `zil world <zil_path> <out_dir>`. <out_dir> is the episode dir
+# (.../world/<episode>); the series flags.nuon (.../world/flags.nuon, one level
+# up) is read so each room's raw ZIL attribute atom maps to our redesigned flag
+# name - map.nuon is the FINAL product, never preserved atoms.
+#
+# Writes <out_dir>/map.nuon (record<rooms, links, blocked>) + conditions.nuon
+# (table<name, kind>). The map is FLAT/relational: rooms carry scalar fields
+# (flags, value, globals, action); links + blocked are sibling tables keyed by
+# room (a room with none contributes no rows). The nested per-room table-column
+# form is deliberately avoided - an empty [] for a table-typed column infers
+# list<any> and cannot be strict-typed as a generated const (working/06).
+# rooms.flags are redesigned names (preserved atom -> flags.nuon name),
+# bareword-filtered so a ;"..." comment inside (FLAGS ...) is dropped. blocked
+# captures message-only exit directions per room (the prose is locale, keyed by
+# room+direction). PER (function) exits resolve to a static target via the zork1
+# routine map in zw-per; an unmapped PER warns. All "..." strings are stripped
+# before parsing (message prose drops to locale), leaving a skeleton parseable
+# with native parse --regex + split. Re-runnable. Working: iter/hypogeios/working/06.
 
-# Parse a ZIL dungeon and write the world dataset; returns a summary.
+# Parse a ZIL dungeon and write the flat world dataset; returns a summary.
 export def "zil world" [
     zil_path: string,
     out_dir: string,
-]: nothing -> record<rooms: int, conditions: int, links: int, blocked: int, warnings: list<string>> {
+]: nothing -> record<rooms: int, links: int, blocked: int, conditions: int, warnings: list<string>, unmapped_flags: list<string>> {
+    let flags_path = ($out_dir | path dirname | path join "flags.nuon")
+    if not ($flags_path | path exists) {
+        error make {msg: $"zil world: series flags.nuon not found at ($flags_path) - generate + author it first"}
+    }
+    let flag_map = (open $flags_path | reduce --fold {} {|row, acc| $acc | merge {($row.preserved): $row.name}})
     let raw = (open --raw $zil_path | decode)
     let nostr = ($raw | str replace --all --regex '"(?:\\.|[^"\\])*"' '""')
     let room_blocks = ($nostr | parse --regex '(?s)<ROOM\s+(?<body>[^>]*)>')
     mut rooms = []
+    mut links = []
+    mut blocked = []
     mut cond_kinds = {}
     mut warnings = []
-    mut link_total = 0
-    mut blocked_total = 0
+    mut unmapped = []
     for rb in $room_blocks {
         let rname = (zw-snake ($rb.body | str trim | split row --regex '\s+' | first))
         let props = ($rb.body | parse --regex '\((?<p>[^)]*)\)')
-        mut links = []
-        mut blocked = []
         mut flags = []
         mut globals = []
         mut value = 0
@@ -43,17 +54,17 @@ export def "zil world" [
             if ($head in (zw-directions)) {
                 let r = (zw-exit $head $rest $rname)
                 if ($r.link != null) {
-                    $links = ($links | append $r.link)
-                    $link_total = $link_total + 1
+                    $links = ($links | append {room: $rname, name: $r.link.name, target: $r.link.room, conditions: $r.link.conditions})
                 }
                 if $r.blocked {
-                    $blocked_total = $blocked_total + 1
-                    $blocked = ($blocked | append {name: (zw-snake $head)})
+                    $blocked = ($blocked | append {room: $rname, name: (zw-snake $head)})
                 }
                 for cd in $r.conds { $cond_kinds = ($cond_kinds | merge {($cd.name): $cd.kind}) }
                 if ($r.warn != "") { $warnings = ($warnings | append $r.warn) }
             } else if ($head == "FLAGS") {
-                $flags = ($rest | each {|x| zw-snake $x})
+                let atoms = ($rest | where {|t| $t =~ '^[A-Z][A-Z0-9]*$'})
+                $unmapped = ($unmapped | append ($atoms | where {|a| ($flag_map | get -i $a) == null}))
+                $flags = ($atoms | each {|a| $flag_map | get -i $a} | where {|n| $n != null})
             } else if ($head == "VALUE") {
                 $value = (try { $rest | first | into int } catch { 0 })
             } else if ($head == "GLOBAL") {
@@ -62,14 +73,17 @@ export def "zil world" [
                 $action = (if ($rest | is-empty) { null } else { zw-snake ($rest | first) })
             }
         }
-        $rooms = ($rooms | append {name: $rname, links: $links, blocked: $blocked, flags: $flags, value: $value, globals: $globals, action: $action})
+        $rooms = ($rooms | append {name: $rname, flags: $flags, value: $value, globals: $globals, action: $action})
     }
     let conditions: table<name: string, kind: string> = ($cond_kinds | transpose name kind | sort-by name)
-    let map_out: record<rooms: table<name: string, links: table<room: string, name: string, conditions: list<oneof<string, nothing>>>, blocked: table<name: string>, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>> = {rooms: $rooms}
+    let rooms_out: table<name: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>> = $rooms
+    let links_out: table<room: string, name: string, target: string, conditions: list<oneof<string, nothing>>> = $links
+    let blocked_out: table<room: string, name: string> = $blocked
+    let map_out: record<rooms: table<name: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>, links: table<room: string, name: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: table<room: string, name: string>> = {rooms: $rooms_out, links: $links_out, blocked: $blocked_out}
     mkdir $out_dir
     $map_out | to nuon --list-of-records --indent 2 | save -f ($out_dir | path join "map.nuon")
     $conditions | to nuon --list-of-records --indent 2 | save -f ($out_dir | path join "conditions.nuon")
-    {rooms: ($rooms | length), conditions: ($conditions | length), links: $link_total, blocked: $blocked_total, warnings: $warnings}
+    {rooms: ($rooms | length), links: ($links | length), blocked: ($blocked | length), conditions: ($conditions | length), warnings: $warnings, unmapped_flags: ($unmapped | uniq)}
 }
 
 # Snake-case a ZIL atom: lowercase, dashes to underscores.
