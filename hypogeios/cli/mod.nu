@@ -1,6 +1,7 @@
 # Interactive CLI front for the hypogeios suite (not a call() target).
 #
-# Holds the stdin/stdout play loop that drives game:turn turn-by-turn. It lives
+# Holds the stdin/stdout play loop that drives game:turn turn-by-turn, rendering
+# each turn through glow (deviation #2). It lives
 # in its own `cli` module rather than under `game` (which owns the `turn`
 # call-target) so the command name does not collide with its module name: a
 # module whose command matches its own name must be `main`, and `main` is the
@@ -12,12 +13,10 @@ export def play [session?: string] {
     let sid = (if ($session | is-empty) { random uuid } else { $session })
     print $"hypogeios session: ($sid)"
     mut r = (turn { session: $sid, input: "" })
-    print ""
-    print $r.output
+    $r.output | glow
     while (not $r.finished) {
-        let line = (input "> ")
+        let line = (input $"(ansi green)>(ansi reset) ")
         $r = (turn { session: $sid, input: $line })
-        print ""
-        print $r.output
+        $r.output | glow
     }
 }

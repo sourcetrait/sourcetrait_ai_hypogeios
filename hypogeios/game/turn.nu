@@ -1,4 +1,5 @@
 use pelos locale *
+use pelos render *
 
 # Portal hub turn: one step of the Fourth Wall front (stub).
 #
@@ -101,9 +102,11 @@ def sys [item: string]: nothing -> string {
     prose $LIB $LOC [{space: "system", item: $item}] --single
 }
 
-# A room's full description (item snake = the room key: main, arche).
+# A room's full view: the code-rendered h1 title (deviation #2.1) over the room's
+# description prose. (item snake = the room key: main, arche.)
 def room-desc [here: string]: nothing -> string {
-    prose $LIB $LOC [{space: "room", item: $here}] --single
+    let body = (prose $LIB $LOC [{space: "room", item: $here}] --single)
+    $"(h1 (room-title $here))\n($body)"
 }
 
 # A room's short title, looked up by room key in room/titles.yaml.

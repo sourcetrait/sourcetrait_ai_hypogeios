@@ -1,1 +1,1 @@
-Nothing here answers to that. Try "look", a portal color (green, blue, red), or "out".
+Nothing here answers to that. Try "look", a *portal* color ([green](#green), [blue](#blue), [red](#red)), or "out".
