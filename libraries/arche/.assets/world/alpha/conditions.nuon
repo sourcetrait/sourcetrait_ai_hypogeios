@@ -1,1 +1,21 @@
-{conditions: [[name, kind]; [coffin_cure, flag], [cyclops_flag, flag], [deflate, flag], [dome_flag, flag], [empty_handed, flag], [false_flag, flag], [grate, door], [grating_exit, fn], [kitchen_window, door], [lld_flag, flag], [low_tide, flag], [magic_flag, flag], [maze_diodes, fn], [rainbow_flag, flag], [trap_door, door], [trap_door_exit, fn], [troll_flag, flag], [up_chimney_function, fn], [won_flag, flag]]}
+[
+  {name: coffin_cure, kind: flag},
+  {name: cyclops_flag, kind: flag},
+  {name: deflate, kind: flag},
+  {name: dome_flag, kind: flag},
+  {name: empty_handed, kind: flag},
+  {name: false_flag, kind: flag},
+  {name: grate, kind: door},
+  {name: grating_exit, kind: fn},
+  {name: kitchen_window, kind: door},
+  {name: lld_flag, kind: flag},
+  {name: low_tide, kind: flag},
+  {name: magic_flag, kind: flag},
+  {name: maze_diodes, kind: fn},
+  {name: rainbow_flag, kind: flag},
+  {name: trap_door, kind: door},
+  {name: trap_door_exit, kind: fn},
+  {name: troll_flag, kind: flag},
+  {name: up_chimney_function, kind: fn},
+  {name: won_flag, kind: flag}
+]

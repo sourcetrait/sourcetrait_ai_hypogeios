@@ -64,10 +64,11 @@ export def "zil world" [
         }
         $rooms = ($rooms | append {name: $rname, links: $links, blocked: $blocked, flags: $flags, value: $value, globals: $globals, action: $action})
     }
-    let conditions = ($cond_kinds | transpose name kind | sort-by name)
+    let conditions: table<name: string, kind: string> = ($cond_kinds | transpose name kind | sort-by name)
+    let map_out: record<rooms: table<name: string, links: table<room: string, name: string, conditions: list<string>>, blocked: table<name: string>, flags: list<string>, value: int, globals: list<string>, action: any>> = {rooms: $rooms}
     mkdir $out_dir
-    {rooms: $rooms} | to nuon | save -f ($out_dir | path join "map.nuon")
-    {conditions: $conditions} | to nuon | save -f ($out_dir | path join "conditions.nuon")
+    $map_out | to nuon --list-of-records --indent 2 | save -f ($out_dir | path join "map.nuon")
+    $conditions | to nuon --list-of-records --indent 2 | save -f ($out_dir | path join "conditions.nuon")
     {rooms: ($rooms | length), conditions: ($conditions | length), links: $link_total, blocked: $blocked_total, warnings: $warnings}
 }
 
