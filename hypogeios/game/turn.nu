@@ -48,11 +48,11 @@ def handle [st: record, cmd: string] {
     mut out = ""
     if (($cmd == "") or ($cmd == "look") or ($cmd == "l")) {
         $out = (room-desc $s.here)
-    } else if (($cmd == "quit") or ($cmd == "q")) {
+    } else if (($cmd == "quit") or ($cmd == "q") or ($cmd == "exit")) {
         $s.moves = ($s.moves + 1)
         $s.finished = true
         $out = (sys "quit")
-    } else if (($cmd == "out") or ($cmd == "back") or ($cmd == "leave") or ($cmd == "exit")) {
+    } else if (($cmd == "out") or ($cmd == "back") or ($cmd == "leave")) {
         $s.moves = ($s.moves + 1)
         if ($s.here == "arche") {
             $s.here = "main"

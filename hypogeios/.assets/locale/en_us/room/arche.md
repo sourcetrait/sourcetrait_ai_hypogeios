@@ -3,4 +3,4 @@ A deeper seam, beyond the blue *portal*. Three spheres of light hang here, a sin
 - a [blue](#blue) sphere, marked **β**;
 - a [red](#red) sphere, marked **γ**.
 
-The way out leads back to the **Fourth Wall**. Enter a sphere by its color, or go out.
+The way out leads back to the **Fourth Wall**. Enter a sphere by its color, or go [out](#out).

@@ -1,3 +1,5 @@
-**HYPOGEIOS**
+# Hypogeios
 
-A preservation suite of underworlds. You come to yourself at the Fourth Wall.
+A trifecta of underworlds.
+
+You come to yourself in the **Fourth Wall**.
