@@ -1,0 +1,27 @@
+{
+  flags: [
+    land
+  ],
+  value: 25,
+  globals: [
+    trap_door,
+    slide,
+    stairs
+  ],
+  action: cellar_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [north,troll_room,[
+
+      ]],
+    [south,east_of_chasm,[
+
+      ]],
+    [up,living_room,[
+        trap_door
+      ]]
+  ],
+  blocked: [
+    west
+  ]
+}

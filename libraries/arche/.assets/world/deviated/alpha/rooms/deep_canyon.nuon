@@ -1,0 +1,28 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    stairs
+  ],
+  action: deep_canyon_f,
+  links: [
+    [  direction,  target,  conditions];
+    [nw,reservoir_south,[
+
+      ]],
+    [east,dam_room,[
+
+      ]],
+    [sw,ns_passage,[
+
+      ]],
+    [down,loud_room,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    chimney
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [south,gallery,[
+
+      ]],
+    [up,kitchen,[
+        up_chimney_function
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

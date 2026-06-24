@@ -1,0 +1,31 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [east,loud_room,[
+
+      ]],
+    [west,ew_passage,[
+
+      ]],
+    [north,ns_passage,[
+
+      ]],
+    [south,narrow_passage,[
+
+      ]],
+    [se,engravings_cave,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

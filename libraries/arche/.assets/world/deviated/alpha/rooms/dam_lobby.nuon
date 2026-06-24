@@ -1,0 +1,26 @@
+{
+  flags: [
+    land,
+    lighting
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [south,dam_room,[
+
+      ]],
+    [north,maintenance_room,[
+
+      ]],
+    [east,maintenance_room,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

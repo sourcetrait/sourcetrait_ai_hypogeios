@@ -1,0 +1,31 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    white_house,
+    grate
+  ],
+  action: clearing_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [east,"forest_2",[
+
+      ]],
+    [west,"forest_1",[
+
+      ]],
+    [south,path,[
+
+      ]],
+    [down,grating_room,[
+        grating_exit
+      ]]
+  ],
+  blocked: [
+    north
+  ]
+}

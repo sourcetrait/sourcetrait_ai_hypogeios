@@ -1,0 +1,35 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 10,
+  globals: [
+    kitchen_window,
+    chimney,
+    stairs
+  ],
+  action: kitchen_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [east,east_of_house,[
+        kitchen_window
+      ]],
+    [west,living_room,[
+
+      ]],
+    [out,east_of_house,[
+        kitchen_window
+      ]],
+    [up,attic,[
+
+      ]],
+    [down,studio,[
+        false_flag
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

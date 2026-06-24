@@ -1,0 +1,25 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    global_water,
+    river
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [north,dam_room,[
+
+      ]],
+    [up,dam_room,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

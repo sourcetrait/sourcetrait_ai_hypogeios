@@ -1,0 +1,31 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    global_water
+  ],
+  action: reservoir_south_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [se,deep_canyon,[
+
+      ]],
+    [sw,chasm_room,[
+
+      ]],
+    [east,dam_room,[
+
+      ]],
+    [west,stream_view,[
+
+      ]],
+    [north,reservoir,[
+        low_tide
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

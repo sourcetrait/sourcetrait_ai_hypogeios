@@ -1,0 +1,22 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [west,bat_room,[
+
+      ]],
+    [north,smelly_room,[
+
+      ]]
+  ],
+  blocked: [
+    down
+  ]
+}

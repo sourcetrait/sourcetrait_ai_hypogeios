@@ -1,0 +1,27 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    stairs
+  ],
+  action: living_room_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [east,kitchen,[
+
+      ]],
+    [west,strange_passage,[
+        magic_flag
+      ]],
+    [down,cellar,[
+        trap_door_exit
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

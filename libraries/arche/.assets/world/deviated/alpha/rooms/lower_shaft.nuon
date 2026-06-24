@@ -1,0 +1,26 @@
+{
+  flags: [
+    land,
+    sacred
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: no_objs,
+  links: [
+    [  direction,  target,  conditions];
+    [south,machine_room,[
+
+      ]],
+    [out,timber_room,[
+        empty_handed
+      ]],
+    [east,timber_room,[
+        empty_handed
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

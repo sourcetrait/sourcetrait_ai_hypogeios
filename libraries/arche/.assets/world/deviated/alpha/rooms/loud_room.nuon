@@ -1,0 +1,25 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    stairs
+  ],
+  action: loud_room_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [east,damp_cave,[
+
+      ]],
+    [west,round_room,[
+
+      ]],
+    [up,deep_canyon,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

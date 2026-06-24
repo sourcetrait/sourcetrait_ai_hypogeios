@@ -1,0 +1,29 @@
+{
+  flags: [
+    land,
+    maze
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [west,"maze_15",[
+
+      ]],
+    [nw,"maze_14",[
+
+      ]],
+    [ne,"maze_7",[
+
+      ]],
+    [south,"maze_7",[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

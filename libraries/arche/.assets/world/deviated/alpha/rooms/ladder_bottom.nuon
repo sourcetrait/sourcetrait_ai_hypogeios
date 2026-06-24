@@ -1,0 +1,25 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    ladder
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [south,"dead_end_5",[
+
+      ]],
+    [west,timber_room,[
+
+      ]],
+    [up,ladder_top,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

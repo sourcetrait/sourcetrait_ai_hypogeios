@@ -1,0 +1,23 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    ladder,
+    stairs
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [down,ladder_bottom,[
+
+      ]],
+    [up,"mine_4",[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

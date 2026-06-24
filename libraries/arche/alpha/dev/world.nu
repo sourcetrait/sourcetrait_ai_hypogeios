@@ -242,13 +242,22 @@ export def "zil deviate" [
     let links_out: table<room: string, direction: string, target: string, conditions: list<oneof<string, nothing>>> = ($map.links | each {|l| {room: $l.room, direction: $l.direction, target: $l.target, conditions: ($l.conditions | each {|c| zw-snake $c})}})
     let blocked_out: table<room: string, direction: string> = $map.blocked
     let conds_out: table<snake: string, kind: string> = ($conds | each {|c| {snake: (zw-snake $c.snake), kind: $c.kind}})
-    let map_out: record<rooms: table<snake: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>, links: table<room: string, direction: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: table<room: string, direction: string>> = {rooms: $rooms_out, links: $links_out, blocked: $blocked_out}
     mkdir $dev
-    $map_out | to nuon --list-of-records --indent 2 | save -f ($dev | path join "map.nuon")
+    let rooms_dir = ($dev | path join "rooms")
+    if ($rooms_dir | path exists) { rm --recursive --force $rooms_dir }
+    mkdir $rooms_dir
+    for r in $rooms_out {
+        let rlinks = ($links_out | where {|l| $l.room == $r.snake} | each {|l| {direction: $l.direction, target: $l.target, conditions: $l.conditions}})
+        let rblocked = ($blocked_out | where {|b| $b.room == $r.snake} | each {|b| $b.direction})
+        let rec: record<flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>, links: table<direction: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: list<string>> = {flags: $r.flags, value: $r.value, globals: $r.globals, action: $r.action, links: $rlinks, blocked: $rblocked}
+        $rec | to nuon --indent 2 | save -f ($rooms_dir | path join $"($r.snake).nuon")
+    }
+    let stale_map = ($dev | path join "map.nuon")
+    if ($stale_map | path exists) { rm --force $stale_map }
     $conds_out | to nuon --list-of-records --indent 2 | save -f ($dev | path join "conditions.nuon")
     {
         rooms: ($rooms_out | length), links: ($links_out | length), blocked: ($blocked_out | length),
         conditions: ($conds_out | length), unmapped_flags: ($unmapped | uniq),
-        written: [($dev | path join "map.nuon"), ($dev | path join "conditions.nuon")]
+        written: [$rooms_dir, ($dev | path join "conditions.nuon")]
     }
 }

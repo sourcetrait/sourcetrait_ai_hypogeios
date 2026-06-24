@@ -1,0 +1,25 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: mirror_room,
+  links: [
+    [  direction,  target,  conditions];
+    [north,cold_passage,[
+
+      ]],
+    [west,twisting_passage,[
+
+      ]],
+    [east,small_cave,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

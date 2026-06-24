@@ -1,0 +1,23 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    global_water,
+    stairs
+  ],
+  action: reservoir_north_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [north,atlantis_room,[
+
+      ]],
+    [south,reservoir,[
+        low_tide
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

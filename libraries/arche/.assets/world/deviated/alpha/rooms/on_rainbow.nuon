@@ -1,0 +1,24 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    rainbow
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [west,end_of_rainbow,[
+
+      ]],
+    [east,aragain_falls,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

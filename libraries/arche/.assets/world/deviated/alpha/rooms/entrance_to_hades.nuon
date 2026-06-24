@@ -1,0 +1,26 @@
+{
+  flags: [
+    land,
+    lighting
+  ],
+  value: 0,
+  globals: [
+    bodies
+  ],
+  action: lld_room,
+  links: [
+    [  direction,  target,  conditions];
+    [up,tiny_cave,[
+
+      ]],
+    [in,land_of_living_dead,[
+        lld_flag
+      ]],
+    [south,land_of_living_dead,[
+        lld_flag
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

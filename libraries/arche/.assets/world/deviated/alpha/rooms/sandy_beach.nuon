@@ -1,0 +1,24 @@
+{
+  flags: [
+    land,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    global_water,
+    river
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [ne,sandy_cave,[
+
+      ]],
+    [south,shore,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

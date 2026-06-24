@@ -1,0 +1,31 @@
+{
+  flags: [
+    land,
+    lighting
+  ],
+  value: 0,
+  globals: [
+    global_water,
+    rainbow,
+    river
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [up,on_rainbow,[
+        rainbow_flag
+      ]],
+    [ne,on_rainbow,[
+        rainbow_flag
+      ]],
+    [east,on_rainbow,[
+        rainbow_flag
+      ]],
+    [sw,canyon_bottom,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

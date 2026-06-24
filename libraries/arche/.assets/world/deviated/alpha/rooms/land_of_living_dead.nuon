@@ -1,0 +1,23 @@
+{
+  flags: [
+    land,
+    lighting
+  ],
+  value: 0,
+  globals: [
+    bodies
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [out,entrance_to_hades,[
+
+      ]],
+    [north,entrance_to_hades,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

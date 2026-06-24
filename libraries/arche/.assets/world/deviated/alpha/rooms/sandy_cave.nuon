@@ -1,0 +1,19 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [sw,sandy_beach,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  flags: [
+    land
+  ],
+  value: 5,
+  globals: [
+    stairs
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [east,round_room,[
+
+      ]],
+    [west,troll_room,[
+
+      ]],
+    [down,chasm_room,[
+
+      ]],
+    [north,chasm_room,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

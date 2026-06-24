@@ -1,0 +1,25 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [west,cyclops_room,[
+
+      ]],
+    [in,cyclops_room,[
+
+      ]],
+    [east,living_room,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

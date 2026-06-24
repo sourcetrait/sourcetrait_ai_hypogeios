@@ -1,0 +1,22 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: dome_room_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [west,engravings_cave,[
+
+      ]],
+    [down,torch_room,[
+        dome_flag
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

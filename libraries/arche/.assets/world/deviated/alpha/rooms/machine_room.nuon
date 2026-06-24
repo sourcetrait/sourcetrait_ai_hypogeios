@@ -1,0 +1,19 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: machine_room_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [north,lower_shaft,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

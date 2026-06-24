@@ -22,19 +22,15 @@ export def model_engine [
     {flags: $flags, syntax_rules: $syntax.rules, syntax_verb_synonyms: $syntax.verb_synonyms, syntax_prepositions: $syntax.prepositions, syntax_directions: $syntax.directions, syntax_buzzwords: $syntax.buzzwords}
 }
 
-# Compose an episode's WORLD record from
-# <world_dir>/deviated/<episode>/{conditions,map}.nuon. map.nuon is
-# record<rooms, links, blocked> (flat/relational; links/blocked are sibling tables
-# keyed by room). <episode> is a snake (alpha|beta|gamma). The return IS the strict
-# WORLD schema.
-export def model_world [
+# Load an episode's CONDITIONS table from <world_dir>/deviated/<episode>/conditions.nuon
+# (the gate-kind dictionary: snake -> flag | door | fn). Per-episode; the return IS the
+# strict schema (mirror in derive's CONDITIONS_TYPE). Map data (rooms/links/blocked) is
+# no longer composed here - it is per-file loader data (pelos data `room`), not a const.
+export def model_conditions [
     world_dir: directory,
     episode: string
-]: nothing -> record<conditions: table<snake: string, kind: string>, rooms: table<snake: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>, links: table<room: string, direction: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: table<room: string, direction: string>> {
-    let ep = ($world_dir | path join "deviated" $episode)
-    let conditions = (open ($ep | path join "conditions.nuon"))
-    let map = (open ($ep | path join "map.nuon"))
-    {conditions: $conditions, rooms: $map.rooms, links: $map.links, blocked: $map.blocked}
+]: nothing -> table<snake: string, kind: string> {
+    open ($world_dir | path join "deviated" $episode "conditions.nuon")
 }
 
 # Compose an episode's VOCABULARY table - the parser word dictionary, a PROJECTION
@@ -67,8 +63,8 @@ export def model_vocabulary [
     let dirs = ($syntax.directions | where {|s| $game in $s.games } | each {|s| ([{word: $s.direction, pos: "direction", canon: $s.direction}] ++ ($s.synonyms | each {|w| {word: $w, pos: "direction", canon: $s.direction}}))} | flatten)
     let buzz = ($syntax.buzzwords | where {|b| $game in $b.games } | each {|b| {word: $b.word, pos: "buzzword", canon: null}})
     let gdirs = ($syntax.directions | where {|s| $game in $s.games } | get direction)
-    let map = (open ($dev | path join $episode "map.nuon"))
-    let extra_dirs = ($map.links | get direction | uniq | where {|d| $d not-in $gdirs } | each {|d| {word: $d, pos: "direction", canon: $d}})
+    let room_dirs = (glob ($dev | path join $episode "rooms" "*.nuon") | each {|f| open $f | get links | each {|l| $l.direction}} | flatten | uniq)
+    let extra_dirs = ($room_dirs | where {|d| $d not-in $gdirs } | each {|d| {word: $d, pos: "direction", canon: $d}})
     let contribs = ($noun_c ++ $adj_c ++ $rule_verbs ++ $verb_syns ++ $preps ++ $dirs ++ $buzz ++ $extra_dirs)
     let order = [verb noun adjective preposition direction buzzword]
     $contribs | group-by {|r| $r.word} | transpose word rows | each {|g|

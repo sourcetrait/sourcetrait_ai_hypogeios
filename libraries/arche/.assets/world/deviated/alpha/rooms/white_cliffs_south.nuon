@@ -1,0 +1,22 @@
+{
+  flags: [
+    land,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    global_water,
+    white_cliff,
+    river
+  ],
+  action: white_cliffs_function,
+  links: [
+    [  direction,  target,  conditions];
+    [north,white_cliffs_north,[
+        deflate
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

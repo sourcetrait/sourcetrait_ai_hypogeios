@@ -1,0 +1,29 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    crack,
+    stairs
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [ne,reservoir_south,[
+
+      ]],
+    [sw,ew_passage,[
+
+      ]],
+    [up,ew_passage,[
+
+      ]],
+    [south,ns_passage,[
+
+      ]]
+  ],
+  blocked: [
+    down
+  ]
+}

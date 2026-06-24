@@ -1,0 +1,21 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: stone_barrow_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [ne,west_of_house,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

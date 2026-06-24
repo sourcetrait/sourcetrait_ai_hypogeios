@@ -1,0 +1,25 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [north,gas_room,[
+
+      ]],
+    [east,"mine_1",[
+
+      ]],
+    [ne,"mine_2",[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

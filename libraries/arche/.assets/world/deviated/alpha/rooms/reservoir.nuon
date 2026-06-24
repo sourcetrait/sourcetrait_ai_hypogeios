@@ -1,0 +1,28 @@
+{
+  flags: [
+    non_land
+  ],
+  value: 0,
+  globals: [
+    global_water
+  ],
+  action: reservoir_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [north,reservoir_north,[
+
+      ]],
+    [south,reservoir_south,[
+
+      ]],
+    [up,in_stream,[
+
+      ]],
+    [west,in_stream,[
+
+      ]]
+  ],
+  blocked: [
+    down
+  ]
+}

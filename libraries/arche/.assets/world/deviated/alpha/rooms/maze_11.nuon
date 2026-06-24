@@ -1,0 +1,29 @@
+{
+  flags: [
+    land,
+    maze
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [ne,grating_room,[
+
+      ]],
+    [down,"maze_10",[
+
+      ]],
+    [nw,"maze_13",[
+
+      ]],
+    [sw,"maze_12",[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    grate
+  ],
+  action: "maze_11_fcn",
+  links: [
+    [  direction,  target,  conditions];
+    [sw,"maze_11",[
+
+      ]],
+    [up,grating_clearing,[
+        grate
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

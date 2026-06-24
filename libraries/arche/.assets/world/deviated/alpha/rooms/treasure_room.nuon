@@ -1,0 +1,19 @@
+{
+  flags: [
+    land
+  ],
+  value: 25,
+  globals: [
+    stairs
+  ],
+  action: treasure_room_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [down,cyclops_room,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

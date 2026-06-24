@@ -1,0 +1,41 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    white_house,
+    board,
+    forest
+  ],
+  action: west_house,
+  links: [
+    [  direction,  target,  conditions];
+    [north,north_of_house,[
+
+      ]],
+    [south,south_of_house,[
+
+      ]],
+    [ne,north_of_house,[
+
+      ]],
+    [se,south_of_house,[
+
+      ]],
+    [west,"forest_1",[
+
+      ]],
+    [sw,stone_barrow,[
+        won_flag
+      ]],
+    [in,stone_barrow,[
+        won_flag
+      ]]
+  ],
+  blocked: [
+    east
+  ]
+}

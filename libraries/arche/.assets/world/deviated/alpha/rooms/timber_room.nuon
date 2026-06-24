@@ -1,0 +1,23 @@
+{
+  flags: [
+    land,
+    sacred
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: no_objs,
+  links: [
+    [  direction,  target,  conditions];
+    [east,ladder_bottom,[
+
+      ]],
+    [west,lower_shaft,[
+        empty_handed
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

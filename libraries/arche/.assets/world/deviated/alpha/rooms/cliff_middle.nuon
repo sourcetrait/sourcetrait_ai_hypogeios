@@ -1,0 +1,25 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    climbable_cliff,
+    river
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [up,canyon_view,[
+
+      ]],
+    [down,canyon_bottom,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  flags: [
+    non_land
+  ],
+  value: 0,
+  globals: [
+    global_water
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [land,stream_view,[
+
+      ]],
+    [down,reservoir,[
+
+      ]],
+    [east,reservoir,[
+
+      ]]
+  ],
+  blocked: [
+    up,
+    west
+  ]
+}

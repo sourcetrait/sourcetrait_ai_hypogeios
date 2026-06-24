@@ -1,0 +1,25 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    stairs
+  ],
+  action: "cave2_room",
+  links: [
+    [  direction,  target,  conditions];
+    [north,"mirror_room_2",[
+
+      ]],
+    [west,winding_passage,[
+
+      ]],
+    [down,entrance_to_hades,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

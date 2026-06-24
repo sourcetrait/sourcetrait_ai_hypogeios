@@ -1,0 +1,22 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    stairs
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [up,small_cave,[
+
+      ]],
+    [south,reservoir_north,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

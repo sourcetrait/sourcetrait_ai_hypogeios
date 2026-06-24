@@ -1,0 +1,31 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    tree,
+    songbird,
+    white_house,
+    forest
+  ],
+  action: forest_room,
+  links: [
+    [  direction,  target,  conditions];
+    [north,grating_clearing,[
+
+      ]],
+    [east,path,[
+
+      ]],
+    [south,"forest_3",[
+
+      ]]
+  ],
+  blocked: [
+    up,
+    west
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  flags: [
+    non_land,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    global_water,
+    river
+  ],
+  action: "rivr4_room",
+  links: [
+    [  direction,  target,  conditions];
+    [down,"river_5",[
+
+      ]],
+    [west,white_cliffs_south,[
+
+      ]],
+    [east,sandy_beach,[
+
+      ]]
+  ],
+  blocked: [
+    up,
+    land
+  ]
+}

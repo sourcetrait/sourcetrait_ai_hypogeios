@@ -65,3 +65,19 @@ export def object [
 ]: nothing -> record<synonyms: list<string>, adjectives: list<string>, flags: list<string>, location: oneof<string, nothing>, capacity: int, size: int, value: int, trophy_value: int, strength: oneof<int, nothing>, vehicle_type: oneof<string, nothing>, action: oneof<string, nothing>, description_fn: oneof<string, nothing>, container_fn: oneof<string, nothing>> {
     deviated-file $library "objects" $episode $snake
 }
+
+# Load one deviated ROOM record by snake (episode dir; rooms are per-episode).
+#
+# The return IS the per-room schema (working/06): flags reuse the shared ENGINE flag
+# dictionary; links are the room's OUTGOING exits (direction -> target, with gate
+# `conditions` resolving against the episode CONDITIONS const); blocked are the
+# message-only exit directions; action is the room routine snake (null = none). The
+# room title/description load from locale by snake. snake = the file id, not duplicated
+# in the record. Map data is per-file loader data (this), not a const.
+export def room [
+    library: string,
+    episode: string,
+    snake: string
+]: nothing -> record<flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>, links: table<direction: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: list<string>> {
+    deviated-file $library "rooms" $episode $snake
+}

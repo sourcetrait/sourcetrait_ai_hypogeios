@@ -1,0 +1,32 @@
+{
+  flags: [
+    land,
+    maze
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [down,"maze_5",[
+        maze_diodes
+      ]],
+    [sw,"maze_11",[
+
+      ]],
+    [east,"maze_13",[
+
+      ]],
+    [up,"maze_9",[
+
+      ]],
+    [north,"dead_end_4",[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

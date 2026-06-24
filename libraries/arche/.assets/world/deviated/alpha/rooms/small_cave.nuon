@@ -1,0 +1,28 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    stairs
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [north,"mirror_room_1",[
+
+      ]],
+    [down,atlantis_room,[
+
+      ]],
+    [south,atlantis_room,[
+
+      ]],
+    [west,twisting_passage,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

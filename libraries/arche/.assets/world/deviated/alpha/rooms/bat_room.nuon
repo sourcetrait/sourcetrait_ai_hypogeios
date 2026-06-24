@@ -1,0 +1,23 @@
+{
+  flags: [
+    land,
+    sacred
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: bats_room,
+  links: [
+    [  direction,  target,  conditions];
+    [south,squeeky_room,[
+
+      ]],
+    [east,shaft_room,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

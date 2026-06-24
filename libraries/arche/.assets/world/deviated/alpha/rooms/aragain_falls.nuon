@@ -1,0 +1,29 @@
+{
+  flags: [
+    land,
+    sacred,
+    lighting
+  ],
+  value: 0,
+  globals: [
+    global_water,
+    river,
+    rainbow
+  ],
+  action: falls_room,
+  links: [
+    [  direction,  target,  conditions];
+    [west,on_rainbow,[
+        rainbow_flag
+      ]],
+    [north,shore,[
+
+      ]],
+    [up,on_rainbow,[
+        rainbow_flag
+      ]]
+  ],
+  blocked: [
+    down
+  ]
+}

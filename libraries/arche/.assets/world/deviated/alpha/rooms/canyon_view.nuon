@@ -1,0 +1,32 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    climbable_cliff,
+    river,
+    rainbow
+  ],
+  action: canyon_view_f,
+  links: [
+    [  direction,  target,  conditions];
+    [east,cliff_middle,[
+
+      ]],
+    [down,cliff_middle,[
+
+      ]],
+    [nw,clearing,[
+
+      ]],
+    [west,"forest_3",[
+
+      ]]
+  ],
+  blocked: [
+    south
+  ]
+}

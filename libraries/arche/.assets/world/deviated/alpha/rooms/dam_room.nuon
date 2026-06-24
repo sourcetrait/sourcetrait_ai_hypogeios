@@ -1,0 +1,32 @@
+{
+  flags: [
+    land,
+    lighting
+  ],
+  value: 0,
+  globals: [
+    global_water
+  ],
+  action: dam_room_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [south,deep_canyon,[
+
+      ]],
+    [down,dam_base,[
+
+      ]],
+    [east,dam_base,[
+
+      ]],
+    [north,dam_lobby,[
+
+      ]],
+    [west,reservoir_south,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

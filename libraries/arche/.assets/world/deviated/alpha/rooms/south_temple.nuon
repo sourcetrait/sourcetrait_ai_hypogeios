@@ -1,0 +1,24 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: south_temple_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [north,north_temple,[
+
+      ]],
+    [down,tiny_cave,[
+        coffin_cure
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

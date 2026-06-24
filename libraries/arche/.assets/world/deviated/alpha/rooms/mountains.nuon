@@ -1,0 +1,29 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    tree,
+    white_house
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [north,"forest_2",[
+
+      ]],
+    [south,"forest_2",[
+
+      ]],
+    [west,"forest_2",[
+
+      ]]
+  ],
+  blocked: [
+    up,
+    east
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  flags: [
+    land,
+    maze
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [east,troll_room,[
+
+      ]],
+    [north,"maze_1",[
+
+      ]],
+    [south,"maze_2",[
+
+      ]],
+    [west,"maze_4",[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

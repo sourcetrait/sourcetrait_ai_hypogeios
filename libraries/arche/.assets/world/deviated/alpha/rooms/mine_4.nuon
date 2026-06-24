@@ -1,0 +1,25 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [north,"mine_3",[
+
+      ]],
+    [west,"mine_4",[
+
+      ]],
+    [down,ladder_top,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

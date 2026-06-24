@@ -1,0 +1,25 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    slide
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [east,cold_passage,[
+
+      ]],
+    [north,mine_entrance,[
+
+      ]],
+    [down,cellar,[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

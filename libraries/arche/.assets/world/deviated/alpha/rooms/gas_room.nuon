@@ -1,0 +1,23 @@
+{
+  flags: [
+    land,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    stairs
+  ],
+  action: boom_room,
+  links: [
+    [  direction,  target,  conditions];
+    [up,smelly_room,[
+
+      ]],
+    [east,"mine_1",[
+
+      ]]
+  ],
+  blocked: [
+
+  ]
+}

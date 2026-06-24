@@ -1,0 +1,36 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    boarded_window,
+    board,
+    white_house,
+    forest
+  ],
+  action: null,
+  links: [
+    [  direction,  target,  conditions];
+    [west,west_of_house,[
+
+      ]],
+    [east,east_of_house,[
+
+      ]],
+    [ne,east_of_house,[
+
+      ]],
+    [nw,west_of_house,[
+
+      ]],
+    [south,"forest_3",[
+
+      ]]
+  ],
+  blocked: [
+    north
+  ]
+}

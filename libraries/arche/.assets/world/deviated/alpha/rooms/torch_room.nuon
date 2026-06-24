@@ -1,0 +1,22 @@
+{
+  flags: [
+    land
+  ],
+  value: 0,
+  globals: [
+    stairs
+  ],
+  action: torch_room_fcn,
+  links: [
+    [  direction,  target,  conditions];
+    [south,north_temple,[
+
+      ]],
+    [down,north_temple,[
+
+      ]]
+  ],
+  blocked: [
+    up
+  ]
+}

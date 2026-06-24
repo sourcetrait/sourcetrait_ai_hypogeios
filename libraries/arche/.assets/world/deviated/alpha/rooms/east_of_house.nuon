@@ -1,0 +1,41 @@
+{
+  flags: [
+    land,
+    lighting,
+    sacred
+  ],
+  value: 0,
+  globals: [
+    white_house,
+    kitchen_window,
+    forest
+  ],
+  action: east_house,
+  links: [
+    [  direction,  target,  conditions];
+    [north,north_of_house,[
+
+      ]],
+    [south,south_of_house,[
+
+      ]],
+    [sw,south_of_house,[
+
+      ]],
+    [nw,north_of_house,[
+
+      ]],
+    [east,clearing,[
+
+      ]],
+    [west,kitchen,[
+        kitchen_window
+      ]],
+    [in,kitchen,[
+        kitchen_window
+      ]]
+  ],
+  blocked: [
+
+  ]
+}
