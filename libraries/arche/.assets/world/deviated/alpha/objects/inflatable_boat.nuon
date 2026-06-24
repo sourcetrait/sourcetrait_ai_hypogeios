@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    boat,
+    pile,
+    plastic,
+    valve
+  ],
+  adjectives: [
+    plastic,
+    inflat
+  ],
+  flags: [
+    take,
+    burn
+  ],
+  location: dam_base,
+  capacity: 0,
+  size: 20,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: iboat_function,
+  description_fn: null,
+  container_fn: null
+}

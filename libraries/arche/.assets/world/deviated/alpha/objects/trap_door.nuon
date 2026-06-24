@@ -1,0 +1,27 @@
+{
+  synonyms: [
+    door,
+    trapdoor,
+    trap_door,
+    cover
+  ],
+  adjectives: [
+    trap,
+    dusty
+  ],
+  flags: [
+    door,
+    no_description,
+    invisible
+  ],
+  location: living_room,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: trap_door_fcn,
+  description_fn: null,
+  container_fn: null
+}

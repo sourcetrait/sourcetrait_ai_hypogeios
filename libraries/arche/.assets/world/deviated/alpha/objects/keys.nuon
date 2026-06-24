@@ -1,0 +1,22 @@
+{
+  synonyms: [
+    key
+  ],
+  adjectives: [
+    skeleton
+  ],
+  flags: [
+    take,
+    tool
+  ],
+  location: "maze_5",
+  capacity: 0,
+  size: 10,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

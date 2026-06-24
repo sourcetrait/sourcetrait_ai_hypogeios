@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    mountain,
+    range
+  ],
+  adjectives: [
+    impassable,
+    flathead
+  ],
+  flags: [
+    NDESCBIT,
+    CLIMBBIT
+  ],
+  location: mountains,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: mountain_range_f,
+  description_fn: null,
+  container_fn: null
+}

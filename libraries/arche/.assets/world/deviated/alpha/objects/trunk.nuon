@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    trunk,
+    chest,
+    jewels,
+    treasure
+  ],
+  adjectives: [
+    old
+  ],
+  flags: [
+    take,
+    invisible
+  ],
+  location: reservoir,
+  capacity: 0,
+  size: 35,
+  value: 15,
+  trophy_value: 5,
+  strength: null,
+  vehicle_type: null,
+  action: trunk_f,
+  description_fn: null,
+  container_fn: null
+}

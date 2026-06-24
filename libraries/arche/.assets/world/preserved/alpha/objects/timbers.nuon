@@ -1,0 +1,23 @@
+{
+  synonyms: [
+    timbers,
+    pile
+  ],
+  adjectives: [
+    wooden,
+    broken
+  ],
+  flags: [
+    TAKEBIT
+  ],
+  location: timber_room,
+  capacity: 0,
+  size: 50,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

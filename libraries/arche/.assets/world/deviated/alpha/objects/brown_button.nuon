@@ -1,0 +1,22 @@
+{
+  synonyms: [
+    button,
+    switch
+  ],
+  adjectives: [
+    brown
+  ],
+  flags: [
+    no_description
+  ],
+  location: maintenance_room,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: button_f,
+  description_fn: null,
+  container_fn: null
+}

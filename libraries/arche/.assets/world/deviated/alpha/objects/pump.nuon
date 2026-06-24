@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    pump,
+    air_pump,
+    tool,
+    tools
+  ],
+  adjectives: [
+    small,
+    hand_held
+  ],
+  flags: [
+    take,
+    tool
+  ],
+  location: reservoir_north,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

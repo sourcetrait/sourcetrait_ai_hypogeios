@@ -1,0 +1,33 @@
+{
+  synonyms: [
+
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    mung,
+    invisible,
+    touch,
+    surface,
+    try_take,
+    open,
+    search,
+    transparent,
+    lighting,
+    land,
+    fighting,
+    staggered,
+    wear
+  ],
+  location: null,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

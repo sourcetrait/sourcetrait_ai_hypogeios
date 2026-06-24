@@ -1,0 +1,27 @@
+{
+  synonyms: [
+    coffin,
+    casket,
+    treasure
+  ],
+  adjectives: [
+    solid,
+    gold
+  ],
+  flags: [
+    TAKEBIT,
+    CONTBIT,
+    SACREDBIT,
+    SEARCHBIT
+  ],
+  location: egypt_room,
+  capacity: 35,
+  size: 55,
+  value: 10,
+  trophy_value: 15,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

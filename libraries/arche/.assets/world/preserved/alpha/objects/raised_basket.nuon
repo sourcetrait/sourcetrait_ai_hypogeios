@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    cage,
+    dumbwaiter,
+    basket
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    TRANSBIT,
+    TRYTAKEBIT,
+    CONTBIT,
+    OPENBIT
+  ],
+  location: shaft_room,
+  capacity: 50,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: basket_f,
+  description_fn: null,
+  container_fn: null
+}

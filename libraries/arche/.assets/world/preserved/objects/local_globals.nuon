@@ -1,0 +1,21 @@
+{
+  synonyms: [
+    zzmgck
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+
+  ],
+  location: global_objects,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: "1",
+  action: null,
+  description_fn: path_object,
+  container_fn: null
+}

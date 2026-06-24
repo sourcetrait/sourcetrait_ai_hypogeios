@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    gunk,
+    piece,
+    slag
+  ],
+  adjectives: [
+    small,
+    vitreous
+  ],
+  flags: [
+    TAKEBIT,
+    TRYTAKEBIT
+  ],
+  location: null,
+  capacity: 0,
+  size: 10,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: gunk_function,
+  description_fn: null,
+  container_fn: null
+}

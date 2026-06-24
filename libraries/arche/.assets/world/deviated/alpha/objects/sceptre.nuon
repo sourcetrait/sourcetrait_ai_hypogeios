@@ -1,0 +1,27 @@
+{
+  synonyms: [
+    sceptre,
+    scepter,
+    treasure
+  ],
+  adjectives: [
+    sharp,
+    egyptian,
+    ancient,
+    enameled
+  ],
+  flags: [
+    take,
+    weapon
+  ],
+  location: coffin,
+  capacity: 0,
+  size: 3,
+  value: 4,
+  trophy_value: 6,
+  strength: null,
+  vehicle_type: null,
+  action: sceptre_function,
+  description_fn: null,
+  container_fn: null
+}

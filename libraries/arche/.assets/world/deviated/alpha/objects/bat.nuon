@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    bat,
+    vampire
+  ],
+  adjectives: [
+    vampire,
+    deranged
+  ],
+  flags: [
+    actor,
+    try_take
+  ],
+  location: bat_room,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: bat_f,
+  description_fn: bat_d,
+  container_fn: null
+}

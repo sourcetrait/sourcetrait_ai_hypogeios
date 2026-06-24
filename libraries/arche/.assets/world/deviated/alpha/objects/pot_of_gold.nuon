@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    pot,
+    gold,
+    treasure
+  ],
+  adjectives: [
+    gold
+  ],
+  flags: [
+    take,
+    invisible
+  ],
+  location: end_of_rainbow,
+  capacity: 0,
+  size: 15,
+  value: 10,
+  trophy_value: 10,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

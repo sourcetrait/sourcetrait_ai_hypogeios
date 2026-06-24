@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    case
+  ],
+  adjectives: [
+    trophy
+  ],
+  flags: [
+    TRANSBIT,
+    CONTBIT,
+    NDESCBIT,
+    TRYTAKEBIT,
+    SEARCHBIT
+  ],
+  location: living_room,
+  capacity: 10000,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: trophy_case_fcn,
+  description_fn: null,
+  container_fn: null
+}

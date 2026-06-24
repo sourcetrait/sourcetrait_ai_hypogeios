@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    ghosts,
+    spirits,
+    fiends,
+    force
+  ],
+  adjectives: [
+    invisible,
+    evil
+  ],
+  flags: [
+    actor,
+    no_description
+  ],
+  location: entrance_to_hades,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: ghosts_f,
+  description_fn: null,
+  container_fn: null
+}

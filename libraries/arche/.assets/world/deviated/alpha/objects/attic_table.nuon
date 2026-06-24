@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    table
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    no_description,
+    container,
+    open,
+    surface
+  ],
+  location: attic,
+  capacity: 40,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    table
+  ],
+  adjectives: [
+    kitchen
+  ],
+  flags: [
+    NDESCBIT,
+    CONTBIT,
+    OPENBIT,
+    SURFACEBIT
+  ],
+  location: kitchen,
+  capacity: 50,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

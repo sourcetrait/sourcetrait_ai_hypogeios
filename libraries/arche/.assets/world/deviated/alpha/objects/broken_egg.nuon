@@ -1,0 +1,27 @@
+{
+  synonyms: [
+    egg,
+    treasure
+  ],
+  adjectives: [
+    broken,
+    birds,
+    encrusted,
+    jewel
+  ],
+  flags: [
+    take,
+    container,
+    open
+  ],
+  location: null,
+  capacity: 6,
+  size: 0,
+  value: 0,
+  trophy_value: 2,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

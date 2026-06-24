@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    knives,
+    knife,
+    blade
+  ],
+  adjectives: [
+    nasty,
+    unrusty
+  ],
+  flags: [
+    take,
+    weapon,
+    try_take
+  ],
+  location: attic_table,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: knife_f,
+  description_fn: null,
+  container_fn: null
+}

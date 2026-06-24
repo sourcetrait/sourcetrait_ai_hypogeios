@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    dam,
+    gate,
+    gates,
+    "fcd\\#3"
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    NDESCBIT,
+    TRYTAKEBIT
+  ],
+  location: dam_room,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: dam_function,
+  description_fn: null,
+  container_fn: null
+}

@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    canary,
+    treasure
+  ],
+  adjectives: [
+    broken,
+    clockwork,
+    gold,
+    golden
+  ],
+  flags: [
+    take
+  ],
+  location: broken_egg,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 1,
+  strength: null,
+  vehicle_type: null,
+  action: canary_object,
+  description_fn: null,
+  container_fn: null
+}

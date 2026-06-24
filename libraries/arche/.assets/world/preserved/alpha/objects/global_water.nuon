@@ -1,0 +1,22 @@
+{
+  synonyms: [
+    water,
+    quantity
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    DRINKBIT
+  ],
+  location: local_globals,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: water_f,
+  description_fn: null,
+  container_fn: null
+}

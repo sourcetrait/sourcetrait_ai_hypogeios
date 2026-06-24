@@ -1,0 +1,27 @@
+{
+  synonyms: [
+    chalice,
+    cup,
+    silver,
+    treasure
+  ],
+  adjectives: [
+    silver,
+    engravings
+  ],
+  flags: [
+    TAKEBIT,
+    TRYTAKEBIT,
+    CONTBIT
+  ],
+  location: treasure_room,
+  capacity: 5,
+  size: 10,
+  value: 10,
+  trophy_value: 5,
+  strength: null,
+  vehicle_type: null,
+  action: chalice_fcn,
+  description_fn: null,
+  container_fn: null
+}

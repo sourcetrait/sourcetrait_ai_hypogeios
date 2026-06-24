@@ -1,0 +1,29 @@
+{
+  synonyms: [
+    stairs,
+    steps,
+    staircase,
+    stairway
+  ],
+  adjectives: [
+    stone,
+    dark,
+    marble,
+    forbidding,
+    steep
+  ],
+  flags: [
+    NDESCBIT,
+    CLIMBBIT
+  ],
+  location: local_globals,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: stairs_f,
+  description_fn: null,
+  container_fn: null
+}

@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    match,
+    matches,
+    matchbook
+  ],
+  adjectives: [
+    match
+  ],
+  flags: [
+    read,
+    take
+  ],
+  location: dam_lobby,
+  capacity: 0,
+  size: 2,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: match_function,
+  description_fn: null,
+  container_fn: null
+}

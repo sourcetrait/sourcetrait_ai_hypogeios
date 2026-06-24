@@ -1,0 +1,23 @@
+{
+  synonyms: [
+    garlic,
+    clove
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    TAKEBIT,
+    FOODBIT
+  ],
+  location: sandwich_bag,
+  capacity: 0,
+  size: 4,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: garlic_f,
+  description_fn: null,
+  container_fn: null
+}

@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    bar,
+    platinum,
+    treasure
+  ],
+  adjectives: [
+    platinum,
+    large
+  ],
+  flags: [
+    take,
+    sacred
+  ],
+  location: loud_room,
+  capacity: 0,
+  size: 20,
+  value: 10,
+  trophy_value: 5,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

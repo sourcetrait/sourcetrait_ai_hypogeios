@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    machine,
+    "pdp10",
+    dryer,
+    lid
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    container,
+    no_description,
+    try_take
+  ],
+  location: machine_room,
+  capacity: 50,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: machine_f,
+  description_fn: null,
+  container_fn: null
+}

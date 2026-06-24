@@ -1,0 +1,23 @@
+{
+  synonyms: [
+    chimney
+  ],
+  adjectives: [
+    dark,
+    narrow
+  ],
+  flags: [
+    climb,
+    no_description
+  ],
+  location: local_globals,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: chimney_f,
+  description_fn: null,
+  container_fn: null
+}

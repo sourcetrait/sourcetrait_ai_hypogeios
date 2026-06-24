@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    trident,
+    fork,
+    treasure
+  ],
+  adjectives: [
+    poseidon,
+    own,
+    crystal
+  ],
+  flags: [
+    TAKEBIT
+  ],
+  location: atlantis_room,
+  capacity: 0,
+  size: 20,
+  value: 4,
+  trophy_value: 11,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

@@ -1,0 +1,22 @@
+{
+  synonyms: [
+    buoy
+  ],
+  adjectives: [
+    red
+  ],
+  flags: [
+    TAKEBIT,
+    CONTBIT
+  ],
+  location: "river_4",
+  capacity: 20,
+  size: 10,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: treasure_inside,
+  description_fn: null,
+  container_fn: null
+}

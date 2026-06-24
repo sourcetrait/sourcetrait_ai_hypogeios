@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    bag,
+    coins,
+    treasure
+  ],
+  adjectives: [
+    old,
+    leather
+  ],
+  flags: [
+    take
+  ],
+  location: "maze_5",
+  capacity: 0,
+  size: 15,
+  value: 10,
+  trophy_value: 5,
+  strength: null,
+  vehicle_type: null,
+  action: bag_of_coins_f,
+  description_fn: null,
+  container_fn: null
+}

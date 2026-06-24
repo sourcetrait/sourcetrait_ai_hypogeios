@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    bag,
+    sack
+  ],
+  adjectives: [
+    brown,
+    elongated,
+    smelly
+  ],
+  flags: [
+    take,
+    container,
+    burn
+  ],
+  location: kitchen_table,
+  capacity: 9,
+  size: 9,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: sandwich_bag_fcn,
+  description_fn: null,
+  container_fn: null
+}

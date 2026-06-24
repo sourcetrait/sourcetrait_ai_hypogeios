@@ -1,0 +1,23 @@
+{
+  synonyms: [
+    mailbox,
+    box
+  ],
+  adjectives: [
+    small
+  ],
+  flags: [
+    container,
+    try_take
+  ],
+  location: west_of_house,
+  capacity: 10,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: mailbox_f,
+  description_fn: null,
+  container_fn: null
+}

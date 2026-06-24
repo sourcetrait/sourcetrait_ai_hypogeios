@@ -1,0 +1,23 @@
+{
+  synonyms: [
+    figurine,
+    treasure
+  ],
+  adjectives: [
+    exquisite,
+    jade
+  ],
+  flags: [
+    take
+  ],
+  location: bat_room,
+  capacity: 0,
+  size: 10,
+  value: 5,
+  trophy_value: 5,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

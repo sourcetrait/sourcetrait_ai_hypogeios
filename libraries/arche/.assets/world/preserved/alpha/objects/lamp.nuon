@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    lamp,
+    lantern,
+    light
+  ],
+  adjectives: [
+    brass
+  ],
+  flags: [
+    TAKEBIT,
+    LIGHTBIT
+  ],
+  location: living_room,
+  capacity: 0,
+  size: 15,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: lantern,
+  description_fn: null,
+  container_fn: null
+}

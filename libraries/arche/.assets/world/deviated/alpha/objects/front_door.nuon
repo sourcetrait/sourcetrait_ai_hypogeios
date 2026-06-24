@@ -1,0 +1,23 @@
+{
+  synonyms: [
+    door
+  ],
+  adjectives: [
+    front,
+    boarded
+  ],
+  flags: [
+    door,
+    no_description
+  ],
+  location: west_of_house,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: front_door_fcn,
+  description_fn: null,
+  container_fn: null
+}

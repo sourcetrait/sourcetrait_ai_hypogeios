@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    nest
+  ],
+  adjectives: [
+    birds
+  ],
+  flags: [
+    take,
+    burn,
+    container,
+    open,
+    search
+  ],
+  location: up_a_tree,
+  capacity: 20,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

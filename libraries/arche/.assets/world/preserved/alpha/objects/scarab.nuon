@@ -1,0 +1,27 @@
+{
+  synonyms: [
+    scarab,
+    bug,
+    beetle,
+    treasure
+  ],
+  adjectives: [
+    beauti,
+    carved,
+    jeweled
+  ],
+  flags: [
+    TAKEBIT,
+    INVISIBLE
+  ],
+  location: sandy_cave,
+  capacity: 0,
+  size: 8,
+  value: 5,
+  trophy_value: 5,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

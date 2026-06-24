@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    boat,
+    pile,
+    plastic
+  ],
+  adjectives: [
+    plastic,
+    puncture,
+    large
+  ],
+  flags: [
+    TAKEBIT,
+    BURNBIT
+  ],
+  location: null,
+  capacity: 0,
+  size: 20,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: dboat_function,
+  description_fn: null,
+  container_fn: null
+}

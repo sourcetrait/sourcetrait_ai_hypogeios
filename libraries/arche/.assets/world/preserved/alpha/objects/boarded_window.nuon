@@ -1,0 +1,21 @@
+{
+  synonyms: [
+    window
+  ],
+  adjectives: [
+    boarded
+  ],
+  flags: [
+    NDESCBIT
+  ],
+  location: local_globals,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: boarded_window_fcn,
+  description_fn: null,
+  container_fn: null
+}

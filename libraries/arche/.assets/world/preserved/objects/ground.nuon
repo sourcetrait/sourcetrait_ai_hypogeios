@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    ground,
+    sand,
+    dirt,
+    floor
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+
+  ],
+  location: global_objects,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: ground_function,
+  description_fn: null,
+  container_fn: null
+}

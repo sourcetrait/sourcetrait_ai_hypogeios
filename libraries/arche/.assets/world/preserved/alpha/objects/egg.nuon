@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    egg,
+    treasure
+  ],
+  adjectives: [
+    birds,
+    encrusted,
+    jeweled
+  ],
+  flags: [
+    TAKEBIT,
+    CONTBIT,
+    SEARCHBIT
+  ],
+  location: nest,
+  capacity: 6,
+  size: 0,
+  value: 5,
+  trophy_value: 5,
+  strength: null,
+  vehicle_type: null,
+  action: egg_object,
+  description_fn: null,
+  container_fn: null
+}

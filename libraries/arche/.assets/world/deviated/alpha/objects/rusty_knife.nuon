@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    knives,
+    knife
+  ],
+  adjectives: [
+    rusty
+  ],
+  flags: [
+    take,
+    try_take,
+    weapon,
+    tool
+  ],
+  location: "maze_5",
+  capacity: 0,
+  size: 20,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: rusty_knife_fcn,
+  description_fn: null,
+  container_fn: null
+}

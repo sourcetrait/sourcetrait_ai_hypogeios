@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    rope,
+    hemp,
+    coil
+  ],
+  adjectives: [
+    large
+  ],
+  flags: [
+    take,
+    sacred,
+    try_take
+  ],
+  location: attic,
+  capacity: 0,
+  size: 10,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: rope_function,
+  description_fn: null,
+  container_fn: null
+}

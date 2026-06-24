@@ -1,0 +1,29 @@
+{
+  synonyms: [
+    boat,
+    raft
+  ],
+  adjectives: [
+    inflat,
+    magic,
+    plastic,
+    seaworthy
+  ],
+  flags: [
+    take,
+    burn,
+    vehicle,
+    open,
+    search
+  ],
+  location: null,
+  capacity: 100,
+  size: 20,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: non_land,
+  action: rboat_function,
+  description_fn: null,
+  container_fn: null
+}

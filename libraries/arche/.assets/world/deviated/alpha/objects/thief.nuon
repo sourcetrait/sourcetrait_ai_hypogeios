@@ -1,0 +1,30 @@
+{
+  synonyms: [
+    thief,
+    robber,
+    man,
+    person
+  ],
+  adjectives: [
+    shady,
+    suspicious,
+    seedy
+  ],
+  flags: [
+    actor,
+    invisible,
+    container,
+    open,
+    try_take
+  ],
+  location: round_room,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: 5,
+  vehicle_type: null,
+  action: robber_function,
+  description_fn: null,
+  container_fn: null
+}

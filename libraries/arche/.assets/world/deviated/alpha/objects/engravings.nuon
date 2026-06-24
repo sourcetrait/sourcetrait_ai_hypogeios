@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    wall,
+    engravings,
+    inscription
+  ],
+  adjectives: [
+    old,
+    ancient
+  ],
+  flags: [
+    read,
+    sacred
+  ],
+  location: engravings_cave,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: null,
+  description_fn: null,
+  container_fn: null
+}

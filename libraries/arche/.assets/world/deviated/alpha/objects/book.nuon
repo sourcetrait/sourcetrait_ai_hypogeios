@@ -1,0 +1,29 @@
+{
+  synonyms: [
+    book,
+    prayer,
+    page,
+    books
+  ],
+  adjectives: [
+    large,
+    black
+  ],
+  flags: [
+    read,
+    take,
+    container,
+    burn,
+    turn
+  ],
+  location: altar,
+  capacity: 0,
+  size: 10,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: black_book,
+  description_fn: null,
+  container_fn: null
+}

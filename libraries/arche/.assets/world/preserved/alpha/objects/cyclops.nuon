@@ -1,0 +1,26 @@
+{
+  synonyms: [
+    cyclops,
+    monster,
+    eye
+  ],
+  adjectives: [
+    hungry,
+    giant
+  ],
+  flags: [
+    ACTORBIT,
+    NDESCBIT,
+    TRYTAKEBIT
+  ],
+  location: cyclops_room,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: 10000,
+  vehicle_type: null,
+  action: cyclops_fcn,
+  description_fn: null,
+  container_fn: null
+}

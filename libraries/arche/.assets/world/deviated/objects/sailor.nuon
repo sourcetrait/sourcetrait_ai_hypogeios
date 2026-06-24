@@ -1,0 +1,23 @@
+{
+  synonyms: [
+    sailor,
+    footpad,
+    aviator
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    no_description
+  ],
+  location: global_objects,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: sailor_fcn,
+  description_fn: null,
+  container_fn: null
+}

@@ -1,0 +1,25 @@
+{
+  synonyms: [
+    tube,
+    tooth,
+    paste
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    take,
+    container,
+    read
+  ],
+  location: maintenance_room,
+  capacity: 7,
+  size: 5,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: tube_function,
+  description_fn: null,
+  container_fn: null
+}

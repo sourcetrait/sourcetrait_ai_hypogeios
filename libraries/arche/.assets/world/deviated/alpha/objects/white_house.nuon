@@ -1,0 +1,23 @@
+{
+  synonyms: [
+    house
+  ],
+  adjectives: [
+    white,
+    beauti,
+    coloni
+  ],
+  flags: [
+    no_description
+  ],
+  location: local_globals,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: white_house_f,
+  description_fn: null,
+  container_fn: null
+}

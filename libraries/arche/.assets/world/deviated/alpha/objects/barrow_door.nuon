@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    door
+  ],
+  adjectives: [
+    huge,
+    stone
+  ],
+  flags: [
+    door,
+    no_description,
+    open
+  ],
+  location: stone_barrow,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: barrow_door_fcn,
+  description_fn: null,
+  container_fn: null
+}

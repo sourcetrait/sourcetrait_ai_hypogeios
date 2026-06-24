@@ -1,0 +1,24 @@
+{
+  synonyms: [
+    reflection,
+    mirror,
+    enormous
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    try_take,
+    no_description
+  ],
+  location: "mirror_room_2",
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: mirror_mirror,
+  description_fn: null,
+  container_fn: null
+}

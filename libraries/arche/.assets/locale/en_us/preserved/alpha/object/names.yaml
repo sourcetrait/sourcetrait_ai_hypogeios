@@ -1,0 +1,122 @@
+board: board
+teeth: set of teeth
+wall: surrounding wall
+granite_wall: granite wall
+songbird: songbird
+white_house: white house
+forest: forest
+tree: tree
+mountain_range: mountain range
+global_water: water
+water: quantity of water
+kitchen_window: kitchen window
+chimney: chimney
+ghosts: number of ghosts
+skull: crystal skull
+lowered_basket: basket
+raised_basket: basket
+lunch: lunch
+bat: bat
+bell: brass bell
+hot_bell: red hot brass bell
+axe: bloody axe
+bolt: bolt
+bubble: green bubble
+altar: altar
+book: black book
+broken_lamp: broken lantern
+sceptre: sceptre
+timbers: broken timber
+slide: chute
+kitchen_table: kitchen table
+attic_table: table
+sandwich_bag: brown sack
+tool_chest: group of tool chests
+yellow_button: yellow button
+brown_button: brown button
+red_button: red button
+blue_button: blue button
+trophy_case: trophy case
+rug: carpet
+chalice: chalice
+garlic: clove of garlic
+trident: crystal trident
+cyclops: cyclops
+dam: dam
+trap_door: trap door
+boarded_window: boarded window
+front_door: door
+barrow_door: stone door
+barrow: stone barrow
+bottle: glass bottle
+crack: crack
+coffin: gold coffin
+grate: grating
+pump: hand-held air pump
+diamond: huge diamond
+jade: jade figurine
+knife: nasty knife
+bones: skeleton
+burned_out_lantern: burned-out lantern
+bag_of_coins: leather bag of coins
+lamp: brass lantern
+emerald: large emerald
+advertisement: leaflet
+leak: leak
+machine: machine
+inflated_boat: magic boat
+mailbox: small mailbox
+match: matchbook
+mirror_2: mirror
+mirror_1: mirror
+painting: painting
+candles: pair of candles
+gunk: small piece of vitreous slag
+bodies: pile of bodies
+leaves: pile of leaves
+punctured_boat: punctured boat
+inflatable_boat: pile of plastic
+bar: platinum bar
+pot_of_gold: pot of gold
+prayer: prayer
+railing: wooden railing
+rainbow: rainbow
+river: river
+buoy: red buoy
+rope: rope
+rusty_knife: rusty knife
+sand: sand
+bracelet: sapphire-encrusted bracelet
+screwdriver: screwdriver
+keys: skeleton key
+shovel: shovel
+coal: small pile of coal
+ladder: wooden ladder
+scarab: beautiful jeweled scarab
+large_bag: large bag
+stiletto: stiletto
+machine_switch: switch
+wooden_door: wooden door
+sword: sword
+map: ancient map
+boat_label: tan label
+thief: thief
+pedestal: pedestal
+torch: torch
+guide: tour guidebook
+troll: troll
+trunk: trunk of jewels
+tube: tube
+putty: viscous material
+engravings: wall with engravings
+owners_manual: ZORK owner's manual
+climbable_cliff: cliff
+white_cliff: white cliffs
+wrench: wrench
+control_panel: control panel
+nest: bird's nest
+egg: jewel-encrusted egg
+broken_egg: broken jewel-encrusted egg
+bauble: beautiful brass bauble
+canary: golden clockwork canary
+broken_canary: broken clockwork canary

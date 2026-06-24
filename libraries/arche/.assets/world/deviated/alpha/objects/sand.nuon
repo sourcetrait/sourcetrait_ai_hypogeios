@@ -1,0 +1,21 @@
+{
+  synonyms: [
+    sand
+  ],
+  adjectives: [
+
+  ],
+  flags: [
+    no_description
+  ],
+  location: sandy_cave,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: sand_function,
+  description_fn: null,
+  container_fn: null
+}

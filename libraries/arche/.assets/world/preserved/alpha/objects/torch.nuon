@@ -1,0 +1,27 @@
+{
+  synonyms: [
+    torch,
+    ivory,
+    treasure
+  ],
+  adjectives: [
+    flaming,
+    ivory
+  ],
+  flags: [
+    TAKEBIT,
+    FLAMEBIT,
+    ONBIT,
+    LIGHTBIT
+  ],
+  location: pedestal,
+  capacity: 0,
+  size: 20,
+  value: 14,
+  trophy_value: 6,
+  strength: null,
+  vehicle_type: null,
+  action: torch_object,
+  description_fn: null,
+  container_fn: null
+}

@@ -1,0 +1,27 @@
+{
+  synonyms: [
+    chest,
+    chests,
+    group,
+    toolchests
+  ],
+  adjectives: [
+    tool
+  ],
+  flags: [
+    container,
+    open,
+    try_take,
+    sacred
+  ],
+  location: maintenance_room,
+  capacity: 0,
+  size: 0,
+  value: 0,
+  trophy_value: 0,
+  strength: null,
+  vehicle_type: null,
+  action: tool_chest_fcn,
+  description_fn: null,
+  container_fn: null
+}
