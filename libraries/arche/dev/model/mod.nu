@@ -36,3 +36,56 @@ export def model_world [
     let map = (open ($ep | path join "map.nuon"))
     {conditions: $conditions, rooms: $map.rooms, links: $map.links, blocked: $map.blocked}
 }
+
+# Compose an episode's VOCABULARY table - the parser word dictionary, a PROJECTION
+# (union over the already-deviated sources; no preserve/deviate, no preserved form -
+# the audit trail is this reproducible derive). Reads every <episode>/objects/*.nuon +
+# series objects/*.nuon (synonyms -> noun, adjectives -> adjective) + deviated/
+# syntax.nuon (rule-verbs + verb_synonyms -> verb canonical; prepositions / directions
+# canonical+synonyms -> their canonical; buzzwords), grammar alpha-filtered by the
+# episode's game; in/out/land come from the WORLD links' directions minus the grammar
+# directions. A word UNIONS its roles (in -> direction+preposition; light -> verb+noun);
+# noun/adjective carry no canonical (the word is the id, the parser matches in-scope
+# objects dynamically). Errors if a word maps to >1 canonical for one POS. Rows sorted
+# by word, parts_of_speech in a fixed order. The return IS the strict schema (mirror in
+# derive's VOCABULARY_TYPE).
+export def model_vocabulary [
+    world_dir: directory,
+    episode: string
+]: nothing -> table<word: string, parts_of_speech: list<string>, verb: oneof<string, nothing>, preposition: oneof<string, nothing>, direction: oneof<string, nothing>> {
+    let dev = ($world_dir | path join "deviated")
+    let game = ({alpha: 1, beta: 2, gamma: 3} | get -i $episode)
+    if $game == null { error make {msg: $"vocabulary: unknown episode '($episode)'"} }
+    let obj_files = ((glob ($dev | path join $episode "objects" "*.nuon")) ++ (glob ($dev | path join "objects" "*.nuon")))
+    let objs = ($obj_files | each {|f| open $f })
+    let noun_c = ($objs | each {|o| $o.synonyms } | flatten | each {|w| {word: $w, pos: "noun", canon: null}})
+    let adj_c = ($objs | each {|o| $o.adjectives } | flatten | each {|w| {word: $w, pos: "adjective", canon: null}})
+    let syntax = (open ($dev | path join "syntax.nuon"))
+    let rule_verbs = ($syntax.rules | where {|r| $game in $r.games } | get verb | uniq | each {|v| {word: $v, pos: "verb", canon: $v}})
+    let verb_syns = ($syntax.verb_synonyms | where {|s| $game in $s.games } | each {|s| $s.synonyms | each {|w| {word: $w, pos: "verb", canon: $s.verb}}} | flatten)
+    let preps = ($syntax.prepositions | where {|s| $game in $s.games } | each {|s| ([{word: $s.preposition, pos: "preposition", canon: $s.preposition}] ++ ($s.synonyms | each {|w| {word: $w, pos: "preposition", canon: $s.preposition}}))} | flatten)
+    let dirs = ($syntax.directions | where {|s| $game in $s.games } | each {|s| ([{word: $s.direction, pos: "direction", canon: $s.direction}] ++ ($s.synonyms | each {|w| {word: $w, pos: "direction", canon: $s.direction}}))} | flatten)
+    let buzz = ($syntax.buzzwords | where {|b| $game in $b.games } | each {|b| {word: $b.word, pos: "buzzword", canon: null}})
+    let gdirs = ($syntax.directions | where {|s| $game in $s.games } | get direction)
+    let map = (open ($dev | path join $episode "map.nuon"))
+    let extra_dirs = ($map.links | get direction | uniq | where {|d| $d not-in $gdirs } | each {|d| {word: $d, pos: "direction", canon: $d}})
+    let contribs = ($noun_c ++ $adj_c ++ $rule_verbs ++ $verb_syns ++ $preps ++ $dirs ++ $buzz ++ $extra_dirs)
+    let order = [verb noun adjective preposition direction buzzword]
+    $contribs | group-by {|r| $r.word} | transpose word rows | each {|g|
+        let cs = $g.rows
+        let present = ($cs | get pos | uniq)
+        let vc = ($cs | where pos == "verb" | get canon | uniq)
+        let pc = ($cs | where pos == "preposition" | get canon | uniq)
+        let dc = ($cs | where pos == "direction" | get canon | uniq)
+        if (($vc | length) > 1) { error make {msg: $"vocabulary: '($g.word)' has multiple verb canonicals: ($vc)"} }
+        if (($pc | length) > 1) { error make {msg: $"vocabulary: '($g.word)' has multiple preposition canonicals: ($pc)"} }
+        if (($dc | length) > 1) { error make {msg: $"vocabulary: '($g.word)' has multiple direction canonicals: ($dc)"} }
+        {
+            word: $g.word,
+            parts_of_speech: ($order | where {|p| $p in $present}),
+            verb: ($vc | get 0?),
+            preposition: ($pc | get 0?),
+            direction: ($dc | get 0?)
+        }
+    } | sort-by word
+}
