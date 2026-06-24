@@ -5,9 +5,11 @@
 # into a staging tree (generate), then copies the owned arche subtrees back into
 # the project repo (inline). The mechanical phases are deterministic; a clean-tree
 # build that reproduces the committed data yields an EMPTY gstat. The flag
-# dictionary is an AGENT step (re-authored, may drift) - wired next as a build
-# pause; SLICE 2 runs the mechanical pipeline with the CURRENT committed flags
-# (the no-agent reproduction mode).
+# dictionary is an AGENT step (re-authored, may drift): step 1 composes the driver
+# + Explore-subagent prompts (pelos dev construct_prompt over the templates under
+# hypogeios/.assets/dev/repo/build/) and pauses; the driver runs the subagent and
+# resumes at step 3. The generate/inline exports still run the mechanical pipeline
+# with the CURRENT committed flags (the no-agent reproduction mode).
 #
 # WRITE TARGET IS ALWAYS THE EXPLICIT hypogeios_repo_dir (the project repo on
 # disk), NEVER path-self: a committed library serves from the MCP's signed store
@@ -24,6 +26,7 @@
 #   dropped/renamed artifact leaves no stale file.
 
 use arche
+use pelos
 
 # The owned arche subtrees the build regenerates + inline mirrors (arche-root-
 # relative): the preserved + deviated world data, the preserved locale rip, and
@@ -156,12 +159,46 @@ export def inline [
     { inlined: $OWNED_SUBS }
 }
 
+# Compose the flags-agent pause prompts. Writes the Explore subagent brief to shm
+# (returned as the shm-relative next_step_prompt_shm) and returns the inline driver
+# prompt. Both fill via pelos dev construct_prompt over the templates under
+# hypogeios/.assets/dev/repo/build/; every path resolves from the EXPLICIT
+# hypogeios_repo_dir (never path-self) + the staging world dir. %{step_schema}% is
+# filled from STEP_3_TYPE so the driver carries one schema source, not a copy.
+def pause-prompts [
+    args: record<hypogeios_repo_dir: directory, preserved_repo_dirs: record<zork1: directory, zork2: directory, zork3: directory>, generated_tmp_dir: directory>,
+    world: directory
+]: nothing -> record<next_step_prompt: string, next_step_prompt_shm: string> {
+    let tmpl_dir = ($args.hypogeios_repo_dir | path join "libraries" "hypogeios" ".assets" "dev" "repo" "build")
+    let arche_flags = ($args.hypogeios_repo_dir | path join "libraries" "arche" ".assets" "dev" "flags")
+    let z = $args.preserved_repo_dirs
+    let shm_rel = (["hypogeios" "dev" "repo" $env.NONCE "subagent_step_1_flags.md"] | path join)
+    let shm_dir = ($env.XDGX_SHM_DIR | path join "hypogeios" "dev" "repo" | path join $env.NONCE)
+    pelos dev construct_prompt ($tmpl_dir | path join "subagent_step_1_flags.md") ($shm_dir | path join "subagent_step_1_flags.md") [
+        {variable: "flags_prompt", value: (($arche_flags | path join "flags.prompt.md") | into string)}
+        {variable: "flags_pin", value: (($arche_flags | path join "flags.pin.txt") | into string)}
+        {variable: "preserved_flags", value: (($world | path join "preserved" "flags.nuon") | into string)}
+        {variable: "zork1", value: ($z.zork1 | into string)}
+        {variable: "zork2", value: ($z.zork2 | into string)}
+        {variable: "zork3", value: ($z.zork3 | into string)}
+    ] | ignore
+    let driver = (pelos dev construct_prompt ($tmpl_dir | path join "driver_step_1.md") ($shm_dir | path join "driver_step_1.md") [
+        {variable: "step_schema", value: $STEP_3_TYPE}
+        {variable: "hypogeios_repo_dir", value: ($args.hypogeios_repo_dir | into string)}
+        {variable: "generated_tmp_dir", value: ($args.generated_tmp_dir | into string)}
+        {variable: "zork1", value: ($z.zork1 | into string)}
+        {variable: "zork2", value: ($z.zork2 | into string)}
+        {variable: "zork3", value: ($z.zork3 | into string)}
+    ])
+    { next_step_prompt: $driver, next_step_prompt_shm: $shm_rel }
+}
+
 # The build step machine - the hypogeios:dev/repo:build call-target.
 #
 # See the file header for the phases, the explicit-repo-dir (never path-self)
 # write rule, and the reproducibility model. Dispatches on step: 1 = PRESERVE +
-# pause for the flags agent; 3 = the agent's step_data.flags + DEVIATE/DERIVE +
-# inline. (Prompt templating for the pause lands next slice.)
+# compose the flags-agent prompts (driver inline + Explore brief to shm) + pause;
+# 3 = the agent's step_data.flags + DEVIATE/DERIVE + inline.
 export def main [
     args: record<
         hypogeios_repo_dir: directory,
@@ -184,13 +221,14 @@ export def main [
         mkdir $world
         mkdir $locale
         preserve $world $locale $args.preserved_repo_dirs
+        let prompts = (pause-prompts $args $world)
         {
             step: 1,
             paused: true,
             gstat: {modified: [], added: [], deleted: []},
             next_step: 3,
-            next_step_prompt: "flags agent step: author the deviated flags table from staging preserved/flags.nuon + the arche flags recipe, then call build(step 3, ..., step_data={flags: <table>}). Prompt templating lands next slice.",
-            next_step_prompt_shm: null,
+            next_step_prompt: $prompts.next_step_prompt,
+            next_step_prompt_shm: $prompts.next_step_prompt_shm,
             generated_tmp_dir: ($args.generated_tmp_dir | into string),
         }
     } else {
