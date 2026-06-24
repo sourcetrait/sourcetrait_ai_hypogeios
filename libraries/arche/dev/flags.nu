@@ -8,8 +8,9 @@
 # series-generic - zork1-3 share the engine, so the set is captured once for the
 # whole series (the common 32 + one game-specific each: NWALLBIT in II, VICBIT
 # in III). Step 2 (<out_dir>/flags.nuon: our renamed + summarized + state-
-# decorated flags) is authored from this + the source per flags.prompt.md;
-# preserved is never modified and is not read at runtime - it documents A->B. A
+# decorated flags) is authored from this + the source per the recipe in
+# .assets/dev/flags/ (flags.prompt.md + flags.rename.txt); preserved is never
+# modified and is not read at runtime - it documents A->B. A
 # flag is any atom in a (FLAGS ...) property plus every ,<NAME>BIT reference; a
 # ;"..." comment inside a FLAGS list is filtered. Re-runnable. Working:
 # iter/hypogeios/working/06.

@@ -29,7 +29,7 @@ runtime state.
   `/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/libraries/arche/.assets/world/preserved/flags.nuon`
   A NUON `list<string>` of raw ZIL flag atoms (one per line), alphabetical.
 - Fixed renames (human-decided overrides; apply verbatim):
-  `/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/dev/flags/flags.rename.txt`
+  `/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/libraries/arche/.assets/dev/flags/flags.rename.txt`
   One per line, `ORIGINAL new`.
 
 ## Output (write this only)
