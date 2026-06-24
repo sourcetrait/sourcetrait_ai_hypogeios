@@ -1,4 +1,4 @@
-# flags.nuon port prompt (step 2: preserved -> our flags)
+# flags.nuon port prompt (preserved -> deviated: the agent step of the chain)
 
 A standalone data-authoring task. Work ONLY with the files named below. Do not
 read, load, infer, or act on any CLAUDE.md, constitution, memory, project
@@ -7,12 +7,13 @@ here. Do not initialize or bootstrap anything. Produce exactly one output file.
 
 ## Goal
 
-Port the Zork attribute flags from their preserved (origin) form to our inferred
-form - the second link in a chain of custody. Flags are SERIES-WIDE: zork1-3
-share one engine, so the flag set is the union across all three (the common 32 +
-one game-specific each: NWALLBIT in II, VICBIT in III). You are given the
-mechanically-extracted union; for each flag choose our expanded name, write a
-one-line behavior summary, and classify it as static or runtime state.
+Port the Zork attribute flags from their preserved (origin) form to our deviated
+form - the agent link in the chain of custody (preserved DATA -> deviated DATA).
+Flags are SERIES-WIDE: zork1-3 share one engine, so the flag set is the union
+across all three (the common 32 + one game-specific each: NWALLBIT in II, VICBIT
+in III). You are given the mechanically-extracted union; for each flag choose our
+expanded name, write a one-line behavior summary, and classify it as static or
+runtime state.
 
 ## Inputs (read these)
 
@@ -25,29 +26,32 @@ one-line behavior summary, and classify it as static or runtime state.
   shared engine (gglobals declares the bit set); `Ndungeon.zil` holds object +
   room definitions; `Nactions.zil` / `gverbs.zil` / `gparser.zil` set + test.
 - Preserved flag list (authoritative - the set AND the order):
-  `/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/arche/.assets/world/preserved/flags.nuon`
-  A NUON list of `{name}` records, each `name` a raw ZIL flag atom.
+  `/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/libraries/arche/.assets/world/preserved/flags.nuon`
+  A NUON `list<string>` of raw ZIL flag atoms (one per line), alphabetical.
 - Fixed renames (human-decided overrides; apply verbatim):
-  `/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/arche/.assets/world/flags_renamed.txt`
+  `/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/dev/flags/flags.rename.txt`
   One per line, `ORIGINAL new`.
 
 ## Output (write this only)
 
-`/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/arche/.assets/world/flags.nuon`
+`/home/box/proj/sourcetrait/sourcetrait_ai_hypogeios/libraries/arche/.assets/world/deviated/flags.nuon`
 - a NUON list, one record per preserved flag, IN preserved order:
 
 ```
 [
-    { name: <our_name>, preserved: <ORIGIN_ATOM>, summary: <one line>, state: <null | record> },
+    { snake: <our_name>, preserved: <ORIGIN_ATOM>, summary: <one line>, state: <null | record> },
     ...
 ]
 ```
 
-## Naming (origin atom -> name)
+`snake` is our deviated flag id (the engine works in these terms); `preserved` is
+the origin atom (the audit backref to preserved/flags.nuon).
+
+## Naming (origin atom -> snake)
 
 Drop the trailing `BIT`; expand abbreviations to whole words; lowercase
 `snake_case`; use the bare dropped word, not an -able/-ed adjective (`take` not
-`takeable`, `burn` not `flammable`). Apply flags_renamed.txt verbatim; infer the
+`takeable`, `burn` not `flammable`). Apply flags.rename.txt verbatim; infer the
 rest on the same principle.
 
 ## Summary
@@ -76,5 +80,5 @@ bit numbers).
 ## Done when
 
 One entry per preserved flag, in order, every `preserved` matching the input,
-every `name` expanded, every `summary` accurate, every `state` either `null` or a
+every `snake` expanded, every `summary` accurate, every `state` either `null` or a
 `{default, scope}` record. Report the output path and entry count.

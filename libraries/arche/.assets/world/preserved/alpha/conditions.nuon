@@ -1,0 +1,21 @@
+[
+  {snake: COFFIN-CURE, kind: flag},
+  {snake: CYCLOPS-FLAG, kind: flag},
+  {snake: DEFLATE, kind: flag},
+  {snake: DOME-FLAG, kind: flag},
+  {snake: EMPTY-HANDED, kind: flag},
+  {snake: FALSE-FLAG, kind: flag},
+  {snake: GRATE, kind: door},
+  {snake: GRATING-EXIT, kind: fn},
+  {snake: KITCHEN-WINDOW, kind: door},
+  {snake: LLD-FLAG, kind: flag},
+  {snake: LOW-TIDE, kind: flag},
+  {snake: MAGIC-FLAG, kind: flag},
+  {snake: MAZE-DIODES, kind: fn},
+  {snake: RAINBOW-FLAG, kind: flag},
+  {snake: TRAP-DOOR, kind: door},
+  {snake: TRAP-DOOR-EXIT, kind: fn},
+  {snake: TROLL-FLAG, kind: flag},
+  {snake: UP-CHIMNEY-FUNCTION, kind: fn},
+  {snake: WON-FLAG, kind: flag}
+]

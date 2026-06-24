@@ -10,12 +10,12 @@
 # record rather than calling model itself; cross-module composition is the
 # run-body's job, not the library's.)
 
-export const ENGINE_TYPE: string = "record<flags: table<name: string, preserved: string, summary: string, state: oneof<nothing, record<default: bool, scope: list<string>>>>>"
-export const WORLD_TYPE: string = "record<conditions: table<name: string, kind: string>, rooms: table<name: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>, links: table<room: string, name: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: table<room: string, name: string>>"
+export const ENGINE_TYPE: string = "record<flags: table<snake: string, preserved: string, summary: string, state: oneof<nothing, record<default: bool, scope: list<string>>>>>"
+export const WORLD_TYPE: string = "record<conditions: table<snake: string, kind: string>, rooms: table<snake: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>, links: table<room: string, direction: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: table<room: string, direction: string>>"
 
 # Write <out_dir>/engine.nu = `export const ENGINE: <ENGINE_TYPE> = <data>`. Idempotent.
 export def derive_engine [
-    engine: record<flags: table<name: string, preserved: string, summary: string, state: oneof<nothing, record<default: bool, scope: list<string>>>>>,
+    engine: record<flags: table<snake: string, preserved: string, summary: string, state: oneof<nothing, record<default: bool, scope: list<string>>>>>,
     out_dir: directory
 ]: nothing -> record<written: string, flags: int> {
     let data = ($engine | to nuon --list-of-records --indent 2)
@@ -30,7 +30,7 @@ export def derive_engine [
 
 # Write <out_dir>/<episode>/world.nu = `export const WORLD: <WORLD_TYPE> = <data>`. Idempotent.
 export def derive_world [
-    world: record<conditions: table<name: string, kind: string>, rooms: table<name: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>, links: table<room: string, name: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: table<room: string, name: string>>,
+    world: record<conditions: table<snake: string, kind: string>, rooms: table<snake: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>, links: table<room: string, direction: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: table<room: string, direction: string>>,
     episode: string,
     out_dir: directory
 ]: nothing -> record<written: string, rooms: int, links: int, blocked: int, conditions: int> {

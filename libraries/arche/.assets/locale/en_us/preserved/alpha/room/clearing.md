@@ -1,0 +1,1 @@
+You are in a small clearing in a well marked forest path that extends to the east and west.

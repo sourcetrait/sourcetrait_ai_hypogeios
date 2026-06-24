@@ -93,33 +93,35 @@ def enter-portal [here: string, color: string] {
 }
 
 # Locale access: every player-visible string is an item under this library's
-# .assets/locale/en_us/<space>/, loaded lazily through the pelos loader.
+# .assets/locale/en_us/original/<space>/, loaded lazily through the pelos loader.
+# The hub is OUR OWN content, so its category is `original` (the leading space
+# segment; preserved/deviated/original per design.md chain of custody).
 const LIB = "hypogeios"
 const LOC = "en_us"
 
 # A system-space message (intro, ended, quit, no_exit, unknown).
 def sys [item: string]: nothing -> string {
-    prose $LIB $LOC [{space: "system", item: $item}] --single
+    prose $LIB $LOC [{space: "original/system", item: $item}] --single
 }
 
 # A room's full view: the code-rendered h1 title (deviation #2.1) over the room's
 # description prose. (item snake = the room key: main, arche.)
 def room-desc [here: string]: nothing -> string {
-    let body = (prose $LIB $LOC [{space: "room", item: $here}] --single)
+    let body = (prose $LIB $LOC [{space: "original/room", item: $here}] --single)
     $"(h1 (room-title $here))\n($body)"
 }
 
-# A room's short title, looked up by room key in room/titles.yaml.
+# A room's short title, looked up by room key in original/room/names.yaml.
 def room-title [here: string]: nothing -> string {
-    term $LIB $LOC [{space: "room", item: "titles", cell: ([$here] | into cell-path)}] --single
+    term $LIB $LOC [{space: "original/room", item: "names", cell: ([$here] | into cell-path)}] --single
 }
 
 # The (navigating) portal-entry line, color filled into the template.
 def portal-enter [color: string]: nothing -> string {
-    prose $LIB $LOC [{space: "portal", item: "enter"}] [{fill: "color", value: $color}] --single
+    prose $LIB $LOC [{space: "original/portal", item: "enter"}] [{fill: "color", value: $color}] --single
 }
 
 # The unfinished-portal death, color filled into the template.
 def stub-death [color: string]: nothing -> string {
-    prose $LIB $LOC [{space: "portal", item: "stub_death"}] [{fill: "color", value: $color}] --single
+    prose $LIB $LOC [{space: "original/portal", item: "stub_death"}] [{fill: "color", value: $color}] --single
 }
