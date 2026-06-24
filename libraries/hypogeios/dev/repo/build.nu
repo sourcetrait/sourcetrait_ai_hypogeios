@@ -3,27 +3,52 @@
 # main IS the call-target hypogeios:dev/repo:build: it regenerates all
 # preserved/deviated data + the engine consts from the external ZIL source repos
 # into a staging tree (generate), then copies the owned arche subtrees back into
-# the project repo (inline) for review. It runs the MECHANICAL phases itself and
-# PAUSES at the mid-pipeline AGENT step (the flag dictionary), returning a driver
-# instruction for the caller to run an Explore subagent and resume via
-# call(build, <next_step>, ..., step_data).
+# the project repo (inline). The mechanical phases are deterministic; a clean-tree
+# build that reproduces the committed data yields an EMPTY gstat. The flag
+# dictionary is an AGENT step (re-authored, may drift) - wired next as a build
+# pause; SLICE 2 runs the mechanical pipeline with the CURRENT committed flags
+# (the no-agent reproduction mode).
 #
 # WRITE TARGET IS ALWAYS THE EXPLICIT hypogeios_repo_dir (the project repo on
 # disk), NEVER path-self: a committed library serves from the MCP's signed store
 # copy, so path-self would resolve into the store and write generated data into
-# the MCP's own git repo, not the project. Every artifact path derives from the
-# explicit args; only the dev TOOLS resolve from the promoted store (use arche /
-# use pelos, added with the phases). path-self stays in the pelos runtime loaders.
+# the MCP's own git repo. Every artifact path derives from the explicit args;
+# only the dev TOOLS resolve from the promoted store (use arche). path-self stays
+# in the pelos runtime loaders.
 #
-# Steps (alpha; flags is the single agent step, so build pauses preserve -> FLAGS
-# (agent) -> deviate/derive): step 1 = clean-gate + mechanical PRESERVE into
-# staging + emit the flags driver/subagent prompts, then PAUSE; step 3 = clean-
-# gate + the typed step_data.flags self-validates + write it to staging + the
-# mechanical DEVIATE + DERIVE + inline. SLICE 1 stubs the phases (clean-gate +
-# gstat only) to prove the module wiring, the call-target, and the contract.
+# Phases (composed by main; individually runnable for stage -> review -> accept):
+# - generate: preserve (4 ZIL extractors -> staging preserved/) + the flags input
+#   + deviate (map/objects/syntax -> staging deviated/) + derive (the engine/
+#   conditions/vocabulary consts) into <generated_tmp_dir>/libraries/arche.
+# - inline: scoped rm-then-cp of the 6 owned arche subtrees staging -> repo, so a
+#   dropped/renamed artifact leaves no stale file.
 
-# Abort unless the repo git tree is clean. The build's precondition: the post-
-# build gstat must show exactly the build's own changes, so the tree starts clean.
+use arche
+
+# The owned arche subtrees the build regenerates + inline mirrors (arche-root-
+# relative): the preserved + deviated world data, the preserved locale rip, and
+# the three generated const dir-modules.
+const OWNED_SUBS: list<string> = [
+    ".assets/world/preserved",
+    ".assets/world/deviated",
+    ".assets/locale/en_us/preserved",
+    "engine",
+    "alpha/conditions",
+    "alpha/vocabulary"
+]
+
+# <repo>/libraries/arche - the project arche library root (the inline target).
+def repo-arche [hypogeios_repo_dir: directory]: nothing -> string {
+    $hypogeios_repo_dir | path join "libraries" "arche"
+}
+
+# <generated_tmp_dir>/libraries/arche - the staging arche root (mirrors the repo).
+def staging-arche [generated_tmp_dir: directory]: nothing -> string {
+    $generated_tmp_dir | path join "libraries" "arche"
+}
+
+# Abort unless the repo git tree is clean (the build's precondition: the post-
+# build gstat must show exactly the build's own changes).
 def assert-clean [repo: directory]: nothing -> nothing {
     let status = (^git -C $repo status --porcelain | str trim)
     if (not ($status | is-empty)) {
@@ -31,9 +56,8 @@ def assert-clean [repo: directory]: nothing -> nothing {
     }
 }
 
-# The repo porcelain status as the build's drift report: which files the build
-# added / modified / deleted. Porcelain XY code: contains D -> deleted, ? or A ->
-# added, else modified (refined when inline lands and the report is non-empty).
+# The repo porcelain status as the build's drift report (added / modified /
+# deleted). Porcelain XY code: contains D -> deleted, ? or A -> added, else modified.
 def git-drift [
     repo: directory
 ]: nothing -> record<modified: list<string>, added: list<string>, deleted: list<string>> {
@@ -58,10 +82,81 @@ def git-drift [
     }
 }
 
+# PRESERVE (mechanical): the 4 ZIL extractors -> staging preserved/ world data +
+# the preserved locale rip. Series flags first (deviate depends on it).
+def preserve [
+    world: directory,
+    locale: directory,
+    preserved_repo_dirs: record<zork1: directory, zork2: directory, zork3: directory>
+]: nothing -> nothing {
+    let z1 = $preserved_repo_dirs.zork1
+    arche dev flags zil flags [$z1 $preserved_repo_dirs.zork2 $preserved_repo_dirs.zork3] $world
+    arche alpha dev world zil preserve ($z1 | path join "1dungeon.zil") $world $locale "alpha"
+    arche alpha dev objects zil objects ($z1 | path join "1dungeon.zil") ($z1 | path join "gglobals.zil") $world $locale "alpha"
+    arche dev syntax zil syntax ($z1 | path join "gsyntax.zil") $world | ignore
+}
+
+# DEVIATE + DERIVE (mechanical): map preserved -> deviated through the staging
+# deviated/flags.nuon, then code-gen the engine/conditions/vocabulary consts into
+# the staging arche root. Assumes deviated/flags.nuon is already staged.
+def deviate-derive [s_arche: directory, world: directory]: nothing -> nothing {
+    arche alpha dev world zil deviate $world "alpha"
+    arche alpha dev objects zil objects deviate $world "alpha"
+    arche dev syntax zil syntax deviate $world
+    arche dev derive derive_engine (arche dev model model_engine $world) $s_arche
+    arche dev derive derive_conditions (arche dev model model_conditions $world "alpha") "alpha" $s_arche
+    arche dev derive derive_vocabulary (arche dev model model_vocabulary $world "alpha") "alpha" $s_arche | ignore
+}
+
+# Run the full mechanical regen into a fresh staging tree.
+#
+# Carries the CURRENT committed deviated/flags.nuon as the flag input (the
+# no-agent reproduction mode; the step machine substitutes the agent-authored
+# flags). Writes only under generated_tmp_dir; returns the staging arche root.
+export def generate [
+    args: record<hypogeios_repo_dir: directory, preserved_repo_dirs: record<zork1: directory, zork2: directory, zork3: directory>, generated_tmp_dir: directory>
+]: nothing -> record<staging_arche: string> {
+    let s_arche = (staging-arche $args.generated_tmp_dir)
+    let r_arche = (repo-arche $args.hypogeios_repo_dir)
+    if ($s_arche | path exists) { rm --recursive --force $s_arche }
+    let world = ($s_arche | path join ".assets" "world")
+    let locale = ($s_arche | path join ".assets" "locale" "en_us")
+    mkdir $world
+    mkdir $locale
+    preserve $world $locale $args.preserved_repo_dirs
+    mkdir ($world | path join "deviated")
+    cp ($r_arche | path join ".assets" "world" "deviated" "flags.nuon") ($world | path join "deviated" "flags.nuon")
+    deviate-derive $s_arche $world
+    { staging_arche: $s_arche }
+}
+
+# Scoped mirror of the owned arche subtrees staging -> repo.
+#
+# rm-then-cp per subtree, so a dropped or renamed artifact leaves no stale file in
+# the repo. Only the OWNED_SUBS are touched - the blast radius is exactly those.
+export def inline [
+    args: record<hypogeios_repo_dir: directory, generated_tmp_dir: directory>
+]: nothing -> record<inlined: list<string>> {
+    let s_arche = (staging-arche $args.generated_tmp_dir)
+    let r_arche = (repo-arche $args.hypogeios_repo_dir)
+    for sub in $OWNED_SUBS {
+        let s = ($s_arche | path join $sub)
+        let r = ($r_arche | path join $sub)
+        if ($r | path exists) { rm --recursive --force $r }
+        if ($s | path exists) {
+            mkdir ($r | path dirname)
+            cp --recursive $s $r
+        }
+    }
+    { inlined: $OWNED_SUBS }
+}
+
 # The build step machine - the hypogeios:dev/repo:build call-target.
 #
-# See the file header for the steps, the pause/resume contract, and the
-# explicit-repo-dir (never path-self) write rule.
+# See the file header for the phases, the explicit-repo-dir (never path-self)
+# write rule, and the reproducibility model. SLICE 2: a mechanical reproduction
+# build (generate with the current flags + inline + gstat); the flags agent step
+# and the step 1/3 pause/resume split land next.
 export def main [
     args: record<
         hypogeios_repo_dir: directory,
@@ -72,8 +167,8 @@ export def main [
     >
 ]: nothing -> record<step: int, paused: bool, gstat: record<modified: list<string>, added: list<string>, deleted: list<string>>, next_step: oneof<int, nothing>, next_step_prompt: oneof<string, nothing>, next_step_prompt_shm: oneof<string, nothing>, generated_tmp_dir: string> {
     assert-clean $args.hypogeios_repo_dir
-    # SLICE 1: phases not yet wired - report a clean (empty) drift to prove the
-    # plumbing (typed args, clean-gate, gstat, explicit repo dir).
+    generate $args
+    inline $args
     {
         step: $args.step,
         paused: false,
