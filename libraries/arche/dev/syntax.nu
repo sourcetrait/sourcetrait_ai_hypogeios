@@ -28,6 +28,12 @@
 def zw-snake [s: string]: nothing -> string {
     $s | str downcase | str replace --all "-" "_" | str replace --regex '^[^a-z0-9]+' ''
 }
+# Snake a verb-handler routine ref, expanding the ZIL `V-` prefix to `verb_` (self-
+# documenting; `v_` is a non-decipherable one-letter stub). V-LAMP-ON -> verb_lamp_on.
+# Only the leading V- maps; the rest snakes normally. PRE- routines keep `pre_`.
+def zw-verb-routine [s: string]: nothing -> string {
+    $s | str downcase | str replace --regex '^v-' 'verb-' | str replace --all "-" "_"
+}
 def zw-norm [s: string]: nothing -> string { $s | str replace --all --regex '\s+' ' ' | str trim }
 
 # Games for a conditional op: ==? n -> [n]; N==? n -> the trilogy minus n.
@@ -115,8 +121,9 @@ export def "zil syntax" [
     }
 }
 
-# Derive the DEVIATED grammar from the preserved form: snake everything, map the
-# FIND-bit through the flag dictionary. Buzz tokens that snake to empty (the
+# Derive the DEVIATED grammar from the preserved form: snake everything; the action
+# routine ref expands the ZIL V- prefix to verb_ (self-documenting, not the v_ stub);
+# map the FIND-bit through the flag dictionary. Buzz tokens that snake to empty (the
 # parser punctuation \. \, \") are dropped. Re-runnable.
 export def "zil syntax deviate" [
     world_dir: directory,
@@ -139,7 +146,7 @@ export def "zil syntax deviate" [
         indirect_preposition: (if $r.indirect_preposition == null { null } else { zw-snake $r.indirect_preposition }),
         indirect_required_flag: (mapflag $r.indirect_required_flag),
         indirect_search_locations: ($r.indirect_search_locations | each {|l| zw-snake $l}),
-        action: (if $r.action == null { null } else { zw-snake $r.action }),
+        action: (if $r.action == null { null } else { zw-verb-routine $r.action }),
         pre_action: (if $r.pre_action == null { null } else { zw-snake $r.pre_action }),
         games: $r.games
     }})
