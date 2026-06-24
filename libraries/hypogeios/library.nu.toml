@@ -23,7 +23,8 @@ name = "github"
 
 [mcp]
 calls = [
-  "hypogeios:game:turn"
+  "hypogeios:game:turn",
+  "hypogeios:dev/repo:build"
 ]
 
 [[bin]]
