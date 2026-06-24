@@ -37,6 +37,11 @@ const OWNED_SUBS: list<string> = [
     "alpha/vocabulary"
 ]
 
+# The step_data.flags schema (the flags agent step's typed output) - the canonical
+# source, hand-synced to build's step_data positional and (next slice) filled into
+# the driver template via %{step_schema}%, the way ENGINE_TYPE mirrors model_engine.
+const STEP_3_TYPE: string = "record<flags: table<snake: string, preserved: string, summary: string, state: oneof<nothing, record<default: bool, scope: list<string>>>>>"
+
 # <repo>/libraries/arche - the project arche library root (the inline target).
 def repo-arche [hypogeios_repo_dir: directory]: nothing -> string {
     $hypogeios_repo_dir | path join "libraries" "arche"
@@ -154,9 +159,9 @@ export def inline [
 # The build step machine - the hypogeios:dev/repo:build call-target.
 #
 # See the file header for the phases, the explicit-repo-dir (never path-self)
-# write rule, and the reproducibility model. SLICE 2: a mechanical reproduction
-# build (generate with the current flags + inline + gstat); the flags agent step
-# and the step 1/3 pause/resume split land next.
+# write rule, and the reproducibility model. Dispatches on step: 1 = PRESERVE +
+# pause for the flags agent; 3 = the agent's step_data.flags + DEVIATE/DERIVE +
+# inline. (Prompt templating for the pause lands next slice.)
 export def main [
     args: record<
         hypogeios_repo_dir: directory,
@@ -167,15 +172,44 @@ export def main [
     >
 ]: nothing -> record<step: int, paused: bool, gstat: record<modified: list<string>, added: list<string>, deleted: list<string>>, next_step: oneof<int, nothing>, next_step_prompt: oneof<string, nothing>, next_step_prompt_shm: oneof<string, nothing>, generated_tmp_dir: string> {
     assert-clean $args.hypogeios_repo_dir
-    generate $args
-    inline $args
-    {
-        step: $args.step,
-        paused: false,
-        gstat: (git-drift $args.hypogeios_repo_dir),
-        next_step: null,
-        next_step_prompt: null,
-        next_step_prompt_shm: null,
-        generated_tmp_dir: ($args.generated_tmp_dir | into string),
+    if (($args.step != 1) and ($args.step != 3)) {
+        error make {msg: $"build: unknown step ($args.step) - expected 1 or 3"}
+    }
+    let s_arche = (staging-arche $args.generated_tmp_dir)
+    let world = ($s_arche | path join ".assets" "world")
+    if $args.step == 1 {
+        # STEP 1: fresh staging + mechanical PRESERVE, then PAUSE for the flags agent.
+        let locale = ($s_arche | path join ".assets" "locale" "en_us")
+        if ($s_arche | path exists) { rm --recursive --force $s_arche }
+        mkdir $world
+        mkdir $locale
+        preserve $world $locale $args.preserved_repo_dirs
+        {
+            step: 1,
+            paused: true,
+            gstat: {modified: [], added: [], deleted: []},
+            next_step: 3,
+            next_step_prompt: "flags agent step: author the deviated flags table from staging preserved/flags.nuon + the arche flags recipe, then call build(step 3, ..., step_data={flags: <table>}). Prompt templating lands next slice.",
+            next_step_prompt_shm: null,
+            generated_tmp_dir: ($args.generated_tmp_dir | into string),
+        }
+    } else {
+        # STEP 3: write the agent flags into staging, then DEVIATE + DERIVE + inline.
+        if $args.step_data == null {
+            error make {msg: "build step 3: step_data (record<flags>) is required - the flags agent output"}
+        }
+        mkdir ($world | path join "deviated")
+        $args.step_data.flags | to nuon --list-of-records --indent 2 | save -f ($world | path join "deviated" "flags.nuon")
+        deviate-derive $s_arche $world
+        inline $args
+        {
+            step: 3,
+            paused: false,
+            gstat: (git-drift $args.hypogeios_repo_dir),
+            next_step: null,
+            next_step_prompt: null,
+            next_step_prompt_shm: null,
+            generated_tmp_dir: ($args.generated_tmp_dir | into string),
+        }
     }
 }
