@@ -10,7 +10,7 @@
 # record rather than calling model itself; cross-module composition is the
 # run-body's job, not the library's.)
 
-export const ENGINE_TYPE: string = "record<flags: table<snake: string, preserved: string, summary: string, state: oneof<nothing, record<default: bool, scope: list<string>>>>>"
+export const ENGINE_TYPE: string = "record<flags: table<snake: string, preserved: string, summary: string, state: oneof<nothing, record<default: bool, scope: list<string>>>>, syntax_rules: table<verb: string, object_slots: int, direct_preposition: oneof<string, nothing>, direct_required_flag: oneof<string, nothing>, direct_search_locations: list<string>, indirect_preposition: oneof<string, nothing>, indirect_required_flag: oneof<string, nothing>, indirect_search_locations: list<string>, action: string, pre_action: oneof<string, nothing>, games: list<int>>, syntax_verb_synonyms: table<verb: string, synonyms: list<string>, games: list<int>>, syntax_prepositions: table<preposition: string, synonyms: list<string>, games: list<int>>, syntax_directions: table<direction: string, synonyms: list<string>, games: list<int>>, syntax_buzzwords: table<word: string, games: list<int>>>"
 export const WORLD_TYPE: string = "record<conditions: table<snake: string, kind: string>, rooms: table<snake: string, flags: list<string>, value: int, globals: list<string>, action: oneof<string, nothing>>, links: table<room: string, direction: string, target: string, conditions: list<oneof<string, nothing>>>, blocked: table<room: string, direction: string>>"
 
 # Write <out_dir>/engine.nu = `export const ENGINE: <ENGINE_TYPE> = <data>`. Idempotent.
