@@ -1,5 +1,5 @@
 # Hypogeios
-> Classic terminal games perserved a Nu
+> Classic terminal games preserved a Nu
 
 Please read [LEGAL.md](./LEGAL.md).
 

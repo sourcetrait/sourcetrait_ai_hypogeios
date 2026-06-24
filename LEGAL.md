@@ -87,4 +87,4 @@ For general information:
 ## Intellectual Property Scrubbing
 
 During development, scrubbing of trademark-sensitive names (such as "Zork")
-takes after a port has been completed.
+takes place after a port has been completed.
