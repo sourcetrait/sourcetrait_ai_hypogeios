@@ -1,9 +1,0 @@
-CONTBIT container
-LIGHTBIT light_source
-NDESCBIT no_description
-ONBIT lighting
-RMUNGBIT mung
-TAKEBIT take
-TRANSBIT transparent
-TRYTAKEBIT try_take
-VEHBIT vehicle
