@@ -17,7 +17,8 @@ libraries = [
 libraries = [
   "hypogeios_dev"
 ]
-subagents = [
+
+claude.plugins = [
   "zork_src"
 ]
 
