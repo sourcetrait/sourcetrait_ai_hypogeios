@@ -5,6 +5,14 @@ libraries = [
   "speos"
 ]
 
+[dev]
+libraries = [
+  "hypogeios_dev"
+]
+skills = [
+  "zork_src"
+]
+
 [author]
 name = "sourcetrait"
 title = "SourceTrait"
