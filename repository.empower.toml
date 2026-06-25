@@ -9,7 +9,7 @@ libraries = [
 libraries = [
   "hypogeios_dev"
 ]
-skills = [
+subagents = [
   "zork_src"
 ]
 
