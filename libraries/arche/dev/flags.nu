@@ -29,15 +29,38 @@
 #     never regenerated. preserved/ is audit-only, never read at runtime. Re-runnable.
 #     Working: iter/hypogeios/working/06.
 
-# Scan every *.zil under each zil_dir for attribute flags; write the union to
-# <out_dir>/preserved/flags.nuon.
+# The COMPILED *.zil of one game repo: the master zork<N>.zil plus every file it
+# INSERT-FILEs (the G* engine + <N>dungeon + <N>actions). Excludes the loose
+# legacy *.zil a repo may carry uncompiled (zork3's verbs/syntax/etc.), so flags
+# only ever come from what actually ships. INSERT-FILE names are uppercase with no
+# extension; on-disk files are lowercase + .zil.
+def zw-compiled-zils [zil_dir: directory]: nothing -> list<string> {
+    mut files: list<string> = []
+    for master in (glob ($zil_dir | path join "zork*.zil")) {
+        let inserts = (open --raw $master | decode
+            | parse --regex '<INSERT-FILE\s+"(?<n>[^"]+)"' | get n)
+        if (($inserts | length) > 0) {
+            $files = ($files | append $master)
+            for n in $inserts {
+                let f = ($zil_dir | path join $"($n | str downcase).zil")
+                if ($f | path exists) { $files = ($files | append $f) }
+            }
+        }
+    }
+    $files | uniq
+}
+
+# Scan the COMPILED *.zil under each zil_dir for attribute flags; write the union
+# to <out_dir>/preserved/flags.nuon. Only INSERT-FILE'd files are scanned (via
+# zw-compiled-zils), so an atom from an uncompiled legacy file (e.g. zork3
+# verbs.zil's VICBIT) never enters the dictionary.
 export def "zil flags" [
     zil_dirs: list<string>,
     out_dir: directory,
 ]: nothing -> record<flags: int, names: list<string>> {
     mut text: string = ""
     for d in $zil_dirs {
-        for f in (glob ($d | path join "*.zil")) {
+        for f in (zw-compiled-zils $d) {
             $text = ($text + (open --raw $f | decode) + (char nl))
         }
     }
@@ -61,11 +84,13 @@ export def "zil flags" [
     {flags: ($names | length), names: $names}
 }
 
-# Union the *.zil text across the given source dirs (the trilogy).
+# Union the COMPILED *.zil text across the given source dirs (the trilogy) - only
+# the files each game INSERT-FILEs (zw-compiled-zils), never the loose uncompiled
+# legacy *.zil.
 def zw-flags-text [zil_dirs: list<string>]: nothing -> string {
     mut text: string = ""
     for d in $zil_dirs {
-        for f in (glob ($d | path join "*.zil")) {
+        for f in (zw-compiled-zils $d) {
             $text = ($text + (open --raw $f | decode) + (char nl))
         }
     }
@@ -141,5 +166,113 @@ export def "zil flags deviate" [
         flags: ($deviated | length),
         runtime: ($deviated | where {|r| $r.state != null} | length),
         static: ($deviated | where {|r| $r.state == null} | length),
+    }
+}
+
+# Build the per-flag SOURCE-ANALYSIS TRAIL for every preserved atom across the
+# COMPILED trilogy; write <out_dir>/preserved/flag_usage.nuon. A "preserved"
+# analysis: pure mechanical grep evidence, audit-only, never loaded by the engine.
+# It grounds the summary/scope authoring - the subagent READS this file instead of
+# re-deriving each flag's usage blind. Per atom: declared_on (<FLAGS ...> static
+# attribute, with its OBJECT/ROOM owner), references (FSET/FCLEAR/FSET? + B* macros
+# on a target: operation set|clear|test + the operand + its form global,X|local.X +
+# the enclosing routine), grammar_finds (<SYNTAX ... (FIND atom) ...>), value_refs
+# (the atom used as a bare value, e.g. GWIM mapping it to ,ROOMS). `games` is the
+# set of games (1|2|3) whose compiled source carries the logically-identical site -
+# a shared engine file merges to [1 2 3], a per-episode file stays [N]. Targets are
+# captured raw (a local .var is resolved by reading its routine, not here).
+# Re-runnable. (Multi-line (FLAGS ...) is captured across continuation lines; a
+# multi-line FSET form may still leave a continuation fragment as a value_ref.)
+export def analyze_flag_usage [
+    zil_dirs: list<string>,
+    preserved_flags: list<string>,
+    out_dir: directory,
+]: nothing -> record<written: string, flags: int, declarations: int, references: int, grammar_finds: int, value_refs: int> {
+    let flagset = ($preserved_flags | uniq)
+    let needles = (["BIT"] ++ ($flagset | where {|a| not ($a | str ends-with "BIT")}))
+    mut decl = []
+    mut refs = []
+    mut gfinds = []
+    mut vals = []
+    for d in $zil_dirs {
+        let game = ($d | path basename | parse --regex 'zork(?<n>\d)' | get n.0 | into int)
+        for f in (zw-compiled-zils $d) {
+            let base = ($f | path basename)
+            mut ctx = ""
+            mut in_flags = false
+            mut flags_owner = ""
+            for raw in (open --raw $f | decode | lines) {
+                let t = ($raw | str trim)
+                if (($t | str starts-with "<ROUTINE ") or ($t | str starts-with "<OBJECT ") or ($t | str starts-with "<ROOM ")) {
+                    $ctx = ($t | parse --regex '^<[A-Z]+\s+(?<name>[A-Z0-9?-]+)' | get name.0? | default $ctx)
+                    $in_flags = false
+                }
+                if $in_flags {
+                    for a in (($t | split row ")" | first) | split row --regex '\s+' | where {|x| $x != ""}) {
+                        if ($a in $flagset) { $decl = ($decl | append {atom: $a, owner: $flags_owner, game: $game, file: $base}) }
+                    }
+                    if ($t | str contains ")") { $in_flags = false }
+                    continue
+                }
+                if not ($needles | any {|nd| $t | str contains $nd}) { continue }
+                let pflags = ($t | parse --regex '\(FLAGS\s+(?<body>[^)]*)')
+                let pfset = ($t | parse --regex '<(?<o>FSET\?|FSET|FCLEAR|BSET\?|BSET|BCLEAR)\s+(?<tg>\S+)\s+,(?<bit>[A-Z][A-Z0-9-]*)')
+                let pfind = ($t | parse --regex '\(FIND\s+(?<bit>[A-Z][A-Z0-9-]*)')
+                if (($pflags | length) > 0) {
+                    for a in ($pflags | get body | first | split row --regex '\s+' | where {|x| $x != ""}) {
+                        if ($a in $flagset) { $decl = ($decl | append {atom: $a, owner: $ctx, game: $game, file: $base}) }
+                    }
+                    if not ($t | str contains ")") { $in_flags = true; $flags_owner = $ctx }
+                } else if (($pfset | length) > 0) {
+                    for m in $pfset {
+                        if ($m.bit in $flagset) {
+                            let oper = (if ($m.o | str ends-with "?") { "test" } else if (($m.o | str starts-with "FC") or ($m.o | str starts-with "BC")) { "clear" } else { "set" })
+                            let form = (if ($m.tg | str starts-with ",") { "global" } else if ($m.tg | str starts-with ".") { "local" } else { "other" })
+                            $refs = ($refs | append {atom: $m.bit, operation: $oper, target: $m.tg, target_form: $form, routine: $ctx, game: $game, file: $base, source: $t})
+                        }
+                    }
+                } else if (($pfind | length) > 0) {
+                    for m in $pfind {
+                        if ($m.bit in $flagset) { $gfinds = ($gfinds | append {atom: $m.bit, rule: $t, game: $game, file: $base}) }
+                    }
+                } else {
+                    for m in ($t | parse --regex ',(?<bit>[A-Z][A-Z0-9-]*)') {
+                        if ($m.bit in $flagset) { $vals = ($vals | append {atom: $m.bit, routine: $ctx, game: $game, file: $base, source: $t}) }
+                    }
+                }
+            }
+        }
+    }
+    let dedup = {|rows, keys|
+        if ($rows | is-empty) { [] } else {
+            $rows | group-by {|r| $keys | each {|k| ($r | get $k | into string)} | str join "\u{1e}"} | values | each {|grp|
+                ($grp | first | reject game | merge {games: ($grp | get game | uniq | sort)})
+            }
+        }
+    }
+    let decl_d = (do $dedup $decl [atom owner file])
+    let refs_d = (do $dedup $refs [atom operation target target_form routine file source])
+    let gfinds_d = (do $dedup $gfinds [atom rule file])
+    let vals_d = (do $dedup $vals [atom routine file source])
+    let trail = ($flagset | sort | each {|a|
+        {
+            preserved: $a,
+            declared_on: ($decl_d | where atom == $a | each {|r| {owner: $r.owner, games: $r.games, file: $r.file}}),
+            references: ($refs_d | where atom == $a | each {|r| {operation: $r.operation, target: $r.target, target_form: $r.target_form, routine: $r.routine, games: $r.games, file: $r.file, source: $r.source}}),
+            grammar_finds: ($gfinds_d | where atom == $a | each {|r| {rule: $r.rule, games: $r.games, file: $r.file}}),
+            value_refs: ($vals_d | where atom == $a | each {|r| {routine: $r.routine, games: $r.games, file: $r.file, source: $r.source}})
+        }
+    })
+    let dir = ($out_dir | path join "preserved")
+    mkdir $dir
+    let path = ($dir | path join "flag_usage.nuon")
+    $trail | to nuon --indent 2 | save -f $path
+    {
+        written: $path,
+        flags: ($trail | length),
+        declarations: ($decl_d | length),
+        references: ($refs_d | length),
+        grammar_finds: ($gfinds_d | length),
+        value_refs: ($vals_d | length)
     }
 }
