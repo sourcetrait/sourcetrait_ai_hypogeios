@@ -1,3 +1,11 @@
+[author]
+name = "sourcetrait"
+title = "SourceTrait"
+email = "development@sourcetrait.com"
+
+[provider]
+name = "github"
+
 libraries = [
   "arche",
   "hypogeios",
@@ -13,10 +21,32 @@ subagents = [
   "zork_src"
 ]
 
-[author]
-name = "sourcetrait"
-title = "SourceTrait"
-email = "development@sourcetrait.com"
+[[dev.repo]]
+name = "zork1"
+author = "historicalsource"
+provider = "github"
+license.spdx = "mit"
+git.ssh = "git@github.com:historicalsource/zork1.git"
+git.https = "https://github.com/historicalsource/zork1.git"
+git.branch = "master"
+git.commit = "97b7b3d"
 
-[provider]
-name = "github"
+[[dev.repo]]
+name = "zork2"
+author = "historicalsource"
+provider = "github"
+license.spdx = "mit"
+git.ssh = "git@github.com:historicalsource/zork2.git"
+git.https = "https://github.com/historicalsource/zork2.git"
+git.branch = "master"
+git.commit = "3da9661"
+
+[[dev.repo]]
+name = "zork3"
+author = "historicalsource"
+provider = "github"
+license.spdx = "mit"
+git.ssh = "git@github.com:historicalsource/zork3.git"
+git.https = "https://github.com/historicalsource/zork3.git"
+git.branch = "master"
+git.commit = "3ec9ed4"
