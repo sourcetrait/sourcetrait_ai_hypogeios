@@ -1,0 +1,15 @@
+{
+  "name": "hypogeios-dev",
+  "owner": {
+    "name": "SourceTrait",
+    "email": "development@sourcetrait.com"
+  },
+  "description": "SourceTrait Hypogeios dev plugins for Claude Code.",
+  "plugins": [
+    {
+      "name": "zork_src",
+      "source": "./plugins/zork_src",
+      "description": "Authoritative Zork (ZIL) source expert for the arche port dev tooling."
+    }
+  ]
+}
