@@ -1,0 +1,6700 @@
+[
+  [preserved,declared_on,references,grammar_finds,value_refs];
+  [ACTORBIT,[
+      [    owner,    games,    file];
+      [GHOSTS,[
+          1
+        ],"1dungeon.zil"],
+      [BAT,[
+          1
+        ],"1dungeon.zil"],
+      [CYCLOPS,[
+          1
+        ],"1dungeon.zil"],
+      [THIEF,[
+          1
+        ],"1dungeon.zil"],
+      [TROLL,[
+          1
+        ],"1dungeon.zil"],
+      [ME,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [ADVENTURER,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [GLOBAL-UNICORN,[
+          2
+        ],"2dungeon.zil"],
+      [UNICORN,[
+          2
+        ],"2dungeon.zil"],
+      [DRAGON,[
+          2
+        ],"2dungeon.zil"],
+      [GLOBAL-PRINCESS,[
+          2
+        ],"2dungeon.zil"],
+      [PRINCESS,[
+          2
+        ],"2dungeon.zil"],
+      [CERBERUS,[
+          2
+        ],"2dungeon.zil"],
+      [SERPENT,[
+          2
+        ],"2dungeon.zil"],
+      [GNOME,[
+          2
+        ],"2dungeon.zil"],
+      [ROBOT,[
+          2
+        ],"2dungeon.zil"],
+      [GNOME-OF-ZURICH,[
+          2
+        ],"2dungeon.zil"],
+      [GENIE,[
+          2
+        ],"2dungeon.zil"],
+      [WIZARD,[
+          2
+        ],"2dungeon.zil"],
+      [GUARDIAN,[
+          3
+        ],"3dungeon.zil"],
+      [MASTER,[
+          3
+        ],"3dungeon.zil"],
+      [DUNGEON-MASTER,[
+          3
+        ],"3dungeon.zil"],
+      [OLD-MAN,[
+          3
+        ],"3dungeon.zil"],
+      [SHADOW,[
+          3
+        ],"3actions.zil"],
+      [GLOBAL-MAN,[
+          3
+        ],"3actions.zil"],
+      [MAN,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,V-ALARM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-ATTACK,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? ,PRSO ,ACTORBIT>>"],
+      [test,",PRSO",global,V-COMMAND,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-CURSES,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-CUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-DISENCHANT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-ENCHANT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,".L",local,V-FIND,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? .L ,ACTORBIT>"],
+      [test,",PRSI",global,V-GIVE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? ,PRSI ,ACTORBIT>>"],
+      [test,",PRSO",global,V-HELLO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-LEAP,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-LOOK-INSIDE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-MUNG,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-PLAY,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-SEND,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-SHAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-SQUEEZE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-STRIKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSO",global,V-TELL,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,",PRSI",global,V-THROW,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<AND ,PRSI <FSET? ,PRSI ,ACTORBIT>>"],
+      [test,".OBJ",local,FIRSTER,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? .OBJ ,ACTORBIT>"],
+      [test,",PRSO",global,ROPE-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,PRSO ,ACTORBIT>"],
+      [test,".F",local,"INFESTED?",[
+          1
+        ],"1actions.zil","(<AND <FSET? .F ,ACTORBIT> <NOT <FSET? .F ,INVISIBLE>>>"],
+      [test,".F",local,"INFESTED?",[
+          2
+        ],"2actions.zil","(<AND <FSET? .F ,ACTORBIT>"],
+      [test,",PRSO",global,ROBOT-FCN,[
+          2
+        ],"2actions.zil","<NOT <FSET? ,PRSO ,ACTORBIT>>>>"],
+      [test,".F",local,"INFESTED?",[
+          3
+        ],"3actions.zil","(<AND <FSET? .F ,ACTORBIT> <NOT <FSET? .F ,INVISIBLE>>>"],
+      [test,",PRSO",global,CP-SLOT-FCN,[
+          3
+        ],"3actions.zil","(<FSET? ,PRSO ,ACTORBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX ATTACK OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX COMMAND OBJECT (FIND ACTORBIT) = V-COMMAND>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX CURSE OBJECT (FIND ACTORBIT) = V-CURSES>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX EXORCISE OUT OBJECT (FIND ACTORBIT) = V-EXORCISE>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX EXORCISE AWAY OBJECT (FIND ACTORBIT) = V-EXORCISE>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["TO OBJECT (FIND ACTORBIT) (ON-GROUND) = V-GIVE PRE-GIVE>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX GIVE OBJECT (FIND ACTORBIT) (ON-GROUND)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX KILL OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX STAB OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-STAB>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX STAB OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX KISS OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-KISS>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX KNOCK DOWN OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-ATTACK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX POKE OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX PUNCTURE OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX RAPE OBJECT (FIND ACTORBIT) = V-RAPE>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TALK TO OBJECT (FIND ACTORBIT) (IN-ROOM) = V-TELL>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX STRIKE OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) WITH OBJECT",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["AT OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-SWING>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TELL OBJECT (FIND ACTORBIT) (IN-ROOM) = V-TELL>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TELL OBJECT (FIND ACTORBIT) (IN-ROOM) ABOUT OBJECT = V-TELL>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["AT OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-THROW>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["WITH OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-THROW>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TIE UP OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) WITH OBJECT",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX WAKE OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-ALARM>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX WAKE UP OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-ALARM>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+      [    routine,    games,    file,    source];
+      [V-SAY,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<SET V <FIND-IN ,HERE ,ACTORBIT>>"]
+    ]],
+  [BURNBIT,[
+      [    owner,    games,    file];
+      [BOOK,[
+          1
+        ],"1dungeon.zil"],
+      [SANDWICH-BAG,[
+          1
+        ],"1dungeon.zil"],
+      [ADVERTISEMENT,[
+          1
+        ],"1dungeon.zil"],
+      [INFLATED-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [PAINTING,[
+          1
+        ],"1dungeon.zil"],
+      [LEAVES,[
+          1
+        ],"1dungeon.zil"],
+      [PUNCTURED-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [INFLATABLE-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [COAL,[
+          1
+        ],"1dungeon.zil"],
+      [BOAT-LABEL,[
+          1
+        ],"1dungeon.zil"],
+      [GUIDE,[
+          1
+        ],"1dungeon.zil"],
+      [NEST,[
+          1
+        ],"1dungeon.zil"],
+      [BAT,[
+          2
+        ],"2dungeon.zil"],
+      [BALLOON-LABEL,[
+          2
+        ],"2dungeon.zil"],
+      [BRICK,[
+          2
+        ],"2dungeon.zil"],
+      [CARD,[
+          2
+        ],"2dungeon.zil"],
+      [ROBOT-LABEL,[
+          2
+        ],"2dungeon.zil"],
+      [STAMP,[
+          2
+        ],"2dungeon.zil"],
+      [GREEN-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [BLUE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [WHITE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [PURPLE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [FUSE,[
+          2
+        ],"2dungeon.zil"],
+      [BILLS,[
+          2
+        ],"2dungeon.zil"],
+      [PORTRAIT,[
+          2
+        ],"2dungeon.zil"],
+      [BANK-BROCHURE,[
+          2
+        ],"2dungeon.zil"],
+      [NEWSPAPER,[
+          2
+        ],"2dungeon.zil"],
+      [WARNING-NOTE,[
+          3
+        ],"3dungeon.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,V-BURN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSO ,BURNBIT>"],
+      [test,",PRSO",global,V-CUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<AND <FSET? ,PRSO ,BURNBIT>"],
+      [test,",PRSO",global,V-LAMP-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSO ,BURNBIT>"],
+      [test,",PRSI",global,HOT-BELL-F,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,PRSI ,BURNBIT>"],
+      [test,",PRSI",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","(<AND <VERB? PUT> <FSET? ,PRSI ,BURNBIT>>"],
+      [test,",PRSO",global,RIVER-FUNCTION,[
+          1
+        ],"1actions.zil","(<FSET? ,PRSO ,BURNBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX BURN OBJECT (FIND BURNBIT) (HELD CARRIED ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX BURN DOWN OBJECT (FIND BURNBIT) (HELD CARRIED ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [CLIMBBIT,[
+      [    owner,    games,    file];
+      [TREE,[
+          1
+        ],"1dungeon.zil"],
+      [MOUNTAIN-RANGE,[
+          1
+        ],"1dungeon.zil"],
+      [CHIMNEY,[
+          1
+        ],"1dungeon.zil"],
+      [TIMBERS,[
+          1
+        ],"1dungeon.zil"],
+      [RAINBOW,[
+          1
+        ],"1dungeon.zil"],
+      [LADDER,[
+          1
+        ],"1dungeon.zil"],
+      [CLIMBABLE-CLIFF,[
+          1
+        ],"1dungeon.zil"],
+      [WHITE-CLIFF,[
+          1
+        ],"1dungeon.zil"],
+      [STAIRS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [LADDER,[
+          3
+        ],"3actions.zil"]
+    ],[
+
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX CLIMB UP OBJECT (FIND CLIMBBIT) (ON-GROUND IN-ROOM) = V-CLIMB-UP>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX CLIMB DOWN OBJECT (FIND CLIMBBIT) (ON-GROUND IN-ROOM) = V-CLIMB-DOWN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX CLIMB OBJECT (FIND CLIMBBIT) (ON-GROUND IN-ROOM) = V-CLIMB-FOO>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX WALK UP OBJECT (FIND CLIMBBIT) (ON-GROUND IN-ROOM) = V-CLIMB-UP>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX WALK DOWN OBJECT (FIND CLIMBBIT) (ON-GROUND IN-ROOM) = V-CLIMB-DOWN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [CONTBIT,[
+      [    owner,    games,    file];
+      [RAISED-BASKET,[
+          1
+        ],"1dungeon.zil"],
+      [ALTAR,[
+          1
+        ],"1dungeon.zil"],
+      [BOOK,[
+          1
+        ],"1dungeon.zil"],
+      [KITCHEN-TABLE,[
+          1
+        ],"1dungeon.zil"],
+      [ATTIC-TABLE,[
+          1
+        ],"1dungeon.zil"],
+      [SANDWICH-BAG,[
+          1
+        ],"1dungeon.zil"],
+      [TOOL-CHEST,[
+          1
+        ],"1dungeon.zil"],
+      [TROPHY-CASE,[
+          1
+        ],"1dungeon.zil"],
+      [CHALICE,[
+          1
+        ],"1dungeon.zil"],
+      [BOTTLE,[
+          1
+        ],"1dungeon.zil"],
+      [COFFIN,[
+          1
+        ],"1dungeon.zil"],
+      [MACHINE,[
+          1
+        ],"1dungeon.zil"],
+      [MAILBOX,[
+          1
+        ],"1dungeon.zil"],
+      [BUOY,[
+          1
+        ],"1dungeon.zil"],
+      [THIEF,[
+          1
+        ],"1dungeon.zil"],
+      [PEDESTAL,[
+          1
+        ],"1dungeon.zil"],
+      [TUBE,[
+          1
+        ],"1dungeon.zil"],
+      [NEST,[
+          1
+        ],"1dungeon.zil"],
+      [EGG,[
+          1
+        ],"1dungeon.zil"],
+      [BROKEN-EGG,[
+          1
+        ],"1dungeon.zil"],
+      [UNICORN,[
+          2
+        ],"2dungeon.zil"],
+      [CHEST,[
+          2
+        ],"2dungeon.zil"],
+      [WIZ-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [CERBERUS,[
+          2
+        ],"2dungeon.zil"],
+      [CRYPT-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [DIM-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [WORKBENCH,[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-1",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-2",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-3",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-4",[
+          2
+        ],"2dungeon.zil"],
+      [WIZARD-CASE,[
+          2
+        ],"2dungeon.zil"],
+      [BROKEN-CASE,[
+          2
+        ],"2dungeon.zil"],
+      [PENTAGRAM,[
+          2
+        ],"2dungeon.zil"],
+      [AQUARIUM,[
+          2
+        ],"2dungeon.zil"],
+      [RIDDLE-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [SAFE,[
+          2
+        ],"2dungeon.zil"],
+      [ALICE-TABLE,[
+          2
+        ],"2dungeon.zil"],
+      [GREEN-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [BLUE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [WHITE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [PURPLE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [RECEPTACLE,[
+          2
+        ],"2dungeon.zil"],
+      [ROBOT,[
+          2
+        ],"2dungeon.zil"],
+      [IRON-BOX,[
+          2
+        ],"2dungeon.zil"],
+      [BUCKET,[
+          2
+        ],"2dungeon.zil"],
+      [GNOME-OF-ZURICH,[
+          2
+        ],"2dungeon.zil"],
+      [PDOOR,[
+          2
+        ],"2dungeon.zil"],
+      ["LID-1",[
+          2
+        ],"2dungeon.zil"],
+      ["LID-2",[
+          2
+        ],"2dungeon.zil"],
+      [PTABLE,[
+          2
+        ],"2dungeon.zil"],
+      [GAZEBO-TABLE,[
+          2
+        ],"2dungeon.zil"],
+      [PLACE-MAT,[
+          2
+        ],"2dungeon.zil"],
+      [TEAPOT,[
+          2
+        ],"2dungeon.zil"],
+      [WIZARD,[
+          2
+        ],"2dungeon.zil"],
+      [BRONZE-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [CELL-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [BEAM,[
+          3
+        ],"3dungeon.zil"],
+      [DUNGEON-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [SECRET-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [TIME-MACHINE,[
+          3
+        ],"3actions.zil"],
+      [TM-HOLLOW,[
+          3
+        ],"3actions.zil"],
+      [TM-SEAT,[
+          3
+        ],"3actions.zil"],
+      [IRON-DOOR,[
+          3
+        ],"3actions.zil"],
+      [JEWEL-DOOR,[
+          3
+        ],"3actions.zil"],
+      [WOODEN-DOOR,[
+          3
+        ],"3actions.zil"],
+      [PEDESTAL,[
+          3
+        ],"3actions.zil"],
+      [CAGE,[
+          3
+        ],"3actions.zil"],
+      [SHADOW,[
+          3
+        ],"3actions.zil"],
+      [CHEST,[
+          3
+        ],"3actions.zil"],
+      [MAN,[
+          3
+        ],"3actions.zil"],
+      [VIAL,[
+          3
+        ],"3actions.zil"],
+      [STONE,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,V-CLOSE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<AND <NOT <FSET? ,PRSO ,CONTBIT>>"],
+      [test,",PRSO",global,V-EXAMINE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<OR <FSET? ,PRSO ,CONTBIT>"],
+      [test,".L",local,V-FIND,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? .L ,CONTBIT>"],
+      [test,",PRSO",global,V-LOOK-INSIDE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSO ,CONTBIT>"],
+      [test,",PRSO",global,V-OPEN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<AND <FSET? ,PRSO ,CONTBIT>"],
+      [test,",PRSO",global,V-SHAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSO ,CONTBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX FILL OBJECT (FIND CONTBIT) (HELD CARRIED ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX FILL OBJECT (FIND CONTBIT)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+      [    routine,    games,    file,    source];
+      [PICK-ONE,[
+          1,
+          2,
+          3
+        ],"gmacros.zil","<FORM FSET? .OBJ ',CONTBIT>>>"]
+    ]],
+  [DOORBIT,[
+      [    owner,    games,    file];
+      [WATER,[
+          1
+        ],"1dungeon.zil"],
+      [TRAP-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [FRONT-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [BARROW-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [GRATE,[
+          1
+        ],"1dungeon.zil"],
+      [WOODEN-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [WIZ-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [CRYPT-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [DIM-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [RIDDLE-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [PDOOR,[
+          2
+        ],"2dungeon.zil"],
+      [PWINDOW,[
+          2
+        ],"2dungeon.zil"],
+      [BRONZE-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [CELL-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [DUNGEON-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [SECRET-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [CLEFT,[
+          3
+        ],"3actions.zil"],
+      [IRON-DOOR,[
+          3
+        ],"3actions.zil"],
+      [JEWEL-DOOR,[
+          3
+        ],"3actions.zil"],
+      [WOODEN-DOOR,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,V-CLOSE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<NOT <FSET? ,PRSO ,DOORBIT>>>"],
+      [test,",PRSO",global,V-CLOSE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSO ,DOORBIT>"],
+      [test,",PRSO",global,V-EXAMINE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? ,PRSO ,DOORBIT>>"],
+      [test,",PRSO",global,V-KNOCK,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,DOORBIT>"],
+      [test,",PRSO",global,V-LOOK-INSIDE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,DOORBIT>"],
+      [test,",PRSO",global,V-OPEN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSO ,DOORBIT>"],
+      [test,",PRSO",global,V-THROUGH,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<AND <FSET? ,PRSO ,DOORBIT>"],
+      [test,",PRSO",global,KEY-F,[
+          3
+        ],"3actions.zil","<FSET? ,PRSO ,DOORBIT>>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX CLOSE OBJECT (FIND DOORBIT) (HELD CARRIED ON-GROUND IN-ROOM) = V-CLOSE>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX OPEN OBJECT (FIND DOORBIT) (HELD CARRIED ON-GROUND IN-ROOM) = V-OPEN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX OPEN UP	OBJECT (FIND DOORBIT) (HELD CARRIED ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX OPEN OBJECT (FIND DOORBIT) (HELD CARRIED ON-GROUND IN-ROOM) WITH",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+      [    routine,    games,    file,    source];
+      [PICK-ONE,[
+          1,
+          2,
+          3
+        ],"gmacros.zil","<FORM OR <FORM FSET? .OBJ ',DOORBIT>"]
+    ]],
+  [DRINKBIT,[
+      [    owner,    games,    file];
+      [GLOBAL-WATER,[
+          1
+        ],"1dungeon.zil"],
+      [WATER,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-WATER,[
+          2
+        ],"2dungeon.zil"],
+      [WATER,[
+          2
+        ],"2dungeon.zil"],
+      [SALTY-WATER,[
+          2
+        ],"2dungeon.zil"],
+      [GLOBAL-WATER,[
+          3
+        ],"3dungeon.zil"],
+      [WATER,[
+          3
+        ],"3dungeon.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,V-EAT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSO ,DRINKBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX DRINK OBJECT (FIND DRINKBIT) (HELD CARRIED ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [FIGHTBIT,[
+      [    owner,    games,    file];
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [clear,",CYCLOPS",global,V-ODYSSEUS,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,CYCLOPS ,FIGHTBIT>"],
+      [clear,",TROLL",global,TROLL-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,TROLL ,FIGHTBIT>"],
+      [set,",TROLL",global,TROLL-FCN,[
+          1
+        ],"1actions.zil","<FSET ,TROLL ,FIGHTBIT>"],
+      [set,",TROLL",global,TROLL-FCN,[
+          1
+        ],"1actions.zil","<FSET ,TROLL ,FIGHTBIT>)"],
+      [set,",CYCLOPS",global,CYCLOPS-FCN,[
+          1
+        ],"1actions.zil","<FSET ,CYCLOPS ,FIGHTBIT>"],
+      [clear,",CYCLOPS",global,CYCLOPS-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,CYCLOPS ,FIGHTBIT>"],
+      [test,",THIEF",global,THIEF-VS-ADVENTURER,[
+          1
+        ],"1actions.zil","<FSET? ,THIEF ,FIGHTBIT>"],
+      [clear,",THIEF",global,THIEF-VS-ADVENTURER,[
+          1
+        ],"1actions.zil","<FCLEAR ,THIEF ,FIGHTBIT>"],
+      [test,",THIEF",global,THIEF-VS-ADVENTURER,[
+          1
+        ],"1actions.zil","(<AND .HERE? <FSET? ,THIEF ,FIGHTBIT> <PROB 90>>"],
+      [test,",THIEF",global,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<NOT <FSET? ,THIEF ,FIGHTBIT>>>"],
+      [set,",THIEF",global,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET ,THIEF ,FIGHTBIT>)>)"],
+      [set,",THIEF",global,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET ,THIEF ,FIGHTBIT>"],
+      [clear,",THIEF",global,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,THIEF ,FIGHTBIT>"],
+      [test,",THIEF",global,CHALICE-FCN,[
+          1
+        ],"1actions.zil","<FSET? ,THIEF ,FIGHTBIT>"],
+      [set,",THIEF",global,TREASURE-ROOM-FCN,[
+          1
+        ],"1actions.zil","<FSET ,THIEF ,FIGHTBIT>"],
+      [test,",PRSO",global,EGG-OBJECT,[
+          1
+        ],"1actions.zil","(<FSET? ,PRSO ,FIGHTBIT>"],
+      [set,",PRSO",global,EGG-OBJECT,[
+          1
+        ],"1actions.zil","<FSET ,PRSO ,FIGHTBIT>)>)"],
+      [test,".O",local,DO-FIGHT,[
+          1
+        ],"1actions.zil","<COND (<NOT <FSET? .O ,FIGHTBIT>>)"],
+      [set,",PRSO",global,HERO-BLOW,[
+          1
+        ],"1actions.zil","<FSET ,PRSO ,FIGHTBIT>"],
+      [clear,".VILLAIN",local,VILLAIN-RESULT,[
+          1
+        ],"1actions.zil","<FCLEAR .VILLAIN ,FIGHTBIT>"],
+      [test,".O",local,I-FIGHT,[
+          1
+        ],"1actions.zil","(<OR <FSET? .O ,FIGHTBIT>"],
+      [test,".O",local,I-FIGHT,[
+          1
+        ],"1actions.zil","<COND (<FSET? .O ,FIGHTBIT>"],
+      [clear,".O",local,I-FIGHT,[
+          1
+        ],"1actions.zil","<FCLEAR .O ,FIGHTBIT>"],
+      [clear,",THIEF",global,I-THIEF,[
+          1
+        ],"1actions.zil","<FCLEAR ,THIEF ,FIGHTBIT>"]
+    ],[
+
+    ],[
+
+    ]],
+  [FLAMEBIT,[
+      [    owner,    games,    file];
+      [CANDLES,[
+          1
+        ],"1dungeon.zil"],
+      [TORCH,[
+          1
+        ],"1dungeon.zil"],
+      [TORCH,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [clear,",PRSI",global,V-POUR-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,PRSI ,FLAMEBIT>)"],
+      [set,",MATCH",global,MATCH-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET ,MATCH ,FLAMEBIT>"],
+      [test,",MATCH",global,MATCH-FUNCTION,[
+          1
+        ],"1actions.zil","(<AND <VERB? LAMP-OFF> <FSET? ,MATCH ,FLAMEBIT>>"],
+      [clear,",MATCH",global,MATCH-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,MATCH ,FLAMEBIT>"],
+      [clear,",MATCH",global,I-MATCH,[
+          1
+        ],"1actions.zil","<FCLEAR ,MATCH ,FLAMEBIT>"],
+      [test,",MATCH",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,MATCH ,FLAMEBIT>"],
+      [set,",PRSO",global,BALLOON-BURN,[
+          2
+        ],"2actions.zil","<FSET ,PRSO ,FLAMEBIT>"],
+      [set,",MATCH",global,MATCH-FCN,[
+          2
+        ],"2actions.zil","<FSET ,MATCH ,FLAMEBIT>"],
+      [test,",MATCH",global,MATCH-FCN,[
+          2
+        ],"2actions.zil","(<AND <VERB? LAMP-OFF> <FSET? ,MATCH ,FLAMEBIT>>"],
+      [clear,",MATCH",global,MATCH-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,MATCH ,FLAMEBIT>"],
+      [clear,",MATCH",global,I-MATCH,[
+          2
+        ],"2actions.zil","<FCLEAR ,MATCH ,FLAMEBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["WITH OBJECT (FIND FLAMEBIT) (HELD CARRIED ON-GROUND IN-ROOM HAVE)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["WITH OBJECT (FIND FLAMEBIT) (HELD CARRIED TAKE HAVE) = V-BURN PRE-BURN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["WITH OBJECT (FIND FLAMEBIT) (HELD CARRIED ON-GROUND IN-ROOM) = V-MELT>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+      [    routine,    games,    file,    source];
+      [PICK-ONE,[
+          1,
+          2,
+          3
+        ],"gmacros.zil","<FORM AND <FORM FSET? .OBJ ',FLAMEBIT>"]
+    ]],
+  [FOODBIT,[
+      [    owner,    games,    file];
+      [LUNCH,[
+          1
+        ],"1dungeon.zil"],
+      [GARLIC,[
+          1
+        ],"1dungeon.zil"],
+      [EAT-ME-CAKE,[
+          2
+        ],"2dungeon.zil"],
+      [BLUE-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [ORANGE-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [RED-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [CANDY,[
+          2
+        ],"2dungeon.zil"],
+      [WAYBREAD,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,V-EAT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<SET EAT? <FSET? ,PRSO ,FOODBIT>>"],
+      [test,",PRSO",global,CAKE-CRUMBLE,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,PRSO ,FOODBIT> <SET CAKE ,PRSO>)"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX EAT OBJECT (FIND FOODBIT) (HELD CARRIED ON-GROUND IN-ROOM TAKE)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [INVISIBLE,[
+      [    owner,    games,    file];
+      [TRAP-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [GRATE,[
+          1
+        ],"1dungeon.zil"],
+      [LEAK,[
+          1
+        ],"1dungeon.zil"],
+      [POT-OF-GOLD,[
+          1
+        ],"1dungeon.zil"],
+      [SCARAB,[
+          1
+        ],"1dungeon.zil"],
+      [MAP,[
+          1
+        ],"1dungeon.zil"],
+      [THIEF,[
+          1
+        ],"1dungeon.zil"],
+      [TRUNK,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [ADVENTURER,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [BAT,[
+          2
+        ],"2dungeon.zil"],
+      [DIM-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [IRON-BOX,[
+          2
+        ],"2dungeon.zil"],
+      [CAGE,[
+          2
+        ],"2dungeon.zil"],
+      [CANDY,[
+          2
+        ],"2dungeon.zil"],
+      [GENIE,[
+          2
+        ],"2dungeon.zil"],
+      [BRONZE-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [SECRET-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [CLEFT,[
+          3
+        ],"3actions.zil"],
+      [VIKING-SHIP,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",VIKING-SHIP",global,SAILOR-FCN,[
+          1,
+          2,
+          3
+        ],"gglobals.zil","'<COND (<NOT <FSET? ,VIKING-SHIP ,INVISIBLE>>"],
+      [set,",VIKING-SHIP",global,SAILOR-FCN,[
+          1,
+          2,
+          3
+        ],"gglobals.zil","<FSET ,VIKING-SHIP ,INVISIBLE>"],
+      [test,".OBJ",local,"THIS-IT?",[
+          1,
+          2,
+          3
+        ],"gparser.zil","<COND (<FSET? .OBJ ,INVISIBLE> <RFALSE>)"],
+      [test,".OBJ",local,"ACCESSIBLE?",[
+          1,
+          2,
+          3
+        ],"gparser.zil","<COND (<FSET? .OBJ ,INVISIBLE>"],
+      [test,".Y",local,PRINT-CONT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<AND <NOT <FSET? .Y ,INVISIBLE>>"],
+      [test,".OBJ",local,"SEE-INSIDE?",[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<AND <NOT <FSET? .OBJ ,INVISIBLE>>"],
+      [clear,",MAP",global,SCORE-UPD,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,MAP ,INVISIBLE>"],
+      [clear,",TRAP-DOOR",global,RUG-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,TRAP-DOOR ,INVISIBLE>"],
+      [clear,",GRATE",global,LEAVES-APPEAR,[
+          1
+        ],"1actions.zil","<FCLEAR ,GRATE ,INVISIBLE>"],
+      [set,",GRATE",global,CLEARING-FCN,[
+          1
+        ],"1actions.zil","<FSET ,GRATE ,INVISIBLE>)>)"],
+      [clear,",GRATE",global,"MAZE-11-FCN",[
+          1
+        ],"1actions.zil","<FCLEAR ,GRATE ,INVISIBLE>)"],
+      [set,",TRUNK",global,I-RFILL,[
+          1
+        ],"1actions.zil","<FSET ,TRUNK ,INVISIBLE>>"],
+      [clear,",TRUNK",global,I-REMPTY,[
+          1
+        ],"1actions.zil","<FCLEAR ,TRUNK ,INVISIBLE>"],
+      [clear,",LEAK",global,BUTTON-F,[
+          1
+        ],"1actions.zil","<FCLEAR ,LEAK ,INVISIBLE>"],
+      [clear,",THIEF",global,THIEF-VS-ADVENTURER,[
+          1
+        ],"1actions.zil","<FCLEAR ,THIEF ,INVISIBLE>"],
+      [set,",THIEF",global,THIEF-VS-ADVENTURER,[
+          1
+        ],"1actions.zil","<FSET ,THIEF ,INVISIBLE>"],
+      [set,",THIEF",global,HACK-TREASURES,[
+          1
+        ],"1actions.zil","<FSET ,THIEF ,INVISIBLE>"],
+      [clear,".X",local,HACK-TREASURES,[
+          1
+        ],"1actions.zil","(T <FCLEAR .X ,INVISIBLE>)>"],
+      [test,".X",local,ROB-MAZE,[
+          1
+        ],"1actions.zil","<NOT <FSET? .X ,INVISIBLE>>"],
+      [set,".X",local,ROB-MAZE,[
+          1
+        ],"1actions.zil","<FSET .X ,INVISIBLE>)>"],
+      [set,",THIEF",global,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET ,THIEF ,INVISIBLE>)"],
+      [clear,".X",local,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR .X ,INVISIBLE>"],
+      [test,",THIEF",global,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<NOT <FSET? ,THIEF ,INVISIBLE>>"],
+      [clear,".X",local,MOVE-ALL,[
+          1
+        ],"1actions.zil","<FCLEAR .X ,INVISIBLE>"],
+      [test,",THIEF",global,CHALICE-FCN,[
+          1
+        ],"1actions.zil","<NOT <FSET? ,THIEF ,INVISIBLE>>"],
+      [clear,",THIEF",global,TREASURE-ROOM-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,THIEF ,INVISIBLE>"],
+      [set,".F",local,THIEF-IN-TREASURE,[
+          1
+        ],"1actions.zil","<FSET .F ,INVISIBLE>)>"],
+      [clear,",POT-OF-GOLD",global,SCEPTRE-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,POT-OF-GOLD ,INVISIBLE>"],
+      [set,",SCARAB",global,SAND-FUNCTION,[
+          1
+        ],"1actions.zil","<AND <IN? ,SCARAB ,HERE> <FSET ,SCARAB ,INVISIBLE>>"],
+      [test,",SCARAB",global,SAND-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,SCARAB ,INVISIBLE>"],
+      [clear,",SCARAB",global,SAND-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,SCARAB ,INVISIBLE>)>)"],
+      [clear,",LAMP",global,DEAD-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,LAMP ,INVISIBLE>"],
+      [test,".O",local,I-FIGHT,[
+          1
+        ],"1actions.zil","<NOT <FSET? .O ,INVISIBLE>>>"],
+      [test,".F",local,"INFESTED?",[
+          1
+        ],"1actions.zil","(<AND <FSET? .F ,ACTORBIT> <NOT <FSET? .F ,INVISIBLE>>>"],
+      [test,",THIEF",global,I-THIEF,[
+          1
+        ],"1actions.zil","<COND (<SET HERE? <NOT <FSET? ,THIEF ,INVISIBLE>>>"],
+      [test,",THIEF",global,I-THIEF,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,THIEF ,INVISIBLE> <SET HERE? <>>)>)"],
+      [test,",THIEF",global,I-THIEF,[
+          1
+        ],"1actions.zil","<NOT <FSET? ,THIEF ,INVISIBLE>>> ;\"Leave if victim left\""],
+      [set,",THIEF",global,I-THIEF,[
+          1
+        ],"1actions.zil","<FSET ,THIEF ,INVISIBLE>"],
+      [clear,".X",local,DROP-JUNK,[
+          1
+        ],"1actions.zil","<FCLEAR .X ,INVISIBLE>"],
+      [test,".X",local,STEAL-JUNK,[
+          1
+        ],"1actions.zil","<NOT <FSET? .X ,INVISIBLE>>"],
+      [set,".X",local,STEAL-JUNK,[
+          1
+        ],"1actions.zil","<FSET .X ,INVISIBLE>"],
+      [test,".X",local,ROB,[
+          1
+        ],"1actions.zil","<COND (<AND <NOT <FSET? .X ,INVISIBLE>>"],
+      [set,".X",local,ROB,[
+          1
+        ],"1actions.zil","<COND (<EQUAL? .WHERE ,THIEF> <FSET .X ,INVISIBLE>)>"],
+      [test,",L-PRSO",global,V-ADVENT,[
+          2,
+          3
+        ],"gverbs.zil","<FSET? ,L-PRSO ,INVISIBLE>>"],
+      [test,",L-PRSI",global,V-ADVENT,[
+          2,
+          3
+        ],"gverbs.zil","<FSET? ,L-PRSI ,INVISIBLE>>"],
+      [test,".F",local,"INFESTED?",[
+          2
+        ],"2actions.zil","<NOT <FSET? .F ,INVISIBLE>>"],
+      [set,",SLOT",global,I-FUSE,[
+          2
+        ],"2actions.zil","<FSET ,SLOT ,INVISIBLE>"],
+      [set,".F",local,I-FUSE,[
+          2
+        ],"2actions.zil","<FSET .F ,INVISIBLE>)>"],
+      [test,",DIM-DOOR",global,CRYPT-ROOM-FCN,[
+          2
+        ],"2actions.zil","<COND (<NOT <FSET? ,DIM-DOOR ,INVISIBLE>>"],
+      [clear,",DIM-DOOR",global,DIM-DOOR-APPEARS,[
+          2
+        ],"2actions.zil","<FCLEAR ,DIM-DOOR ,INVISIBLE>>"],
+      [set,",ROBOT",global,EATME-FCN,[
+          2
+        ],"2actions.zil","<FSET ,ROBOT ,INVISIBLE>"],
+      [set,",ALICE-TABLE",global,EATME-FCN,[
+          2
+        ],"2actions.zil","<FSET ,ALICE-TABLE ,INVISIBLE>"],
+      [clear,",ROBOT",global,CAKE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,ROBOT ,INVISIBLE>"],
+      [clear,",ALICE-TABLE",global,CAKE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,ALICE-TABLE ,INVISIBLE>"],
+      [set,",POSTS",global,CAKE-FCN,[
+          2
+        ],"2actions.zil","<FSET ,POSTS ,INVISIBLE>"],
+      [clear,",CANDY",global,CAKE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,CANDY ,INVISIBLE>)"],
+      [test,",IRON-BOX",global,BUTTONS,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,IRON-BOX ,INVISIBLE>"],
+      [clear,",IRON-BOX",global,BUTTONS,[
+          2
+        ],"2actions.zil","<FCLEAR ,IRON-BOX ,INVISIBLE>)"],
+      [set,",IRON-BOX",global,BUTTONS,[
+          2
+        ],"2actions.zil","<FSET ,IRON-BOX ,INVISIBLE>)>"],
+      [test,",IRON-BOX",global,BUTTONS,[
+          2
+        ],"2actions.zil","<COND (<NOT <FSET? ,IRON-BOX ,INVISIBLE>>"],
+      [clear,",CAGE",global,SPHERE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,CAGE ,INVISIBLE>"],
+      [set,",PALANTIR-1",global,SPHERE-FCN,[
+          2
+        ],"2actions.zil","<FSET ,PALANTIR-1 ,INVISIBLE>"],
+      [set,",PRSO",global,SPHERE-FCN,[
+          2
+        ],"2actions.zil","<FSET ,PRSO ,INVISIBLE>"],
+      [set,",PALANTIR-1",global,I-SPHERE,[
+          2
+        ],"2actions.zil","<FSET ,PALANTIR-1 ,INVISIBLE>"],
+      [set,".OBJ",local,PALANTIR-LOOK,[
+          2
+        ],"2actions.zil","<FSET .OBJ ,INVISIBLE>"],
+      [clear,".OBJ",local,PALANTIR-LOOK,[
+          2
+        ],"2actions.zil","<FCLEAR .OBJ ,INVISIBLE>"],
+      [test,",BAT",global,DIAMOND-MOTION,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,BAT ,INVISIBLE>"],
+      [clear,",BAT",global,DIAMOND-MOTION,[
+          2
+        ],"2actions.zil","<FCLEAR ,BAT ,INVISIBLE>"],
+      [set,",GENIE",global,GENIE-LEAVES,[
+          2
+        ],"2actions.zil","<FSET ,GENIE ,INVISIBLE>"],
+      [clear,",GENIE",global,PENTAGRAM-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,GENIE ,INVISIBLE>"],
+      [test,",GENIE",global,WIZARD-FCN,[
+          2
+        ],"2actions.zil","<COND (<NOT <FSET? ,GENIE ,INVISIBLE>>"],
+      [test,".X",local,RIPOFF,[
+          2
+        ],"2actions.zil","<COND (<AND <NOT <FSET? .X ,INVISIBLE>>"],
+      [test,".F",local,"INFESTED?",[
+          3
+        ],"3actions.zil","(<AND <FSET? .F ,ACTORBIT> <NOT <FSET? .F ,INVISIBLE>>>"],
+      [clear,",BRONZE-DOOR",global,CELL-MOVE,[
+          3
+        ],"3actions.zil","<COND (<==? ,PNUMB 4> <FCLEAR ,BRONZE-DOOR ,INVISIBLE>)"],
+      [set,",BRONZE-DOOR",global,CELL-MOVE,[
+          3
+        ],"3actions.zil","(ELSE <FSET ,BRONZE-DOOR ,INVISIBLE>)>"],
+      [clear,",BRONZE-DOOR",global,CELL-MOVE,[
+          3
+        ],"3actions.zil","<FCLEAR ,BRONZE-DOOR ,INVISIBLE>"],
+      [test,",BRONZE-DOOR",global,BRONZE-DOOR-EXIT,[
+          3
+        ],"3actions.zil","<COND (<FSET? ,BRONZE-DOOR ,INVISIBLE>"],
+      [test,",SECRET-DOOR",global,MSTAIRS-F,[
+          3
+        ],"3actions.zil","(<NOT <FSET? ,SECRET-DOOR ,INVISIBLE>>"],
+      [clear,",SECRET-DOOR",global,OLD-MAN-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,SECRET-DOOR ,INVISIBLE>"],
+      [clear,",CLEFT",global,I-CLEFT,[
+          3
+        ],"3actions.zil","<FCLEAR ,CLEFT ,INVISIBLE>"],
+      [test,",CAGE",global,MUSEUM-ENTRANCE-F,[
+          3
+        ],"3actions.zil","<COND (<FSET? ,CAGE ,INVISIBLE>"],
+      [set,",CAGE",global,TGOTO,[
+          3
+        ],"3actions.zil","<FSET ,CAGE ,INVISIBLE>"],
+      [set,",PEDESTAL",global,TGOTO,[
+          3
+        ],"3actions.zil",";<FSET ,PEDESTAL ,INVISIBLE>"],
+      [test,",CAGE",global,JEWEL-ROOM-F,[
+          3
+        ],"3actions.zil","<COND (<NOT <FSET? ,CAGE ,INVISIBLE>>"],
+      [test,",CAGE",global,CROWN-JEWELS-F,[
+          3
+        ],"3actions.zil","<FSET? ,CAGE ,INVISIBLE>>"],
+      [test,",CAGE",global,TECH-MUSEUM-F,[
+          3
+        ],"3actions.zil","<COND (<FSET? ,CAGE ,INVISIBLE>"],
+      [test,",CAGE",global,PEDESTAL-F,[
+          3
+        ],"3actions.zil","(<AND <VERB? PUT PUT-ON TAKE> <NOT <FSET? ,CAGE ,INVISIBLE>>>"],
+      [test,",VIKING-SHIP",global,FLATHEAD-OCEAN-F,[
+          3
+        ],"3actions.zil","<COND (<NOT <FSET? ,VIKING-SHIP ,INVISIBLE>>"],
+      [clear,",VIKING-SHIP",global,FLATHEAD-OCEAN-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,VIKING-SHIP ,INVISIBLE>)>>"],
+      [set,",VIKING-SHIP",global,I-BOAT-DISAPPEAR,[
+          3
+        ],"3actions.zil","<FSET ,VIKING-SHIP ,INVISIBLE>"]
+    ],[
+
+    ],[
+
+    ]],
+  [LIGHTBIT,[
+      [    owner,    games,    file];
+      [LAMP,[
+          1
+        ],"1dungeon.zil"],
+      [CANDLES,[
+          1
+        ],"1dungeon.zil"],
+      [TORCH,[
+          1
+        ],"1dungeon.zil"],
+      [LAMP,[
+          2
+        ],"2dungeon.zil"],
+      [LAMP,[
+          3
+        ],"3dungeon.zil"],
+      [TORCH,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [set,",PRSO",global,V-ENCHANT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,PRSO ,LIGHTBIT>"],
+      [test,",PRSO",global,V-LAMP-OFF,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,LIGHTBIT>"],
+      [test,",PRSO",global,V-LAMP-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,LIGHTBIT>"],
+      [test,",LAMP",global,LANTERN,[
+          3
+        ],"3actions.zil","<COND (<NOT <FSET? ,LAMP ,LIGHTBIT>>"],
+      [clear,".OBJ",local,I-LANTERN,[
+          3
+        ],"3actions.zil","<FCLEAR .OBJ ,LIGHTBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX ACTIVATE OBJECT (FIND LIGHTBIT)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX LIGHT OBJECT (FIND LIGHTBIT)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX LIGHT OBJECT (FIND LIGHTBIT) (HELD CARRIED ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TURN ON	OBJECT (FIND LIGHTBIT)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [MAZEBIT,[
+      [    owner,    games,    file];
+      ["MAZE-1",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-2",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-3",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-4",[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-1",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-5",[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-2",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-6",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-7",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-8",[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-3",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-9",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-10",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-11",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-12",[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-4",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-13",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-14",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-15",[
+          1
+        ],"1dungeon.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",HERE",global,DESCRIBE-ROOM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","'<COND (<FSET? ,HERE ,MAZEBIT>"],
+      [test,".RM",local,I-THIEF,[
+          1
+        ],"1actions.zil","<COND (<AND <FSET? .RM ,MAZEBIT>"],
+      [test,",HERE",global,I-THIEF,[
+          1
+        ],"1actions.zil","<FSET? ,HERE ,MAZEBIT>>"]
+    ],[
+
+    ],[
+
+    ]],
+  [NDESCBIT,[
+      [    owner,    games,    file];
+      [BOARD,[
+          1
+        ],"1dungeon.zil"],
+      [TEETH,[
+          1
+        ],"1dungeon.zil"],
+      [SONGBIRD,[
+          1
+        ],"1dungeon.zil"],
+      [WHITE-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [FOREST,[
+          1
+        ],"1dungeon.zil"],
+      [TREE,[
+          1
+        ],"1dungeon.zil"],
+      [MOUNTAIN-RANGE,[
+          1
+        ],"1dungeon.zil"],
+      [WATER,[
+          1
+        ],"1dungeon.zil"],
+      [CHIMNEY,[
+          1
+        ],"1dungeon.zil"],
+      [GHOSTS,[
+          1
+        ],"1dungeon.zil"],
+      [AXE,[
+          1
+        ],"1dungeon.zil"],
+      [BOLT,[
+          1
+        ],"1dungeon.zil"],
+      [BUBBLE,[
+          1
+        ],"1dungeon.zil"],
+      [ALTAR,[
+          1
+        ],"1dungeon.zil"],
+      [KITCHEN-TABLE,[
+          1
+        ],"1dungeon.zil"],
+      [ATTIC-TABLE,[
+          1
+        ],"1dungeon.zil"],
+      [YELLOW-BUTTON,[
+          1
+        ],"1dungeon.zil"],
+      [BROWN-BUTTON,[
+          1
+        ],"1dungeon.zil"],
+      [RED-BUTTON,[
+          1
+        ],"1dungeon.zil"],
+      [BLUE-BUTTON,[
+          1
+        ],"1dungeon.zil"],
+      [TROPHY-CASE,[
+          1
+        ],"1dungeon.zil"],
+      [RUG,[
+          1
+        ],"1dungeon.zil"],
+      [CYCLOPS,[
+          1
+        ],"1dungeon.zil"],
+      [DAM,[
+          1
+        ],"1dungeon.zil"],
+      [TRAP-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [BOARDED-WINDOW,[
+          1
+        ],"1dungeon.zil"],
+      [FRONT-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [BARROW-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [BARROW,[
+          1
+        ],"1dungeon.zil"],
+      [CRACK,[
+          1
+        ],"1dungeon.zil"],
+      [GRATE,[
+          1
+        ],"1dungeon.zil"],
+      [BONES,[
+          1
+        ],"1dungeon.zil"],
+      [LEAK,[
+          1
+        ],"1dungeon.zil"],
+      [MACHINE,[
+          1
+        ],"1dungeon.zil"],
+      ["MIRROR-2",[
+          1
+        ],"1dungeon.zil"],
+      ["MIRROR-1",[
+          1
+        ],"1dungeon.zil"],
+      [BODIES,[
+          1
+        ],"1dungeon.zil"],
+      [PRAYER,[
+          1
+        ],"1dungeon.zil"],
+      [RAILING,[
+          1
+        ],"1dungeon.zil"],
+      [RAINBOW,[
+          1
+        ],"1dungeon.zil"],
+      [RIVER,[
+          1
+        ],"1dungeon.zil"],
+      [SAND,[
+          1
+        ],"1dungeon.zil"],
+      [LADDER,[
+          1
+        ],"1dungeon.zil"],
+      [LARGE-BAG,[
+          1
+        ],"1dungeon.zil"],
+      [STILETTO,[
+          1
+        ],"1dungeon.zil"],
+      [MACHINE-SWITCH,[
+          1
+        ],"1dungeon.zil"],
+      [WOODEN-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [PEDESTAL,[
+          1
+        ],"1dungeon.zil"],
+      [CLIMBABLE-CLIFF,[
+          1
+        ],"1dungeon.zil"],
+      [WHITE-CLIFF,[
+          1
+        ],"1dungeon.zil"],
+      [CONTROL-PANEL,[
+          1
+        ],"1dungeon.zil"],
+      [IT,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [BLESSINGS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [STAIRS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [SAILOR,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [LUNGS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [ADVENTURER,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [PATHOBJ,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [HANDS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [STREAM,[
+          2
+        ],"2dungeon.zil"],
+      [CHASM,[
+          2
+        ],"2dungeon.zil"],
+      [MOSS,[
+          2
+        ],"2dungeon.zil"],
+      [ROSE-BUSH,[
+          2
+        ],"2dungeon.zil"],
+      [BRIDGE,[
+          2
+        ],"2dungeon.zil"],
+      [TUNNEL,[
+          2
+        ],"2dungeon.zil"],
+      [EAST-WALL,[
+          2
+        ],"2dungeon.zil"],
+      [SOUTH-WALL,[
+          2
+        ],"2dungeon.zil"],
+      [WEST-WALL,[
+          2
+        ],"2dungeon.zil"],
+      [NORTH-WALL,[
+          2
+        ],"2dungeon.zil"],
+      [WISH,[
+          2
+        ],"2dungeon.zil"],
+      [WELL,[
+          2
+        ],"2dungeon.zil"],
+      [SEWL,[
+          2
+        ],"2dungeon.zil"],
+      [SWWL,[
+          2
+        ],"2dungeon.zil"],
+      [SSWL,[
+          2
+        ],"2dungeon.zil"],
+      [SNWL,[
+          2
+        ],"2dungeon.zil"],
+      [HEDGES,[
+          2
+        ],"2dungeon.zil"],
+      [GLOBAL-MENHIR,[
+          2
+        ],"2dungeon.zil"],
+      [MENHIR,[
+          2
+        ],"2dungeon.zil"],
+      [DWINDOW,[
+          2
+        ],"2dungeon.zil"],
+      [HEADS,[
+          2
+        ],"2dungeon.zil"],
+      [CRYPT,[
+          2
+        ],"2dungeon.zil"],
+      [DOOR-KEEPER,[
+          2
+        ],"2dungeon.zil"],
+      [ARCANA,[
+          2
+        ],"2dungeon.zil"],
+      [WORKBENCH,[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-1",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-2",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-3",[
+          2
+        ],"2dungeon.zil"],
+      [DEGREE,[
+          2
+        ],"2dungeon.zil"],
+      [WANDS,[
+          2
+        ],"2dungeon.zil"],
+      [TROPHY-SWORD,[
+          2
+        ],"2dungeon.zil"],
+      [TROPHY-BOTTLES,[
+          2
+        ],"2dungeon.zil"],
+      [PENTAGRAM,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-3",[
+          2
+        ],"2dungeon.zil"],
+      [RIDDLE-DOOR,[
+          2
+        ],"2dungeon.zil"],
+      [SAFE,[
+          2
+        ],"2dungeon.zil"],
+      [BRAIDED-WIRE,[
+          2
+        ],"2dungeon.zil"],
+      [ROUND-BUTTON,[
+          2
+        ],"2dungeon.zil"],
+      [SQUARE-BUTTON,[
+          2
+        ],"2dungeon.zil"],
+      [TRIANGULAR-BUTTON,[
+          2
+        ],"2dungeon.zil"],
+      [CLOTH-BAG,[
+          2
+        ],"2dungeon.zil"],
+      [SLOT,[
+          2
+        ],"2dungeon.zil"],
+      [LEAK,[
+          2
+        ],"2dungeon.zil"],
+      [RECEPTACLE,[
+          2
+        ],"2dungeon.zil"],
+      [TOP-ETCHINGS,[
+          2
+        ],"2dungeon.zil"],
+      [BOTTOM-ETCHINGS,[
+          2
+        ],"2dungeon.zil"],
+      [POSTS,[
+          2
+        ],"2dungeon.zil"],
+      [CUBE,[
+          2
+        ],"2dungeon.zil"],
+      [CURTAIN,[
+          2
+        ],"2dungeon.zil"],
+      [DEPOSIT-BOX,[
+          2
+        ],"2dungeon.zil"],
+      ["LID-1",[
+          2
+        ],"2dungeon.zil"],
+      ["LID-2",[
+          2
+        ],"2dungeon.zil"],
+      [PTABLE,[
+          2
+        ],"2dungeon.zil"],
+      [PCRACK,[
+          2
+        ],"2dungeon.zil"],
+      ["KEYHOLE-1",[
+          2
+        ],"2dungeon.zil"],
+      ["KEYHOLE-2",[
+          2
+        ],"2dungeon.zil"],
+      [KEY,[
+          2
+        ],"2dungeon.zil"],
+      [GAZEBO,[
+          2
+        ],"2dungeon.zil"],
+      [GAZEBO-TABLE,[
+          2
+        ],"2dungeon.zil"],
+      [GOLD-KEY,[
+          2
+        ],"2dungeon.zil"],
+      [RIBBON,[
+          2
+        ],"2dungeon.zil"],
+      [WAND,[
+          2
+        ],"2dungeon.zil"],
+      [GLOBAL-PALANTIR,[
+          2
+        ],"2dungeon.zil"],
+      [RUBBLE,[
+          3
+        ],"3dungeon.zil"],
+      [DEBRIS,[
+          3
+        ],"3dungeon.zil"],
+      [CHASM,[
+          3
+        ],"3dungeon.zil"],
+      [TUNNEL,[
+          3
+        ],"3dungeon.zil"],
+      [EAST-WALL,[
+          3
+        ],"3dungeon.zil"],
+      [SOUTH-WALL,[
+          3
+        ],"3dungeon.zil"],
+      [WEST-WALL,[
+          3
+        ],"3dungeon.zil"],
+      [NORTH-WALL,[
+          3
+        ],"3dungeon.zil"],
+      [CP-SLOT,[
+          3
+        ],"3dungeon.zil"],
+      [CPDOOR,[
+          3
+        ],"3dungeon.zil"],
+      [CPEWL,[
+          3
+        ],"3dungeon.zil"],
+      [CPWWL,[
+          3
+        ],"3dungeon.zil"],
+      [CPSWL,[
+          3
+        ],"3dungeon.zil"],
+      [CPNWL,[
+          3
+        ],"3dungeon.zil"],
+      [RUNES,[
+          3
+        ],"3dungeon.zil"],
+      [T-BAR,[
+          3
+        ],"3dungeon.zil"],
+      [BLACK-PANEL,[
+          3
+        ],"3dungeon.zil"],
+      [COMPASS-ARROW,[
+          3
+        ],"3dungeon.zil"],
+      [DIAL-BUTTON,[
+          3
+        ],"3dungeon.zil"],
+      [GOOD-LOCKED-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [LOCKED-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [LONG-POLE,[
+          3
+        ],"3dungeon.zil"],
+      [MAHOGANY-PANEL,[
+          3
+        ],"3dungeon.zil"],
+      [FLAMING-PIT,[
+          3
+        ],"3dungeon.zil"],
+      [PARAPET-OBJ,[
+          3
+        ],"3dungeon.zil"],
+      [PINE-PANEL,[
+          3
+        ],"3dungeon.zil"],
+      [BEAM,[
+          3
+        ],"3dungeon.zil"],
+      [RED-BUTTON,[
+          3
+        ],"3dungeon.zil"],
+      [RED-PANEL,[
+          3
+        ],"3dungeon.zil"],
+      [SHORT-POLE,[
+          3
+        ],"3dungeon.zil"],
+      [SUNDIAL,[
+          3
+        ],"3dungeon.zil"],
+      [YELLOW-PANEL,[
+          3
+        ],"3dungeon.zil"],
+      [WHITE-PANEL,[
+          3
+        ],"3dungeon.zil"],
+      [WOODEN-BAR,[
+          3
+        ],"3dungeon.zil"],
+      [DUNGEON-PANEL,[
+          3
+        ],"3dungeon.zil"],
+      [DUNGEON-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [CP-HOLE,[
+          3
+        ],"3dungeon.zil"],
+      [VOICES,[
+          3
+        ],"3actions.zil"],
+      [CRYSTALS,[
+          3
+        ],"3actions.zil"],
+      [ROYAL-SEAL,[
+          3
+        ],"3actions.zil"],
+      [TM-BUTTON,[
+          3
+        ],"3actions.zil"],
+      [TM-HOLLOW,[
+          3
+        ],"3actions.zil"],
+      [TM-SEAT,[
+          3
+        ],"3actions.zil"],
+      [TM-DIAL,[
+          3
+        ],"3actions.zil"],
+      [SCEPTRE,[
+          3
+        ],"3actions.zil"],
+      [JEWELLED-KNIFE,[
+          3
+        ],"3actions.zil"],
+      [RING,[
+          3
+        ],"3actions.zil"],
+      [PEDESTAL,[
+          3
+        ],"3actions.zil"],
+      [CAGE,[
+          3
+        ],"3actions.zil"],
+      [TECH-PLAQUE,[
+          3
+        ],"3actions.zil"],
+      [PLAQUE,[
+          3
+        ],"3actions.zil"],
+      [HOOD,[
+          3
+        ],"3actions.zil"],
+      [CLOAK,[
+          3
+        ],"3actions.zil"],
+      [REEDS,[
+          3
+        ],"3actions.zil"],
+      [VIEWING-TABLE,[
+          3
+        ],"3actions.zil"],
+      [STONE-WALL,[
+          3
+        ],"3actions.zil"],
+      [AMULET,[
+          3
+        ],"3actions.zil"],
+      [SAND,[
+          3
+        ],"3actions.zil"],
+      [ALGAE,[
+          3
+        ],"3actions.zil"],
+      [SHINY-OBJECT,[
+          3
+        ],"3actions.zil"],
+      [LEDGE,[
+          3
+        ],"3actions.zil"],
+      [ROPE,[
+          3
+        ],"3actions.zil"],
+      [TREE,[
+          3
+        ],"3actions.zil"],
+      [VALUABLES,[
+          3
+        ],"3actions.zil"],
+      [LADDER,[
+          3
+        ],"3actions.zil"],
+      [COVER,[
+          3
+        ],"3actions.zil"],
+      [VIEW-INDICATOR,[
+          3
+        ],"3actions.zil"],
+      [VIKING-SHIP,[
+          3
+        ],"3actions.zil"],
+      [OCEAN,[
+          3
+        ],"3actions.zil"],
+      [FISH,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,".Y",local,PRINT-CONT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? .Y ,NDESCBIT>>"],
+      [clear,",PRSO",global,ITAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,PRSO ,NDESCBIT>"],
+      [set,",AXE",global,TROLL-FCN,[
+          1
+        ],"1actions.zil","<FSET ,AXE ,NDESCBIT>"],
+      [clear,",AXE",global,TROLL-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,AXE ,NDESCBIT>"],
+      [clear,",ATTIC-TABLE",global,KNIFE-F,[
+          1
+        ],"1actions.zil","<FCLEAR ,ATTIC-TABLE ,NDESCBIT>"],
+      [set,",STILETTO",global,THIEF-VS-ADVENTURER,[
+          1
+        ],"1actions.zil","<FSET ,STILETTO ,NDESCBIT>"],
+      [set,",STILETTO",global,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET ,STILETTO ,NDESCBIT>"],
+      [clear,",STILETTO",global,ROBBER-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,STILETTO ,NDESCBIT>"],
+      [set,",ROPE",global,ROPE-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET ,ROPE ,NDESCBIT>"],
+      [clear,",ROPE",global,ROPE-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,ROPE ,NDESCBIT>"],
+      [clear,".DWEAPON",local,HERO-BLOW,[
+          1
+        ],"1actions.zil","<FCLEAR .DWEAPON ,NDESCBIT>"],
+      [set,",STILETTO",global,RECOVER-STILETTO,[
+          1
+        ],"1actions.zil","<FSET ,STILETTO ,NDESCBIT>"],
+      [set,",PRSO",global,BALLOON-FCN,[
+          2
+        ],"2actions.zil","<FSET ,PRSO ,NDESCBIT>"],
+      [set,",PRSI",global,WIRE-FCN,[
+          2
+        ],"2actions.zil","<FSET ,PRSI ,NDESCBIT>"],
+      [clear,",BTIE-FLAG",global,WIRE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,BTIE-FLAG ,NDESCBIT>"],
+      [set,",ROBOT",global,SPHERE-FCN,[
+          2
+        ],"2actions.zil","<FSET ,ROBOT ,NDESCBIT>)>"],
+      [set,",CAGE",global,SPHERE-FCN,[
+          2
+        ],"2actions.zil","<FSET ,CAGE ,NDESCBIT>"],
+      [clear,",ROBOT",global,ROBOT-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,ROBOT ,NDESCBIT>"],
+      [set,",KEY",global,PCHECK,[
+          2
+        ],"2actions.zil","<FSET ,KEY ,NDESCBIT>)"],
+      [clear,",KEY",global,PCHECK,[
+          2
+        ],"2actions.zil","<FCLEAR ,KEY ,NDESCBIT>)>"],
+      [set,",PLACE-MAT",global,PCHECK,[
+          2
+        ],"2actions.zil","<FSET ,PLACE-MAT ,NDESCBIT>)"],
+      [clear,",PLACE-MAT",global,PCHECK,[
+          2
+        ],"2actions.zil","<FCLEAR ,PLACE-MAT ,NDESCBIT>)>>"],
+      [set,",COLLAR",global,CERBERUS-FCN,[
+          2
+        ],"2actions.zil","<FSET ,COLLAR ,NDESCBIT>"],
+      [clear,",GOLD-KEY",global,I-UNICORN,[
+          2
+        ],"2actions.zil","<FCLEAR ,GOLD-KEY ,NDESCBIT>"],
+      [clear,",PALANTIR-3",global,AQUARIUM-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,PALANTIR-3 ,NDESCBIT>"],
+      [clear,",WAND",global,GENIE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,WAND ,NDESCBIT>"],
+      [clear,",MENHIR",global,GENIE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,MENHIR ,NDESCBIT>"],
+      [set,",SCEPTRE",global,MOVE-JEWELS,[
+          3
+        ],"3actions.zil","<FSET ,SCEPTRE ,NDESCBIT>"],
+      [set,",JEWELLED-KNIFE",global,MOVE-JEWELS,[
+          3
+        ],"3actions.zil","<FSET ,JEWELLED-KNIFE ,NDESCBIT>"],
+      [set,",RING",global,MOVE-JEWELS,[
+          3
+        ],"3actions.zil","<FSET ,RING ,NDESCBIT>)>>"],
+      [clear,",PRSO",global,CROWN-JEWELS-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,PRSO ,NDESCBIT>"],
+      [set,",PRSO",global,CROWN-JEWELS-F,[
+          3
+        ],"3actions.zil","<FSET ,PRSO ,NDESCBIT>"],
+      [clear,",HOOD",global,HOOD-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,HOOD ,NDESCBIT>"],
+      [clear,",CLOAK",global,HOOD-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,CLOAK ,NDESCBIT>)"],
+      [clear,",VALUABLES",global,MAN-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,VALUABLES ,NDESCBIT>"],
+      [clear,",AMULET",global,SHINY-OBJECT-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,AMULET ,NDESCBIT>"]
+    ],[
+
+    ],[
+
+    ]],
+  [NONLANDBIT,[
+      [    owner,    games,    file];
+      [RESERVOIR,[
+          1
+        ],"1dungeon.zil"],
+      [IN-STREAM,[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-1",[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-2",[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-3",[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-4",[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-5",[
+          1
+        ],"1dungeon.zil"],
+      [VOLCANO-BOTTOM,[
+          2
+        ],"2dungeon.zil"],
+      ["VAIR-1",[
+          2
+        ],"2dungeon.zil"],
+      ["VAIR-2",[
+          2
+        ],"2dungeon.zil"],
+      ["VAIR-3",[
+          2
+        ],"2dungeon.zil"],
+      ["VAIR-4",[
+          2
+        ],"2dungeon.zil"],
+      ["LEDGE-1",[
+          2
+        ],"2dungeon.zil"],
+      ["LEDGE-2",[
+          2
+        ],"2dungeon.zil"],
+      [WELL-TOP,[
+          2
+        ],"2dungeon.zil"],
+      [WELL-BOTTOM,[
+          2
+        ],"2dungeon.zil"],
+      [ON-LAKE,[
+          3
+        ],"3actions.zil"],
+      [IN-LAKE,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",HERE",global,V-SHAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","'<FSET? ,HERE ,NONLANDBIT>)"],
+      [test,",HERE",global,V-WALK,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<NOT <FSET? ,HERE ,NONLANDBIT>>>"],
+      [set,",RESERVOIR",global,I-RFILL,[
+          1
+        ],"1actions.zil","<FSET ,RESERVOIR ,NONLANDBIT>"],
+      [clear,",RESERVOIR",global,I-REMPTY,[
+          1
+        ],"1actions.zil","<FCLEAR ,RESERVOIR ,NONLANDBIT>"],
+      [test,",HERE",global,RBOAT-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,HERE ,NONLANDBIT>"],
+      [test,",PRSO",global,POSTS-ROOM-FCN,[
+          2
+        ],"2actions.zil","<COND (<AND <VERB? TAKE> <FSET? ,PRSO ,NONLANDBIT>>"],
+      [set,".F",local,EATME-FCN,[
+          2
+        ],"2actions.zil","<FSET .F ,NONLANDBIT>"],
+      [test,",PRSO",global,CAKE-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,PRSO ,NONLANDBIT>"],
+      [clear,".F",local,CAKE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR .F ,NONLANDBIT>"],
+      [test,",HERE",global,I-WIZARD,[
+          2
+        ],"2actions.zil","(<AND <FSET? ,HERE ,NONLANDBIT>"],
+      [test,",HERE",global,I-WIZARD,[
+          2
+        ],"2actions.zil","(<FSET? ,HERE ,NONLANDBIT>"]
+    ],[
+
+    ],[
+      [    routine,    games,    file,    source];
+      [GO,[
+          1
+        ],"1dungeon.zil","<PUTP ,INFLATED-BOAT ,P?VTYPE ,NONLANDBIT>"],
+      [GO,[
+          2
+        ],"2dungeon.zil","<PUTP ,BALLOON ,P?VTYPE ,NONLANDBIT>"],
+      [GO,[
+          2
+        ],"2dungeon.zil","<PUTP ,BUCKET ,P?VTYPE ,NONLANDBIT>"]
+    ]],
+  [NWALLBIT,[
+      [    owner,    games,    file];
+      ["VAIR-1",[
+          2
+        ],"2dungeon.zil"],
+      ["VAIR-2",[
+          2
+        ],"2dungeon.zil"],
+      ["VAIR-3",[
+          2
+        ],"2dungeon.zil"],
+      ["VAIR-4",[
+          2
+        ],"2dungeon.zil"],
+      [IN-CAGE,[
+          2
+        ],"2dungeon.zil"]
+    ],[
+
+    ],[
+
+    ],[
+
+    ]],
+  [ONBIT,[
+      [    owner,    games,    file];
+      [CANDLES,[
+          1
+        ],"1dungeon.zil"],
+      [TORCH,[
+          1
+        ],"1dungeon.zil"],
+      [WEST-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [STONE-BARROW,[
+          1
+        ],"1dungeon.zil"],
+      [NORTH-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [SOUTH-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [EAST-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-1",[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-2",[
+          1
+        ],"1dungeon.zil"],
+      [MOUNTAINS,[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-3",[
+          1
+        ],"1dungeon.zil"],
+      [PATH,[
+          1
+        ],"1dungeon.zil"],
+      [UP-A-TREE,[
+          1
+        ],"1dungeon.zil"],
+      [GRATING-CLEARING,[
+          1
+        ],"1dungeon.zil"],
+      [CLEARING,[
+          1
+        ],"1dungeon.zil"],
+      [KITCHEN,[
+          1
+        ],"1dungeon.zil"],
+      [LIVING-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [GALLERY,[
+          1
+        ],"1dungeon.zil"],
+      ["MIRROR-ROOM-2",[
+          1
+        ],"1dungeon.zil"],
+      [ENTRANCE-TO-HADES,[
+          1
+        ],"1dungeon.zil"],
+      [LAND-OF-LIVING-DEAD,[
+          1
+        ],"1dungeon.zil"],
+      [NORTH-TEMPLE,[
+          1
+        ],"1dungeon.zil"],
+      [SOUTH-TEMPLE,[
+          1
+        ],"1dungeon.zil"],
+      [DAM-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [DAM-LOBBY,[
+          1
+        ],"1dungeon.zil"],
+      [DAM-BASE,[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-1",[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-5",[
+          1
+        ],"1dungeon.zil"],
+      [SHORE,[
+          1
+        ],"1dungeon.zil"],
+      [ARAGAIN-FALLS,[
+          1
+        ],"1dungeon.zil"],
+      [ON-RAINBOW,[
+          1
+        ],"1dungeon.zil"],
+      [END-OF-RAINBOW,[
+          1
+        ],"1dungeon.zil"],
+      [CANYON-BOTTOM,[
+          1
+        ],"1dungeon.zil"],
+      [CLIFF-MIDDLE,[
+          1
+        ],"1dungeon.zil"],
+      [CANYON-VIEW,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [INSIDE-BARROW,[
+          2
+        ],"2dungeon.zil"],
+      [NARROW-TUNNEL,[
+          2
+        ],"2dungeon.zil"],
+      [FOOT-BRIDGE,[
+          2
+        ],"2dungeon.zil"],
+      [GREAT-CAVERN,[
+          2
+        ],"2dungeon.zil"],
+      [SHALLOW-FORD,[
+          2
+        ],"2dungeon.zil"],
+      [GARDEN-NORTH,[
+          2
+        ],"2dungeon.zil"],
+      [GAZEBO-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [FORMAL-GARDEN,[
+          2
+        ],"2dungeon.zil"],
+      [TOPIARY-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      ["ZORK3",[
+          2
+        ],"2dungeon.zil"],
+      [WORKBENCH-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [PENTAGRAM-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [AQUARIUM-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [IN-AQUARIUM,[
+          2
+        ],"2dungeon.zil"],
+      [SAFE-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [MAGNET-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [MACHINE-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [CAGE-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [IN-CAGE,[
+          2
+        ],"2dungeon.zil"],
+      [TEA-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [POSTS-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [DEPOSITORY,[
+          2
+        ],"2dungeon.zil"],
+      [DREARY-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      ["DEAD-PALANTIR-1",[
+          2
+        ],"2dungeon.zil"],
+      ["DEAD-PALANTIR-2",[
+          2
+        ],"2dungeon.zil"],
+      ["DEAD-PALANTIR-3",[
+          2
+        ],"2dungeon.zil"],
+      ["DEAD-PALANTIR-4",[
+          2
+        ],"2dungeon.zil"],
+      [CP-ANTE,[
+          3
+        ],"3dungeon.zil"],
+      [CP-OUT,[
+          3
+        ],"3dungeon.zil"],
+      [CP,[
+          3
+        ],"3dungeon.zil"],
+      [MRD,[
+          3
+        ],"3dungeon.zil"],
+      [MRG,[
+          3
+        ],"3dungeon.zil"],
+      [MRC,[
+          3
+        ],"3dungeon.zil"],
+      [MRB,[
+          3
+        ],"3dungeon.zil"],
+      [MRA,[
+          3
+        ],"3dungeon.zil"],
+      [MRDE,[
+          3
+        ],"3dungeon.zil"],
+      [MRDW,[
+          3
+        ],"3dungeon.zil"],
+      [MRGE,[
+          3
+        ],"3dungeon.zil"],
+      [MRGW,[
+          3
+        ],"3dungeon.zil"],
+      [MRCE,[
+          3
+        ],"3dungeon.zil"],
+      [MRCW,[
+          3
+        ],"3dungeon.zil"],
+      [MRBE,[
+          3
+        ],"3dungeon.zil"],
+      [MRBW,[
+          3
+        ],"3dungeon.zil"],
+      [MRAE,[
+          3
+        ],"3dungeon.zil"],
+      [MRAW,[
+          3
+        ],"3dungeon.zil"],
+      [IN-MIRROR,[
+          3
+        ],"3dungeon.zil"],
+      [MR-ANTE,[
+          3
+        ],"3dungeon.zil"],
+      [MREYE,[
+          3
+        ],"3dungeon.zil"],
+      [EAST-CORRIDOR,[
+          3
+        ],"3dungeon.zil"],
+      [WEST-CORRIDOR,[
+          3
+        ],"3dungeon.zil"],
+      [SOUTH-CORRIDOR,[
+          3
+        ],"3dungeon.zil"],
+      [BEHIND-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [FRONT-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [NORTH-CORRIDOR,[
+          3
+        ],"3dungeon.zil"],
+      [PARAPET,[
+          3
+        ],"3dungeon.zil"],
+      [CELL,[
+          3
+        ],"3dungeon.zil"],
+      [PRISON-CELL,[
+          3
+        ],"3dungeon.zil"],
+      [GOOD-CELL,[
+          3
+        ],"3dungeon.zil"],
+      [NIRVANA,[
+          3
+        ],"3dungeon.zil"],
+      [ROCKY-ROOM,[
+          3
+        ],"3actions.zil"],
+      [MUSEUM-ENTRANCE,[
+          3
+        ],"3actions.zil"],
+      [JEWEL-ROOM,[
+          3
+        ],"3actions.zil"],
+      [TECH-MUSEUM,[
+          3
+        ],"3actions.zil"],
+      [MID-CP-ANTE,[
+          3
+        ],"3actions.zil"],
+      [MID-CP-OUT,[
+          3
+        ],"3actions.zil"],
+      [MID-MUSEUM-ENTRANCE,[
+          3
+        ],"3actions.zil"],
+      [MID-JEWEL-ROOM,[
+          3
+        ],"3actions.zil"],
+      [MID-TECH-MUSEUM,[
+          3
+        ],"3actions.zil"],
+      [OLD-TECH-MUSEUM,[
+          3
+        ],"3actions.zil"],
+      [OLD-JEWEL-ROOM,[
+          3
+        ],"3actions.zil"],
+      [OLD-MUSEUM-ENTRANCE,[
+          3
+        ],"3actions.zil"],
+      [FLATHEAD-OCEAN,[
+          3
+        ],"3actions.zil"],
+      ["ZORK2-STAIR",[
+          3
+        ],"3actions.zil"],
+      [CLIFF-BASE,[
+          3
+        ],"3actions.zil"],
+      [CLIFF,[
+          3
+        ],"3actions.zil"],
+      [CLIFF-LEDGE,[
+          3
+        ],"3actions.zil"],
+      [LAKE-SHORE,[
+          3
+        ],"3actions.zil"],
+      [AQ-VIEW,[
+          3
+        ],"3actions.zil"],
+      [ON-LAKE,[
+          3
+        ],"3actions.zil"],
+      [IN-LAKE,[
+          3
+        ],"3actions.zil"],
+      [FAR-SHORE,[
+          3
+        ],"3actions.zil"],
+      [VIEW-ROOM,[
+          3
+        ],"3actions.zil"],
+      [TORCH,[
+          3
+        ],"3actions.zil"],
+      [ZORK-IV,[
+          3
+        ],"3actions.zil"],
+      [SOUTH-SHORE,[
+          3
+        ],"3actions.zil"],
+      [KEY-ROOM,[
+          3
+        ],"3actions.zil"],
+      ["AQ-1",[
+          3
+        ],"3actions.zil"],
+      ["AQ-2",[
+          3
+        ],"3actions.zil"],
+      ["AQ-3",[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,".RM",local,"LIT?",[
+          1,
+          2,
+          3
+        ],"gparser.zil","<FSET? .RM ,ONBIT>>"],
+      [set,",PRSO",global,V-ENCHANT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,PRSO ,ONBIT>"],
+      [test,",PRSO",global,V-LAMP-OFF,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? ,PRSO ,ONBIT>>"],
+      [clear,",PRSO",global,V-LAMP-OFF,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,PRSO ,ONBIT>"],
+      [test,",PRSO",global,V-LAMP-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,ONBIT>"],
+      [set,",PRSO",global,V-LAMP-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,PRSO ,ONBIT>"],
+      [clear,",PRSI",global,V-POUR-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,PRSI ,ONBIT>"],
+      [test,".OBJ",local,DESCRIBE-OBJECT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? .OBJ ,ONBIT>"],
+      [set,",GRATING-ROOM",global,GRATE-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET ,GRATING-ROOM ,ONBIT>)"],
+      [clear,",GRATING-ROOM",global,GRATE-FUNCTION,[
+          1
+        ],"1actions.zil","(T <FCLEAR ,GRATING-ROOM ,ONBIT>)>)"],
+      [test,",PRSO",global,TORCH-OBJECT,[
+          1
+        ],"1actions.zil","(<AND <VERB? LAMP-OFF> <FSET? ,PRSO ,ONBIT>>"],
+      [clear,",CANDLES",global,LLD-ROOM,[
+          1
+        ],"1actions.zil","<FCLEAR ,CANDLES ,ONBIT>"],
+      [test,",CANDLES",global,LLD-ROOM,[
+          1
+        ],"1actions.zil","<FSET? ,CANDLES ,ONBIT>"],
+      [test,",HERE",global,BUTTON-F,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,HERE ,ONBIT>"],
+      [clear,",HERE",global,BUTTON-F,[
+          1
+        ],"1actions.zil","<FCLEAR ,HERE ,ONBIT>"],
+      [set,",HERE",global,BUTTON-F,[
+          1
+        ],"1actions.zil","<FSET ,HERE ,ONBIT>"],
+      [test,",LAMP",global,LANTERN,[
+          1
+        ],"1actions.zil","(<FSET? ,LAMP ,ONBIT>"],
+      [set,",MATCH",global,MATCH-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET ,MATCH ,ONBIT>"],
+      [clear,",MATCH",global,MATCH-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,MATCH ,ONBIT>"],
+      [test,",MATCH",global,MATCH-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,MATCH ,ONBIT>"],
+      [clear,",MATCH",global,I-MATCH,[
+          1
+        ],"1actions.zil","<FCLEAR ,MATCH ,ONBIT>"],
+      [clear,".OBJ",local,LIGHT-INT,[
+          1
+        ],"1actions.zil","<FCLEAR .OBJ ,ONBIT>"],
+      [test,",MATCH",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","<FSET? ,MATCH ,ONBIT>>"],
+      [test,",CANDLES",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,CANDLES ,ONBIT>"],
+      [set,",CANDLES",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","<FSET ,CANDLES ,ONBIT>"],
+      [clear,",CANDLES",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,CANDLES ,ONBIT>"],
+      [test,",CANDLES",global,"CAVE2-ROOM",[
+          1
+        ],"1actions.zil","<FSET? ,CANDLES ,ONBIT>>"],
+      [clear,",CANDLES",global,"CAVE2-ROOM",[
+          1
+        ],"1actions.zil","<FCLEAR ,CANDLES ,ONBIT>"],
+      [test,",CANDLES",global,BOOM-ROOM,[
+          1
+        ],"1actions.zil","<FSET? ,CANDLES ,ONBIT>>"],
+      [test,",TORCH",global,BOOM-ROOM,[
+          1
+        ],"1actions.zil","<FSET? ,TORCH ,ONBIT>>"],
+      [test,",MATCH",global,BOOM-ROOM,[
+          1
+        ],"1actions.zil","<FSET? ,MATCH ,ONBIT>>>"],
+      [test,",HERE",global,DEAD-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<NOT <FSET? ,HERE ,ONBIT>>"],
+      [test,".RM",local,I-THIEF,[
+          1
+        ],"1actions.zil","<NOT <FSET? .RM ,ONBIT>>"],
+      [test,".R",local,RANDOMIZE-OBJECTS,[
+          1
+        ],"1actions.zil","<NOT <FSET? .R ,ONBIT>>"],
+      [clear,",MATCH",global,KILL-INTERRUPTS,[
+          1
+        ],"1actions.zil","<FCLEAR ,MATCH ,ONBIT>"],
+      [set,",PRSO",global,BALLOON-BURN,[
+          2
+        ],"2actions.zil","<FSET ,PRSO ,ONBIT>"],
+      [test,",MATCH",global,FUSE-FCN,[
+          2
+        ],"2actions.zil","<FSET? ,MATCH ,ONBIT>>>"],
+      [clear,",HERE",global,CRYPT-ROOM-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,HERE ,ONBIT>"],
+      [set,",HERE",global,CRYPT-ROOM-FCN,[
+          2
+        ],"2actions.zil","<FSET ,HERE ,ONBIT>"],
+      [clear,",CRYPT-ROOM",global,CRYPT-ROOM-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,CRYPT-ROOM ,ONBIT>"],
+      [set,",CRYPT-ROOM",global,CRYPT-ROOM-FCN,[
+          2
+        ],"2actions.zil","<FSET ,CRYPT-ROOM ,ONBIT>)>>"],
+      [set,",MATCH",global,MATCH-FCN,[
+          2
+        ],"2actions.zil","<FSET ,MATCH ,ONBIT>"],
+      [clear,",MATCH",global,MATCH-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,MATCH ,ONBIT>"],
+      [test,",MATCH",global,MATCH-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,MATCH ,ONBIT>"],
+      [clear,",MATCH",global,I-MATCH,[
+          2
+        ],"2actions.zil","<FCLEAR ,MATCH ,ONBIT>>"],
+      [test,",LAMP",global,LANTERN,[
+          2
+        ],"2actions.zil","(<FSET? ,LAMP ,ONBIT>"],
+      [clear,".OBJ",local,LIGHT-INT,[
+          2
+        ],"2actions.zil","<FCLEAR .OBJ ,ONBIT>"],
+      [clear,".OBJ",local,LIGHT-INT,[
+          2
+        ],"2actions.zil","<FCLEAR .OBJ ,ONBIT>)>"],
+      [test,",LAMP",global,LANTERN,[
+          3
+        ],"3actions.zil","(<FSET? ,LAMP ,ONBIT>"],
+      [clear,".OBJ",local,LIGHT-INT,[
+          3
+        ],"3actions.zil","<FCLEAR .OBJ ,ONBIT>"],
+      [clear,".OBJ",local,I-LANTERN,[
+          3
+        ],"3actions.zil","<FCLEAR .OBJ ,ONBIT>)>"],
+      [test,",TORCH",global,TORCH-F,[
+          3
+        ],"3actions.zil","<COND (<FSET? ,TORCH ,ONBIT> <TELL \"It's already lit.\" CR>)"],
+      [test,",TORCH",global,TORCH-F,[
+          3
+        ],"3actions.zil","<COND (<FSET? ,TORCH ,ONBIT>"],
+      [clear,",TORCH",global,TORCH-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,TORCH ,ONBIT>)"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX EXTINGUISH OBJECT (FIND ONBIT)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX PUT OUT OBJECT (FIND ONBIT)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TURN OFF OBJECT (FIND ONBIT)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+      [    routine,    games,    file,    source];
+      [PICK-ONE,[
+          1,
+          2,
+          3
+        ],"gmacros.zil","<FORM FSET? .OBJ ',ONBIT>>>"],
+      ["LIT?",[
+          1,
+          2,
+          3
+        ],"gparser.zil","<SETG P-GWIMBIT ,ONBIT>"]
+    ]],
+  [OPENBIT,[
+      [    owner,    games,    file];
+      [RAISED-BASKET,[
+          1
+        ],"1dungeon.zil"],
+      [ALTAR,[
+          1
+        ],"1dungeon.zil"],
+      [KITCHEN-TABLE,[
+          1
+        ],"1dungeon.zil"],
+      [ATTIC-TABLE,[
+          1
+        ],"1dungeon.zil"],
+      [TOOL-CHEST,[
+          1
+        ],"1dungeon.zil"],
+      [BARROW-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [INFLATED-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [THIEF,[
+          1
+        ],"1dungeon.zil"],
+      [PEDESTAL,[
+          1
+        ],"1dungeon.zil"],
+      [TROLL,[
+          1
+        ],"1dungeon.zil"],
+      [NEST,[
+          1
+        ],"1dungeon.zil"],
+      [BROKEN-EGG,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [UNICORN,[
+          2
+        ],"2dungeon.zil"],
+      [CERBERUS,[
+          2
+        ],"2dungeon.zil"],
+      [WORKBENCH,[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-1",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-2",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-3",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-4",[
+          2
+        ],"2dungeon.zil"],
+      [BROKEN-CASE,[
+          2
+        ],"2dungeon.zil"],
+      [PENTAGRAM,[
+          2
+        ],"2dungeon.zil"],
+      [AQUARIUM,[
+          2
+        ],"2dungeon.zil"],
+      [BALLOON,[
+          2
+        ],"2dungeon.zil"],
+      [BRICK,[
+          2
+        ],"2dungeon.zil"],
+      [SLOT,[
+          2
+        ],"2dungeon.zil"],
+      [ALICE-TABLE,[
+          2
+        ],"2dungeon.zil"],
+      [ROBOT,[
+          2
+        ],"2dungeon.zil"],
+      [BUCKET,[
+          2
+        ],"2dungeon.zil"],
+      [GNOME-OF-ZURICH,[
+          2
+        ],"2dungeon.zil"],
+      ["LID-2",[
+          2
+        ],"2dungeon.zil"],
+      [PTABLE,[
+          2
+        ],"2dungeon.zil"],
+      ["KEYHOLE-1",[
+          2
+        ],"2dungeon.zil"],
+      ["KEYHOLE-2",[
+          2
+        ],"2dungeon.zil"],
+      [GAZEBO-TABLE,[
+          2
+        ],"2dungeon.zil"],
+      [PLACE-MAT,[
+          2
+        ],"2dungeon.zil"],
+      [TEAPOT,[
+          2
+        ],"2dungeon.zil"],
+      [WIZARD,[
+          2
+        ],"2dungeon.zil"],
+      [CP-SLOT,[
+          3
+        ],"3dungeon.zil"],
+      [BEAM,[
+          3
+        ],"3dungeon.zil"],
+      [CLEFT,[
+          3
+        ],"3actions.zil"],
+      [TIME-MACHINE,[
+          3
+        ],"3actions.zil"],
+      [TM-HOLLOW,[
+          3
+        ],"3actions.zil"],
+      [TM-SEAT,[
+          3
+        ],"3actions.zil"],
+      [WOODEN-DOOR,[
+          3
+        ],"3actions.zil"],
+      [PEDESTAL,[
+          3
+        ],"3actions.zil"],
+      [CAGE,[
+          3
+        ],"3actions.zil"],
+      [SHADOW,[
+          3
+        ],"3actions.zil"],
+      [MAN,[
+          3
+        ],"3actions.zil"],
+      [STONE,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",GRATE",global,GRATING-EXIT,[
+          1
+        ],"1dungeon.zil","<COND (<FSET? ,GRATE ,OPENBIT>"],
+      [test,".OBJ",local,SEARCH-LIST,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<OR <FSET? .OBJ ,OPENBIT>"],
+      [test,".L",local,"ACCESSIBLE?",[
+          1,
+          2,
+          3
+        ],"gparser.zil","(<AND <FSET? .L ,OPENBIT>"],
+      [test,",PRSO",global,V-CLOSE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,OPENBIT>"],
+      [clear,",PRSO",global,V-CLOSE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,PRSO ,OPENBIT>"],
+      [test,".NOBJ",local,V-EAT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<NOT <FSET? .NOBJ ,OPENBIT>>"],
+      [test,",PRSO",global,V-LOOK-INSIDE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,OPENBIT>"],
+      [test,",PRSO",global,V-OPEN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,OPENBIT>"],
+      [set,",PRSO",global,V-OPEN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,PRSO ,OPENBIT>"],
+      [set,",PRSO",global,V-OPEN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,PRSO ,OPENBIT>)>)"],
+      [test,",PRSI",global,V-PUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<OR <FSET? ,PRSI ,OPENBIT>"],
+      [test,",PRSI",global,V-PUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? ,PRSI ,OPENBIT>>"],
+      [test,",PRSO",global,V-SHAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,OPENBIT>"],
+      [test,".OBJ",local,"SEE-INSIDE?",[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<OR <FSET? .OBJ ,TRANSBIT> <FSET? .OBJ ,OPENBIT>>>>"],
+      [test,",KITCHEN-WINDOW",global,EAST-HOUSE,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,KITCHEN-WINDOW ,OPENBIT>"],
+      [test,".OBJ",local,OPEN-CLOSE,[
+          1
+        ],"1actions.zil","<COND (<FSET? .OBJ ,OPENBIT>"],
+      [set,".OBJ",local,OPEN-CLOSE,[
+          1
+        ],"1actions.zil","<FSET .OBJ ,OPENBIT>)>"],
+      [clear,".OBJ",local,OPEN-CLOSE,[
+          1
+        ],"1actions.zil","<FCLEAR .OBJ ,OPENBIT>"],
+      [test,",KITCHEN-WINDOW",global,WHITE-HOUSE-F,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,KITCHEN-WINDOW ,OPENBIT>"],
+      [test,",BOTTLE",global,WATER-F,[
+          1
+        ],"1actions.zil","<COND (<NOT <FSET? ,BOTTLE ,OPENBIT>>"],
+      [test,",BOTTLE",global,WATER-F,[
+          1
+        ],"1actions.zil","<NOT <FSET? ,BOTTLE ,OPENBIT>>>"],
+      [test,",KITCHEN-WINDOW",global,KITCHEN-FCN,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,KITCHEN-WINDOW ,OPENBIT>"],
+      [test,",TRAP-DOOR",global,LIVING-ROOM-FCN,[
+          1
+        ],"1actions.zil","<COND (<AND .RUG? <FSET? ,TRAP-DOOR ,OPENBIT>>"],
+      [test,",TRAP-DOOR",global,LIVING-ROOM-FCN,[
+          1
+        ],"1actions.zil","(<FSET? ,TRAP-DOOR ,OPENBIT>"],
+      [test,",TRAP-DOOR",global,TRAP-DOOR-FCN,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,TRAP-DOOR ,OPENBIT>"],
+      [test,",TRAP-DOOR",global,TRAP-DOOR-FCN,[
+          1
+        ],"1actions.zil","<NOT <FSET? ,TRAP-DOOR ,OPENBIT>>>"],
+      [test,",TRAP-DOOR",global,TRAP-DOOR-FCN,[
+          1
+        ],"1actions.zil","(<AND <VERB? CLOSE> <NOT <FSET? ,TRAP-DOOR ,OPENBIT>>>"],
+      [clear,",TRAP-DOOR",global,TRAP-DOOR-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,TRAP-DOOR ,OPENBIT>"],
+      [test,",TRAP-DOOR",global,CELLAR-FCN,[
+          1
+        ],"1actions.zil","<COND (<AND <FSET? ,TRAP-DOOR ,OPENBIT>"],
+      [clear,",TRAP-DOOR",global,CELLAR-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,TRAP-DOOR ,OPENBIT>"],
+      [test,",TRAP-DOOR",global,UP-CHIMNEY-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<NOT <FSET? ,TRAP-DOOR ,OPENBIT>>"],
+      [test,",TRAP-DOOR",global,TRAP-DOOR-EXIT,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,TRAP-DOOR ,OPENBIT>"],
+      [test,",TRAP-DOOR",global,RUG-FCN,[
+          1
+        ],"1actions.zil","<NOT <FSET? ,TRAP-DOOR ,OPENBIT>>>"],
+      [test,",GRATE",global,LEAVES-APPEAR,[
+          1
+        ],"1actions.zil","<COND (<AND <NOT <FSET? ,GRATE ,OPENBIT>>"],
+      [test,",GRATE",global,CLEARING-FCN,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,GRATE ,OPENBIT>"],
+      [test,",GRATE",global,"MAZE-11-FCN",[
+          1
+        ],"1actions.zil","<COND (<FSET? ,GRATE ,OPENBIT>"],
+      [test,",GRATE",global,GRATE-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,GRATE ,OPENBIT>"],
+      [test,",PRSO",global,TUBE-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<AND <FSET? ,PRSO ,OPENBIT>"],
+      [test,",PRSO",global,TUBE-FUNCTION,[
+          1
+        ],"1actions.zil","(<FSET? ,PRSO ,OPENBIT>"],
+      [test,",PRSO",global,BOTTLE-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<AND <FSET? ,PRSO ,OPENBIT> <IN? ,WATER ,PRSO>>"],
+      [set,",BOTTLE",global,CYCLOPS-FCN,[
+          1
+        ],"1actions.zil","<FSET ,BOTTLE ,OPENBIT>"],
+      [set,",EGG",global,DEPOSIT-BOOTY,[
+          1
+        ],"1actions.zil","<FSET ,EGG ,OPENBIT>)>)>"],
+      [test,",MACHINE",global,MACHINE-ROOM-FCN,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,MACHINE ,OPENBIT>"],
+      [test,",MACHINE",global,MACHINE-F,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,MACHINE ,OPENBIT>"],
+      [set,",MACHINE",global,MACHINE-F,[
+          1
+        ],"1actions.zil","<FSET ,MACHINE ,OPENBIT>)"],
+      [set,",MACHINE",global,MACHINE-F,[
+          1
+        ],"1actions.zil","<FSET ,MACHINE ,OPENBIT>)>)"],
+      [clear,",MACHINE",global,MACHINE-F,[
+          1
+        ],"1actions.zil","<FCLEAR ,MACHINE ,OPENBIT>"],
+      [test,",MACHINE",global,MSWITCH-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,MACHINE ,OPENBIT>"],
+      [test,",PRSO",global,EGG-OBJECT,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,PRSO ,OPENBIT>"],
+      [test,".OBJ",local,OPEN-CLOSE,[
+          2
+        ],"2actions.zil","<COND (<FSET? .OBJ ,OPENBIT>"],
+      [set,".OBJ",local,OPEN-CLOSE,[
+          2
+        ],"2actions.zil","<FSET .OBJ ,OPENBIT>)>"],
+      [clear,".OBJ",local,OPEN-CLOSE,[
+          2
+        ],"2actions.zil","<FCLEAR .OBJ ,OPENBIT>"],
+      [test,",RECEPTACLE",global,BALLOON-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,RECEPTACLE ,OPENBIT>"],
+      [set,",RECEPTACLE",global,BALLOON-FCN,[
+          2
+        ],"2actions.zil","<FSET ,RECEPTACLE ,OPENBIT>"],
+      [test,",RECEPTACLE",global,I-BALLOON,[
+          2
+        ],"2actions.zil","<COND (<AND <FSET? ,RECEPTACLE ,OPENBIT> ,BINF-FLAG>"],
+      [set,",RECEPTACLE",global,RISE-AND-SHINE,[
+          2
+        ],"2actions.zil","<FSET ,RECEPTACLE ,OPENBIT>)>)"],
+      [test,",PRSO",global,BCONTENTS,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,PRSO ,OPENBIT> <TELL \"open.\" CR>)"],
+      [set,",SAFE",global,I-FUSE,[
+          2
+        ],"2actions.zil","<FSET ,SAFE ,OPENBIT>"],
+      [test,",PURPLE-BOOK",global,PURPLE-BOOK-FCN,[
+          2
+        ],"2actions.zil","<NOT <FSET? ,PURPLE-BOOK ,OPENBIT>>>"],
+      [test,",CRYPT-DOOR",global,CRYPT-ANTEROOM-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,CRYPT-DOOR ,OPENBIT>"],
+      [test,",CRYPT-DOOR",global,CRYPT-ROOM-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,CRYPT-DOOR ,OPENBIT>"],
+      [test,".LID",local,P-DOOR,[
+          2
+        ],"2actions.zil","<COND (<NOT <FSET? .LID ,OPENBIT>>"],
+      [test,",LID-1",global,PKH-FCN,[
+          2
+        ],"2actions.zil","<COND (<AND <FSET? ,LID-1 ,OPENBIT>"],
+      [test,",LID-2",global,PKH-FCN,[
+          2
+        ],"2actions.zil","<FSET? ,LID-2 ,OPENBIT>"],
+      [test,<PLID>,other,PKH-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? <PLID> ,OPENBIT>"],
+      [test,",PRSO",global,PLID-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,PRSO ,OPENBIT>"],
+      [set,",PRSO",global,PLID-FCN,[
+          2
+        ],"2actions.zil","<FSET ,PRSO ,OPENBIT>)"],
+      [clear,",PRSO",global,PLID-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,PRSO ,OPENBIT>)>)"],
+      [test,",PDOOR",global,PWINDOW-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,PDOOR ,OPENBIT>"],
+      [test,",RIDDLE-DOOR",global,RIDDLE-ROOM-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,RIDDLE-DOOR ,OPENBIT>"],
+      [set,",RIDDLE-DOOR",global,RIDDLE-ROOM-FCN,[
+          2
+        ],"2actions.zil","<FSET ,RIDDLE-DOOR ,OPENBIT>)"],
+      [test,",RIDDLE-DOOR",global,RIDDLE-DOOR-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,RIDDLE-DOOR ,OPENBIT>"],
+      [test,",WIZ-DOOR",global,GUARDIAN-ROOM-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,WIZ-DOOR ,OPENBIT>"],
+      [test,",WIZ-DOOR",global,WORKSHOP-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,WIZ-DOOR ,OPENBIT>"],
+      [test,",PRSO",global,GENIE-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,PRSO ,OPENBIT> <TELL \"looks inside\">)"],
+      [clear,",CELL-DOOR",global,CELL-MOVE,[
+          3
+        ],"3actions.zil","<FCLEAR ,CELL-DOOR ,OPENBIT>"],
+      [clear,",BRONZE-DOOR",global,CELL-MOVE,[
+          3
+        ],"3actions.zil","<FCLEAR ,BRONZE-DOOR ,OPENBIT>"],
+      [test,",CELL-DOOR",global,DIALBUTTON,[
+          3
+        ],"3actions.zil","<SET C <FSET? ,CELL-DOOR ,OPENBIT>>"],
+      [test,",CELL-DOOR",global,CELL-ROOM,[
+          3
+        ],"3actions.zil","<COND (<FSET? ,CELL-DOOR ,OPENBIT>"],
+      [test,".OBJ",local,DPR,[
+          3
+        ],"3actions.zil","<COND (<FSET? .OBJ ,OPENBIT> <TELL \"open.\" CR>)"],
+      [test,",BRONZE-DOOR",global,BRONZE-DOOR-F,[
+          3
+        ],"3actions.zil","<NOT <FSET? ,BRONZE-DOOR ,OPENBIT>>"],
+      [set,",BRONZE-DOOR",global,BRONZE-DOOR-F,[
+          3
+        ],"3actions.zil","<FSET ,BRONZE-DOOR ,OPENBIT>)"],
+      [test,",BRONZE-DOOR",global,BRONZE-DOOR-EXIT,[
+          3
+        ],"3actions.zil","(<FSET? ,BRONZE-DOOR ,OPENBIT>"],
+      [test,",SECRET-DOOR",global,SECRET-DOOR-F,[
+          3
+        ],"3actions.zil","<COND (<AND <VERB? OPEN> <NOT <FSET? ,SECRET-DOOR ,OPENBIT>>>"],
+      [set,",SECRET-DOOR",global,SECRET-DOOR-F,[
+          3
+        ],"3actions.zil","<FSET ,SECRET-DOOR ,OPENBIT>)>>"],
+      [test,",SECRET-DOOR",global,MSTAIRS-F,[
+          3
+        ],"3actions.zil","<COND (<FSET? ,SECRET-DOOR ,OPENBIT>"],
+      [test,".DOOR",local,DDESC,[
+          3
+        ],"3actions.zil","<COND (<FSET? .DOOR ,OPENBIT> <TELL \"open\">)"],
+      [test,",WOODEN-DOOR",global,MUSEUM-ENTRANCE-F,[
+          3
+        ],"3actions.zil","<TELL <COND (<FSET? ,WOODEN-DOOR ,OPENBIT> \"open\")"],
+      [clear,",JEWEL-DOOR",global,TGOTO,[
+          3
+        ],"3actions.zil","<FCLEAR ,JEWEL-DOOR ,OPENBIT>"],
+      [clear,",WOODEN-DOOR",global,TGOTO,[
+          3
+        ],"3actions.zil","<FCLEAR ,WOODEN-DOOR ,OPENBIT>"],
+      [clear,",IRON-DOOR",global,TGOTO,[
+          3
+        ],"3actions.zil","<FCLEAR ,IRON-DOOR ,OPENBIT>"],
+      [clear,",JEWEL-DOOR",global,JEWEL-ROOM-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,JEWEL-DOOR ,OPENBIT>"],
+      [clear,",WOODEN-DOOR",global,JEWEL-ROOM-F,[
+          3
+        ],"3actions.zil","<FCLEAR ,WOODEN-DOOR ,OPENBIT>"],
+      [test,",JEWEL-DOOR",global,JEWEL-DOOR-F,[
+          3
+        ],"3actions.zil","<COND (<FSET? ,JEWEL-DOOR ,OPENBIT>"],
+      [set,",JEWEL-DOOR",global,JEWEL-DOOR-F,[
+          3
+        ],"3actions.zil","<FSET ,JEWEL-DOOR ,OPENBIT>)>)>>"],
+      [set,",CHEST",global,CLIFF-F,[
+          3
+        ],"3actions.zil","<FSET ,CHEST ,OPENBIT>"],
+      [set,",CHEST",global,I-MAN-LIFT,[
+          3
+        ],"3actions.zil","<FSET ,CHEST ,OPENBIT>"],
+      [test,",VIAL",global,VIAL-F,[
+          3
+        ],"3actions.zil","(<AND <VERB? SHAKE> <IN? ,POTION ,VIAL> <FSET? ,VIAL ,OPENBIT>>"],
+      [set,",VIAL",global,VIAL-F,[
+          3
+        ],"3actions.zil","<FSET ,VIAL ,OPENBIT>"]
+    ],[
+
+    ],[
+      [    routine,    games,    file,    source];
+      [V-WALK,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? <SET OBJ <GETB .PT ,DEXITOBJ>> ,OPENBIT>"],
+      [RANDOM-WALK,[
+          2
+        ],"2actions.zil","<FSET? <GETB .TX ,DEXITOBJ> ,OPENBIT>>>"]
+    ]],
+  [READBIT,[
+      [    owner,    games,    file];
+      [BOOK,[
+          1
+        ],"1dungeon.zil"],
+      [ADVERTISEMENT,[
+          1
+        ],"1dungeon.zil"],
+      [MATCH,[
+          1
+        ],"1dungeon.zil"],
+      [PRAYER,[
+          1
+        ],"1dungeon.zil"],
+      [WOODEN-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [MAP,[
+          1
+        ],"1dungeon.zil"],
+      [BOAT-LABEL,[
+          1
+        ],"1dungeon.zil"],
+      [GUIDE,[
+          1
+        ],"1dungeon.zil"],
+      [TUBE,[
+          1
+        ],"1dungeon.zil"],
+      [ENGRAVINGS,[
+          1
+        ],"1dungeon.zil"],
+      [OWNERS-MANUAL,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-MENHIR,[
+          2
+        ],"2dungeon.zil"],
+      [MENHIR,[
+          2
+        ],"2dungeon.zil"],
+      [BAT,[
+          2
+        ],"2dungeon.zil"],
+      [CRYPT,[
+          2
+        ],"2dungeon.zil"],
+      [DEGREE,[
+          2
+        ],"2dungeon.zil"],
+      [WARNING-LABEL,[
+          2
+        ],"2dungeon.zil"],
+      [MATCH,[
+          2
+        ],"2dungeon.zil"],
+      [BALLOON-LABEL,[
+          2
+        ],"2dungeon.zil"],
+      [CARD,[
+          2
+        ],"2dungeon.zil"],
+      [FLASK,[
+          2
+        ],"2dungeon.zil"],
+      [ROBOT-LABEL,[
+          2
+        ],"2dungeon.zil"],
+      [EAT-ME-CAKE,[
+          2
+        ],"2dungeon.zil"],
+      [BLUE-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [ORANGE-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [RED-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [COIN,[
+          2
+        ],"2dungeon.zil"],
+      [STAMP,[
+          2
+        ],"2dungeon.zil"],
+      [GREEN-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [BLUE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [WHITE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [PURPLE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [CANDY,[
+          2
+        ],"2dungeon.zil"],
+      [TOP-ETCHINGS,[
+          2
+        ],"2dungeon.zil"],
+      [BOTTOM-ETCHINGS,[
+          2
+        ],"2dungeon.zil"],
+      [BILLS,[
+          2
+        ],"2dungeon.zil"],
+      [BANK-BROCHURE,[
+          2
+        ],"2dungeon.zil"],
+      [CUBE,[
+          2
+        ],"2dungeon.zil"],
+      [NEWSPAPER,[
+          2
+        ],"2dungeon.zil"],
+      [REPELLENT,[
+          2
+        ],"2dungeon.zil"],
+      [WARNING-NOTE,[
+          3
+        ],"3dungeon.zil"],
+      [LORE-BOOK,[
+          3
+        ],"3dungeon.zil"],
+      [RUNES,[
+          3
+        ],"3dungeon.zil"],
+      [ROYAL-SEAL,[
+          3
+        ],"3actions.zil"],
+      [TECH-PLAQUE,[
+          3
+        ],"3actions.zil"],
+      [PLAQUE,[
+          3
+        ],"3actions.zil"],
+      [REPELLENT,[
+          3
+        ],"3actions.zil"],
+      [VIEW-INDICATOR,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,V-READ,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? ,PRSO ,READBIT>>"],
+      [clear,",PRSO",global,BALLOON-BURN,[
+          2
+        ],"2actions.zil","<FCLEAR ,PRSO ,READBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX READ OBJECT (FIND READBIT) (HELD CARRIED ON-GROUND IN-ROOM TAKE)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX READ FROM OBJECT (FIND READBIT) (HELD CARRIED ON-GROUND IN-ROOM TAKE)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [RLANDBIT,[
+      [    owner,    games,    file];
+      [WEST-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [STONE-BARROW,[
+          1
+        ],"1dungeon.zil"],
+      [NORTH-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [SOUTH-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [EAST-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-1",[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-2",[
+          1
+        ],"1dungeon.zil"],
+      [MOUNTAINS,[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-3",[
+          1
+        ],"1dungeon.zil"],
+      [PATH,[
+          1
+        ],"1dungeon.zil"],
+      [UP-A-TREE,[
+          1
+        ],"1dungeon.zil"],
+      [GRATING-CLEARING,[
+          1
+        ],"1dungeon.zil"],
+      [CLEARING,[
+          1
+        ],"1dungeon.zil"],
+      [KITCHEN,[
+          1
+        ],"1dungeon.zil"],
+      [ATTIC,[
+          1
+        ],"1dungeon.zil"],
+      [LIVING-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [CELLAR,[
+          1
+        ],"1dungeon.zil"],
+      [TROLL-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [EAST-OF-CHASM,[
+          1
+        ],"1dungeon.zil"],
+      [GALLERY,[
+          1
+        ],"1dungeon.zil"],
+      [STUDIO,[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-1",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-2",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-3",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-4",[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-1",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-5",[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-2",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-6",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-7",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-8",[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-3",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-9",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-10",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-11",[
+          1
+        ],"1dungeon.zil"],
+      [GRATING-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-12",[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-4",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-13",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-14",[
+          1
+        ],"1dungeon.zil"],
+      ["MAZE-15",[
+          1
+        ],"1dungeon.zil"],
+      [CYCLOPS-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [STRANGE-PASSAGE,[
+          1
+        ],"1dungeon.zil"],
+      [TREASURE-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [RESERVOIR-SOUTH,[
+          1
+        ],"1dungeon.zil"],
+      [RESERVOIR-NORTH,[
+          1
+        ],"1dungeon.zil"],
+      [STREAM-VIEW,[
+          1
+        ],"1dungeon.zil"],
+      ["MIRROR-ROOM-1",[
+          1
+        ],"1dungeon.zil"],
+      ["MIRROR-ROOM-2",[
+          1
+        ],"1dungeon.zil"],
+      [SMALL-CAVE,[
+          1
+        ],"1dungeon.zil"],
+      [TINY-CAVE,[
+          1
+        ],"1dungeon.zil"],
+      [COLD-PASSAGE,[
+          1
+        ],"1dungeon.zil"],
+      [NARROW-PASSAGE,[
+          1
+        ],"1dungeon.zil"],
+      [WINDING-PASSAGE,[
+          1
+        ],"1dungeon.zil"],
+      [TWISTING-PASSAGE,[
+          1
+        ],"1dungeon.zil"],
+      [ATLANTIS-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [EW-PASSAGE,[
+          1
+        ],"1dungeon.zil"],
+      [ROUND-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [DEEP-CANYON,[
+          1
+        ],"1dungeon.zil"],
+      [DAMP-CAVE,[
+          1
+        ],"1dungeon.zil"],
+      [LOUD-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [NS-PASSAGE,[
+          1
+        ],"1dungeon.zil"],
+      [CHASM-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [ENTRANCE-TO-HADES,[
+          1
+        ],"1dungeon.zil"],
+      [LAND-OF-LIVING-DEAD,[
+          1
+        ],"1dungeon.zil"],
+      [ENGRAVINGS-CAVE,[
+          1
+        ],"1dungeon.zil"],
+      [EGYPT-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [DOME-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [TORCH-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [NORTH-TEMPLE,[
+          1
+        ],"1dungeon.zil"],
+      [SOUTH-TEMPLE,[
+          1
+        ],"1dungeon.zil"],
+      [DAM-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [DAM-LOBBY,[
+          1
+        ],"1dungeon.zil"],
+      [MAINTENANCE-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [DAM-BASE,[
+          1
+        ],"1dungeon.zil"],
+      [WHITE-CLIFFS-NORTH,[
+          1
+        ],"1dungeon.zil"],
+      [WHITE-CLIFFS-SOUTH,[
+          1
+        ],"1dungeon.zil"],
+      [SHORE,[
+          1
+        ],"1dungeon.zil"],
+      [SANDY-BEACH,[
+          1
+        ],"1dungeon.zil"],
+      [SANDY-CAVE,[
+          1
+        ],"1dungeon.zil"],
+      [ARAGAIN-FALLS,[
+          1
+        ],"1dungeon.zil"],
+      [ON-RAINBOW,[
+          1
+        ],"1dungeon.zil"],
+      [END-OF-RAINBOW,[
+          1
+        ],"1dungeon.zil"],
+      [CANYON-BOTTOM,[
+          1
+        ],"1dungeon.zil"],
+      [CLIFF-MIDDLE,[
+          1
+        ],"1dungeon.zil"],
+      [CANYON-VIEW,[
+          1
+        ],"1dungeon.zil"],
+      [MINE-ENTRANCE,[
+          1
+        ],"1dungeon.zil"],
+      [SQUEEKY-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [BAT-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [SHAFT-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [SMELLY-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [GAS-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [LADDER-TOP,[
+          1
+        ],"1dungeon.zil"],
+      [LADDER-BOTTOM,[
+          1
+        ],"1dungeon.zil"],
+      ["DEAD-END-5",[
+          1
+        ],"1dungeon.zil"],
+      [TIMBER-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [LOWER-SHAFT,[
+          1
+        ],"1dungeon.zil"],
+      [MACHINE-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      ["MINE-1",[
+          1
+        ],"1dungeon.zil"],
+      ["MINE-2",[
+          1
+        ],"1dungeon.zil"],
+      ["MINE-3",[
+          1
+        ],"1dungeon.zil"],
+      ["MINE-4",[
+          1
+        ],"1dungeon.zil"],
+      [SLIDE-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [INSIDE-BARROW,[
+          2
+        ],"2dungeon.zil"],
+      [NARROW-TUNNEL,[
+          2
+        ],"2dungeon.zil"],
+      [FOOT-BRIDGE,[
+          2
+        ],"2dungeon.zil"],
+      [GREAT-CAVERN,[
+          2
+        ],"2dungeon.zil"],
+      [SHALLOW-FORD,[
+          2
+        ],"2dungeon.zil"],
+      [DARK-TUNNEL,[
+          2
+        ],"2dungeon.zil"],
+      [GARDEN-NORTH,[
+          2
+        ],"2dungeon.zil"],
+      [GAZEBO-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [FORMAL-GARDEN,[
+          2
+        ],"2dungeon.zil"],
+      [TOPIARY-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [STREAM-PATH,[
+          2
+        ],"2dungeon.zil"],
+      [MARBLE-HALL,[
+          2
+        ],"2dungeon.zil"],
+      [DEEP-FORD,[
+          2
+        ],"2dungeon.zil"],
+      [RAVINE-LEDGE,[
+          2
+        ],"2dungeon.zil"],
+      [LEDGE-TUNNEL,[
+          2
+        ],"2dungeon.zil"],
+      [DRAGON-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [DRAGON-LAIR,[
+          2
+        ],"2dungeon.zil"],
+      [FRESCO-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [STONE-BRIDGE,[
+          2
+        ],"2dungeon.zil"],
+      [COOL-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [GLACIER-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [LAVA-TUBE,[
+          2
+        ],"2dungeon.zil"],
+      [COBWEBBY-CORRIDOR,[
+          2
+        ],"2dungeon.zil"],
+      ["ROOM-8",[
+          2
+        ],"2dungeon.zil"],
+      [MENHIR-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [KENNEL,[
+          2
+        ],"2dungeon.zil"],
+      [STAIRWAY-TOP,[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-1",[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-2",[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-3",[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-4",[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-5",[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-6",[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-7",[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-8",[
+          2
+        ],"2dungeon.zil"],
+      ["DIAMOND-9",[
+          2
+        ],"2dungeon.zil"],
+      [CERBERUS-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [CRYPT-ANTEROOM,[
+          2
+        ],"2dungeon.zil"],
+      [CRYPT-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      ["ZORK3",[
+          2
+        ],"2dungeon.zil"],
+      [GUARDIAN-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [WIZARDS-WORKSHOP,[
+          2
+        ],"2dungeon.zil"],
+      [WORKBENCH-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [TROPHY-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [PENTAGRAM-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [AQUARIUM-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [IN-AQUARIUM,[
+          2
+        ],"2dungeon.zil"],
+      [WIZARDS-QUARTERS,[
+          2
+        ],"2dungeon.zil"],
+      [CAROUSEL-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [RIDDLE-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [PEARL-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [VOLCANO-BOTTOM,[
+          2
+        ],"2dungeon.zil"],
+      ["LEDGE-1",[
+          2
+        ],"2dungeon.zil"],
+      [LIBRARY,[
+          2
+        ],"2dungeon.zil"],
+      [VOLCANO-VIEW,[
+          2
+        ],"2dungeon.zil"],
+      ["LEDGE-2",[
+          2
+        ],"2dungeon.zil"],
+      [SAFE-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [LAVA-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [MAGNET-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [MACHINE-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [CAGE-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [IN-CAGE,[
+          2
+        ],"2dungeon.zil"],
+      [WELL-TOP,[
+          2
+        ],"2dungeon.zil"],
+      [WELL-BOTTOM,[
+          2
+        ],"2dungeon.zil"],
+      [TEA-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [POSTS-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [POOL-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [BANK-ENTRANCE,[
+          2
+        ],"2dungeon.zil"],
+      [TELLER-WEST,[
+          2
+        ],"2dungeon.zil"],
+      [TELLER-EAST,[
+          2
+        ],"2dungeon.zil"],
+      [VIEWING-WEST,[
+          2
+        ],"2dungeon.zil"],
+      [VIEWING-EAST,[
+          2
+        ],"2dungeon.zil"],
+      [SMALL-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [VAULT,[
+          2
+        ],"2dungeon.zil"],
+      [DEPOSITORY,[
+          2
+        ],"2dungeon.zil"],
+      [OFFICE,[
+          2
+        ],"2dungeon.zil"],
+      [DREARY-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      [TINY-ROOM,[
+          2
+        ],"2dungeon.zil"],
+      ["DEAD-PALANTIR-1",[
+          2
+        ],"2dungeon.zil"],
+      ["DEAD-PALANTIR-2",[
+          2
+        ],"2dungeon.zil"],
+      ["DEAD-PALANTIR-3",[
+          2
+        ],"2dungeon.zil"],
+      ["DEAD-PALANTIR-4",[
+          2
+        ],"2dungeon.zil"],
+      [CP-ANTE,[
+          3
+        ],"3dungeon.zil"],
+      [CP-OUT,[
+          3
+        ],"3dungeon.zil"],
+      [CP,[
+          3
+        ],"3dungeon.zil"],
+      [MRD,[
+          3
+        ],"3dungeon.zil"],
+      [MRG,[
+          3
+        ],"3dungeon.zil"],
+      [MRC,[
+          3
+        ],"3dungeon.zil"],
+      [MRB,[
+          3
+        ],"3dungeon.zil"],
+      [MRA,[
+          3
+        ],"3dungeon.zil"],
+      [MRDE,[
+          3
+        ],"3dungeon.zil"],
+      [MRDW,[
+          3
+        ],"3dungeon.zil"],
+      [MRGE,[
+          3
+        ],"3dungeon.zil"],
+      [MRGW,[
+          3
+        ],"3dungeon.zil"],
+      [MRCE,[
+          3
+        ],"3dungeon.zil"],
+      [MRCW,[
+          3
+        ],"3dungeon.zil"],
+      [MRBE,[
+          3
+        ],"3dungeon.zil"],
+      [MRBW,[
+          3
+        ],"3dungeon.zil"],
+      [MRAE,[
+          3
+        ],"3dungeon.zil"],
+      [MRAW,[
+          3
+        ],"3dungeon.zil"],
+      [IN-MIRROR,[
+          3
+        ],"3dungeon.zil"],
+      [MR-ANTE,[
+          3
+        ],"3dungeon.zil"],
+      [MREYE,[
+          3
+        ],"3dungeon.zil"],
+      [MSTAIRS,[
+          3
+        ],"3dungeon.zil"],
+      [DEAD-END,[
+          3
+        ],"3dungeon.zil"],
+      [DAMP-PASSAGE,[
+          3
+        ],"3dungeon.zil"],
+      [EAST-CORRIDOR,[
+          3
+        ],"3dungeon.zil"],
+      [WEST-CORRIDOR,[
+          3
+        ],"3dungeon.zil"],
+      [SOUTH-CORRIDOR,[
+          3
+        ],"3dungeon.zil"],
+      [BEHIND-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [FRONT-DOOR,[
+          3
+        ],"3dungeon.zil"],
+      [NORTH-CORRIDOR,[
+          3
+        ],"3dungeon.zil"],
+      [PARAPET,[
+          3
+        ],"3dungeon.zil"],
+      [CELL,[
+          3
+        ],"3dungeon.zil"],
+      [PRISON-CELL,[
+          3
+        ],"3dungeon.zil"],
+      [GOOD-CELL,[
+          3
+        ],"3dungeon.zil"],
+      [NIRVANA,[
+          3
+        ],"3dungeon.zil"],
+      [TIGHT-SQUEEZE,[
+          3
+        ],"3actions.zil"],
+      [ROCKY-ROOM,[
+          3
+        ],"3actions.zil"],
+      [WIDE-HALL,[
+          3
+        ],"3actions.zil"],
+      [MUSEUM-ANTE,[
+          3
+        ],"3actions.zil"],
+      [MUSEUM-ENTRANCE,[
+          3
+        ],"3actions.zil"],
+      [JEWEL-ROOM,[
+          3
+        ],"3actions.zil"],
+      [TECH-MUSEUM,[
+          3
+        ],"3actions.zil"],
+      [MID-CP-ANTE,[
+          3
+        ],"3actions.zil"],
+      [MID-CP-OUT,[
+          3
+        ],"3actions.zil"],
+      [MID-MUSEUM-ENTRANCE,[
+          3
+        ],"3actions.zil"],
+      [MID-JEWEL-ROOM,[
+          3
+        ],"3actions.zil"],
+      [MID-TECH-MUSEUM,[
+          3
+        ],"3actions.zil"],
+      [OLD-TECH-MUSEUM,[
+          3
+        ],"3actions.zil"],
+      [OLD-JEWEL-ROOM,[
+          3
+        ],"3actions.zil"],
+      [OLD-MUSEUM-ENTRANCE,[
+          3
+        ],"3actions.zil"],
+      [CREEPY-CRAWL,[
+          3
+        ],"3actions.zil"],
+      ["SHADOW-1",[
+          3
+        ],"3actions.zil"],
+      ["SHADOW-2",[
+          3
+        ],"3actions.zil"],
+      ["SHADOW-3",[
+          3
+        ],"3actions.zil"],
+      ["SHADOW-4",[
+          3
+        ],"3actions.zil"],
+      ["SHADOW-5",[
+          3
+        ],"3actions.zil"],
+      ["SHADOW-6",[
+          3
+        ],"3actions.zil"],
+      ["SHADOW-7",[
+          3
+        ],"3actions.zil"],
+      ["SHADOW-8",[
+          3
+        ],"3actions.zil"],
+      [FLATHEAD-OCEAN,[
+          3
+        ],"3actions.zil"],
+      ["ZORK2-STAIR",[
+          3
+        ],"3actions.zil"],
+      [JUNCTION,[
+          3
+        ],"3actions.zil"],
+      [CLEARING,[
+          3
+        ],"3actions.zil"],
+      [SLOPE,[
+          3
+        ],"3actions.zil"],
+      [CLIFF-BASE,[
+          3
+        ],"3actions.zil"],
+      [CLIFF,[
+          3
+        ],"3actions.zil"],
+      [CLIFF-LEDGE,[
+          3
+        ],"3actions.zil"],
+      [FOGGY-ROOM,[
+          3
+        ],"3actions.zil"],
+      [LAKE-SHORE,[
+          3
+        ],"3actions.zil"],
+      [AQ-VIEW,[
+          3
+        ],"3actions.zil"],
+      [ON-LAKE,[
+          3
+        ],"3actions.zil"],
+      [IN-LAKE,[
+          3
+        ],"3actions.zil"],
+      [FAR-SHORE,[
+          3
+        ],"3actions.zil"],
+      [VIEW-ROOM,[
+          3
+        ],"3actions.zil"],
+      [LADDER-TOP,[
+          3
+        ],"3actions.zil"],
+      [LADDER-BOTTOM,[
+          3
+        ],"3actions.zil"],
+      ["DEAD-END-5",[
+          3
+        ],"3actions.zil"],
+      [TIMBER-ROOM,[
+          3
+        ],"3actions.zil"],
+      [LOWER-SHAFT,[
+          3
+        ],"3actions.zil"],
+      [MACHINE-ROOM,[
+          3
+        ],"3actions.zil"],
+      ["ROOM-8",[
+          3
+        ],"3actions.zil"],
+      [ZORK-IV,[
+          3
+        ],"3actions.zil"],
+      [SOUTH-SHORE,[
+          3
+        ],"3actions.zil"],
+      ["DARK-1",[
+          3
+        ],"3actions.zil"],
+      ["DARK-2",[
+          3
+        ],"3actions.zil"],
+      [KEY-ROOM,[
+          3
+        ],"3actions.zil"],
+      ["AQ-1",[
+          3
+        ],"3actions.zil"],
+      ["AQ-2",[
+          3
+        ],"3actions.zil"],
+      ["AQ-3",[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",HERE",global,V-DISEMBARK,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,HERE ,RLANDBIT>"],
+      [test,",HERE",global,V-SHAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","'<NOT <FSET? ,HERE ,RLANDBIT>>)>"],
+      [test,",HERE",global,SHAKE-LOOP,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<NOT <FSET? ,HERE ,RLANDBIT>>"],
+      [test,".RM",local,GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","\"AUX\" (LB <FSET? .RM ,RLANDBIT>) (WLOC <LOC ,WINNER>)"],
+      [test,",HERE",global,GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<AND <FSET? ,HERE ,RLANDBIT>"],
+      [test,",HERE",global,GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<NOT <FSET? ,HERE ,RLANDBIT>>"],
+      [clear,",RESERVOIR",global,I-RFILL,[
+          1
+        ],"1actions.zil","<FCLEAR ,RESERVOIR ,RLANDBIT>"],
+      [set,",RESERVOIR",global,I-REMPTY,[
+          1
+        ],"1actions.zil","<FSET ,RESERVOIR ,RLANDBIT>"],
+      [test,".RM",local,I-THIEF,[
+          1
+        ],"1actions.zil","<FSET? .RM ,RLANDBIT>>"],
+      [test,".R",local,RANDOMIZE-OBJECTS,[
+          1
+        ],"1actions.zil","<COND (<AND <FSET? .R ,RLANDBIT>"]
+    ],[
+
+    ],[
+      [    routine,    games,    file,    source];
+      [GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<NOT <EQUAL? .AV ,RLANDBIT>>"]
+    ]],
+  [RMUNGBIT,[
+      [    owner,    games,    file];
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,".RM",local,GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? .RM ,RMUNGBIT>"],
+      [set,".RM",local,MUNG-ROOM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET .RM ,RMUNGBIT>"],
+      [test,",LAMP",global,LANTERN,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,LAMP ,RMUNGBIT>"],
+      [set,".OBJ",local,LIGHT-INT,[
+          1
+        ],"1actions.zil","<FSET .OBJ ,RMUNGBIT>)>"],
+      [test,",CANDLES",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,CANDLES ,RMUNGBIT>"],
+      [test,",SAFE-ROOM",global,LEDGE-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,SAFE-ROOM ,RMUNGBIT>"],
+      [test,",LAMP",global,LANTERN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,LAMP ,RMUNGBIT>"],
+      [set,".OBJ",local,LIGHT-INT,[
+          2
+        ],"2actions.zil","<FSET .OBJ ,RMUNGBIT>)>"],
+      [set,".OBJ",local,LIGHT-INT,[
+          2
+        ],"2actions.zil","<FSET .OBJ ,RMUNGBIT>"],
+      [test,",GAZEBO-ROOM",global,I-PRINCESS,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,GAZEBO-ROOM ,RMUNGBIT>"],
+      [test,",LAMP",global,I-WIZARD,[
+          2
+        ],"2actions.zil","<FSET? ,LAMP ,RMUNGBIT>"],
+      [set,".OBJ",local,LIGHT-INT,[
+          3
+        ],"3actions.zil","<FSET .OBJ ,RMUNGBIT>)>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX CLIMB UP OBJECT (FIND RMUNGBIT) = V-CLIMB-UP>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX CLIMB DOWN OBJECT (FIND RMUNGBIT) = V-CLIMB-DOWN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX LOOK AROUND OBJECT (FIND RMUNGBIT) = V-LOOK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX LOOK UP OBJECT (FIND RMUNGBIT) = V-LOOK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX LOOK DOWN OBJECT (FIND RMUNGBIT) = V-LOOK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX STAND UP OBJECT (FIND RMUNGBIT) = V-STAND>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TAKE OUT OBJECT (FIND RMUNGBIT) (ON-GROUND IN-ROOM) = V-DISEMBARK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TAKE UP OBJECT (FIND RMUNGBIT) = V-STAND>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["WITH OBJECT (FIND RMUNGBIT) = V-TURN PRE-TURN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+      [    routine,    games,    file,    source];
+      [GWIM,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<COND (<EQUAL? .GBIT ,RMUNGBIT>"],
+      [BALLOON-FCN,[
+          2
+        ],"2actions.zil",",RMUNGBIT>>"]
+    ]],
+  [SACREDBIT,[
+      [    owner,    games,    file];
+      [TOOL-CHEST,[
+          1
+        ],"1dungeon.zil"],
+      [COFFIN,[
+          1
+        ],"1dungeon.zil"],
+      [BAR,[
+          1
+        ],"1dungeon.zil"],
+      [PRAYER,[
+          1
+        ],"1dungeon.zil"],
+      [ROPE,[
+          1
+        ],"1dungeon.zil"],
+      [ENGRAVINGS,[
+          1
+        ],"1dungeon.zil"],
+      [WEST-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [STONE-BARROW,[
+          1
+        ],"1dungeon.zil"],
+      [NORTH-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [SOUTH-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      [EAST-OF-HOUSE,[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-1",[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-2",[
+          1
+        ],"1dungeon.zil"],
+      [MOUNTAINS,[
+          1
+        ],"1dungeon.zil"],
+      ["FOREST-3",[
+          1
+        ],"1dungeon.zil"],
+      [PATH,[
+          1
+        ],"1dungeon.zil"],
+      [UP-A-TREE,[
+          1
+        ],"1dungeon.zil"],
+      [GRATING-CLEARING,[
+          1
+        ],"1dungeon.zil"],
+      [CLEARING,[
+          1
+        ],"1dungeon.zil"],
+      [KITCHEN,[
+          1
+        ],"1dungeon.zil"],
+      [ATTIC,[
+          1
+        ],"1dungeon.zil"],
+      [LIVING-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [NORTH-TEMPLE,[
+          1
+        ],"1dungeon.zil"],
+      [SOUTH-TEMPLE,[
+          1
+        ],"1dungeon.zil"],
+      [DAM-BASE,[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-1",[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-2",[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-3",[
+          1
+        ],"1dungeon.zil"],
+      [WHITE-CLIFFS-NORTH,[
+          1
+        ],"1dungeon.zil"],
+      [WHITE-CLIFFS-SOUTH,[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-4",[
+          1
+        ],"1dungeon.zil"],
+      ["RIVER-5",[
+          1
+        ],"1dungeon.zil"],
+      [SHORE,[
+          1
+        ],"1dungeon.zil"],
+      [SANDY-BEACH,[
+          1
+        ],"1dungeon.zil"],
+      [ARAGAIN-FALLS,[
+          1
+        ],"1dungeon.zil"],
+      [ON-RAINBOW,[
+          1
+        ],"1dungeon.zil"],
+      [CANYON-BOTTOM,[
+          1
+        ],"1dungeon.zil"],
+      [CLIFF-MIDDLE,[
+          1
+        ],"1dungeon.zil"],
+      [CANYON-VIEW,[
+          1
+        ],"1dungeon.zil"],
+      [BAT-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [GAS-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [TIMBER-ROOM,[
+          1
+        ],"1dungeon.zil"],
+      [LOWER-SHAFT,[
+          1
+        ],"1dungeon.zil"],
+      [ADVENTURER,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [clear,",BAR",global,LOUD-ROOM-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,BAR ,SACREDBIT>"],
+      [test,".RM",local,I-THIEF,[
+          1
+        ],"1actions.zil","<COND (<AND <NOT <FSET? .RM ,SACREDBIT>>"],
+      [test,".X",local,STEAL-JUNK,[
+          1
+        ],"1actions.zil","<NOT <FSET? .X ,SACREDBIT>>"],
+      [test,".X",local,ROB,[
+          1
+        ],"1actions.zil","<NOT <FSET? .X ,SACREDBIT>>"]
+    ],[
+
+    ],[
+
+    ]],
+  [SEARCHBIT,[
+      [    owner,    games,    file];
+      [TROPHY-CASE,[
+          1
+        ],"1dungeon.zil"],
+      [COFFIN,[
+          1
+        ],"1dungeon.zil"],
+      [INFLATED-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [NEST,[
+          1
+        ],"1dungeon.zil"],
+      [EGG,[
+          1
+        ],"1dungeon.zil"],
+      [CANARY,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [BRICK,[
+          2
+        ],"2dungeon.zil"],
+      [PURPLE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [RECEPTACLE,[
+          2
+        ],"2dungeon.zil"],
+      ["KEYHOLE-1",[
+          2
+        ],"2dungeon.zil"],
+      ["KEYHOLE-2",[
+          2
+        ],"2dungeon.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,".OBJ",local,SEARCH-LIST,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<FSET? .OBJ ,SEARCHBIT>"],
+      [test,".OBJ",local,SEARCH-LIST,[
+          1,
+          2,
+          3
+        ],"gparser.zil","(<FSET? .OBJ ,SEARCHBIT>"]
+    ],[
+
+    ],[
+
+    ]],
+  [STAGGERED,[
+      [    owner,    games,    file];
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [STATUETTE,[
+          2
+        ],"2dungeon.zil"],
+      [COLLAR,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-4",[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-3",[
+          2
+        ],"2dungeon.zil"],
+      [CROWN,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-1",[
+          2
+        ],"2dungeon.zil"],
+      [VIOLIN,[
+          2
+        ],"2dungeon.zil"],
+      [PEARL,[
+          2
+        ],"2dungeon.zil"],
+      [COIN,[
+          2
+        ],"2dungeon.zil"],
+      [STAMP,[
+          2
+        ],"2dungeon.zil"],
+      [RUBY,[
+          2
+        ],"2dungeon.zil"],
+      [CANDY,[
+          2
+        ],"2dungeon.zil"],
+      [BILLS,[
+          2
+        ],"2dungeon.zil"],
+      [PORTRAIT,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-2",[
+          2
+        ],"2dungeon.zil"],
+      [GOLD-KEY,[
+          2
+        ],"2dungeon.zil"],
+      [WAND,[
+          2
+        ],"2dungeon.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [clear,",WINNER",global,VILLAIN-BLOW,[
+          1
+        ],"1actions.zil","<FCLEAR ,WINNER ,STAGGERED>"],
+      [test,".VILLAIN",local,VILLAIN-BLOW,[
+          1
+        ],"1actions.zil","<COND (<FSET? .VILLAIN ,STAGGERED>"],
+      [clear,".VILLAIN",local,VILLAIN-BLOW,[
+          1
+        ],"1actions.zil","<FCLEAR .VILLAIN ,STAGGERED>"],
+      [set,",WINNER",global,VILLAIN-BLOW,[
+          1
+        ],"1actions.zil","(<EQUAL? .RES ,STAGGER> <FSET ,WINNER ,STAGGERED>)"],
+      [test,",WINNER",global,HERO-BLOW,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,WINNER ,STAGGERED>"],
+      [clear,",WINNER",global,HERO-BLOW,[
+          1
+        ],"1actions.zil","<FCLEAR ,WINNER ,STAGGERED>"],
+      [set,",PRSO",global,HERO-BLOW,[
+          1
+        ],"1actions.zil","(<EQUAL? .RES ,STAGGER> <FSET ,PRSO ,STAGGERED>)"],
+      [clear,",WINNER",global,I-FIGHT,[
+          1
+        ],"1actions.zil","<FCLEAR ,WINNER ,STAGGERED>"],
+      [clear,".O",local,I-FIGHT,[
+          1
+        ],"1actions.zil","<FCLEAR .O ,STAGGERED>"],
+      [test,".F",local,RANDOMIZE-OBJECTS,[
+          2
+        ],"2actions.zil","(<FSET? .F ,STAGGERED>"]
+    ],[
+
+    ],[
+
+    ]],
+  [SURFACEBIT,[
+      [    owner,    games,    file];
+      [ALTAR,[
+          1
+        ],"1dungeon.zil"],
+      [KITCHEN-TABLE,[
+          1
+        ],"1dungeon.zil"],
+      [ATTIC-TABLE,[
+          1
+        ],"1dungeon.zil"],
+      [PEDESTAL,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [WORKBENCH,[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-1",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-2",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-3",[
+          2
+        ],"2dungeon.zil"],
+      ["STAND-4",[
+          2
+        ],"2dungeon.zil"],
+      [PENTAGRAM,[
+          2
+        ],"2dungeon.zil"],
+      [ALICE-TABLE,[
+          2
+        ],"2dungeon.zil"],
+      [PTABLE,[
+          2
+        ],"2dungeon.zil"],
+      [GAZEBO-TABLE,[
+          2
+        ],"2dungeon.zil"],
+      [PLACE-MAT,[
+          2
+        ],"2dungeon.zil"],
+      [TM-SEAT,[
+          3
+        ],"3actions.zil"],
+      [PEDESTAL,[
+          3
+        ],"3actions.zil"],
+      [CAGE,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,".OBJ",local,SEARCH-LIST,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<FSET? .OBJ ,SURFACEBIT>>"],
+      [test,".OBJ",local,SEARCH-LIST,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<COND (<FSET? .OBJ ,SURFACEBIT>"],
+      [test,",PRSO",global,V-CLOSE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<AND <NOT <FSET? ,PRSO ,SURFACEBIT>>"],
+      [test,".L",local,V-FIND,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? .L ,SURFACEBIT>"],
+      [test,",PRSO",global,V-LOOK-INSIDE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","'(<FSET? ,PRSO ,SURFACEBIT>"],
+      [test,",PRSO",global,V-LOOK-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,SURFACEBIT>"],
+      [test,",PRSI",global,V-PUT-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSI ,SURFACEBIT>"],
+      [test,".OBJ",local,FIRSTER,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? .OBJ ,SURFACEBIT>"],
+      [test,",PRSI",global,V-INFLATE,[
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSI ,SURFACEBIT>"]
+    ],[
+
+    ],[
+      [    routine,    games,    file,    source];
+      ["MAIN-LOOP-1",[
+          1,
+          2,
+          3
+        ],"gmain.zil","<NOT <FSET? <LOC .O> ,SURFACEBIT>>>"]
+    ]],
+  [TAKEBIT,[
+      [    owner,    games,    file];
+      [WATER,[
+          1
+        ],"1dungeon.zil"],
+      [SKULL,[
+          1
+        ],"1dungeon.zil"],
+      [LUNCH,[
+          1
+        ],"1dungeon.zil"],
+      [BELL,[
+          1
+        ],"1dungeon.zil"],
+      [AXE,[
+          1
+        ],"1dungeon.zil"],
+      [BOOK,[
+          1
+        ],"1dungeon.zil"],
+      [BROKEN-LAMP,[
+          1
+        ],"1dungeon.zil"],
+      [SCEPTRE,[
+          1
+        ],"1dungeon.zil"],
+      [TIMBERS,[
+          1
+        ],"1dungeon.zil"],
+      [SANDWICH-BAG,[
+          1
+        ],"1dungeon.zil"],
+      [CHALICE,[
+          1
+        ],"1dungeon.zil"],
+      [GARLIC,[
+          1
+        ],"1dungeon.zil"],
+      [TRIDENT,[
+          1
+        ],"1dungeon.zil"],
+      [BOTTLE,[
+          1
+        ],"1dungeon.zil"],
+      [COFFIN,[
+          1
+        ],"1dungeon.zil"],
+      [PUMP,[
+          1
+        ],"1dungeon.zil"],
+      [DIAMOND,[
+          1
+        ],"1dungeon.zil"],
+      [JADE,[
+          1
+        ],"1dungeon.zil"],
+      [KNIFE,[
+          1
+        ],"1dungeon.zil"],
+      [BURNED-OUT-LANTERN,[
+          1
+        ],"1dungeon.zil"],
+      [BAG-OF-COINS,[
+          1
+        ],"1dungeon.zil"],
+      [LAMP,[
+          1
+        ],"1dungeon.zil"],
+      [EMERALD,[
+          1
+        ],"1dungeon.zil"],
+      [ADVERTISEMENT,[
+          1
+        ],"1dungeon.zil"],
+      [INFLATED-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [MATCH,[
+          1
+        ],"1dungeon.zil"],
+      [PAINTING,[
+          1
+        ],"1dungeon.zil"],
+      [CANDLES,[
+          1
+        ],"1dungeon.zil"],
+      [GUNK,[
+          1
+        ],"1dungeon.zil"],
+      [LEAVES,[
+          1
+        ],"1dungeon.zil"],
+      [PUNCTURED-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [INFLATABLE-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [BAR,[
+          1
+        ],"1dungeon.zil"],
+      [POT-OF-GOLD,[
+          1
+        ],"1dungeon.zil"],
+      [BUOY,[
+          1
+        ],"1dungeon.zil"],
+      [ROPE,[
+          1
+        ],"1dungeon.zil"],
+      [RUSTY-KNIFE,[
+          1
+        ],"1dungeon.zil"],
+      [BRACELET,[
+          1
+        ],"1dungeon.zil"],
+      [SCREWDRIVER,[
+          1
+        ],"1dungeon.zil"],
+      [KEYS,[
+          1
+        ],"1dungeon.zil"],
+      [SHOVEL,[
+          1
+        ],"1dungeon.zil"],
+      [COAL,[
+          1
+        ],"1dungeon.zil"],
+      [SCARAB,[
+          1
+        ],"1dungeon.zil"],
+      [STILETTO,[
+          1
+        ],"1dungeon.zil"],
+      [SWORD,[
+          1
+        ],"1dungeon.zil"],
+      [MAP,[
+          1
+        ],"1dungeon.zil"],
+      [BOAT-LABEL,[
+          1
+        ],"1dungeon.zil"],
+      [TORCH,[
+          1
+        ],"1dungeon.zil"],
+      [GUIDE,[
+          1
+        ],"1dungeon.zil"],
+      [TRUNK,[
+          1
+        ],"1dungeon.zil"],
+      [TUBE,[
+          1
+        ],"1dungeon.zil"],
+      [PUTTY,[
+          1
+        ],"1dungeon.zil"],
+      [OWNERS-MANUAL,[
+          1
+        ],"1dungeon.zil"],
+      [WRENCH,[
+          1
+        ],"1dungeon.zil"],
+      [NEST,[
+          1
+        ],"1dungeon.zil"],
+      [EGG,[
+          1
+        ],"1dungeon.zil"],
+      [BROKEN-EGG,[
+          1
+        ],"1dungeon.zil"],
+      [BAUBLE,[
+          1
+        ],"1dungeon.zil"],
+      [CANARY,[
+          1
+        ],"1dungeon.zil"],
+      [BROKEN-CANARY,[
+          1
+        ],"1dungeon.zil"],
+      [CHEST,[
+          2
+        ],"2dungeon.zil"],
+      [STATUETTE,[
+          2
+        ],"2dungeon.zil"],
+      [COLLAR,[
+          2
+        ],"2dungeon.zil"],
+      [BAT,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-4",[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-3",[
+          2
+        ],"2dungeon.zil"],
+      [DEAD-SERPENT,[
+          2
+        ],"2dungeon.zil"],
+      [MATCH,[
+          2
+        ],"2dungeon.zil"],
+      [BALLOON-LABEL,[
+          2
+        ],"2dungeon.zil"],
+      [BRICK,[
+          2
+        ],"2dungeon.zil"],
+      [CARD,[
+          2
+        ],"2dungeon.zil"],
+      [CROWN,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-1",[
+          2
+        ],"2dungeon.zil"],
+      [VIOLIN,[
+          2
+        ],"2dungeon.zil"],
+      [FLASK,[
+          2
+        ],"2dungeon.zil"],
+      [ROBOT-LABEL,[
+          2
+        ],"2dungeon.zil"],
+      [LAMP,[
+          2
+        ],"2dungeon.zil"],
+      [BROKEN-LAMP,[
+          2
+        ],"2dungeon.zil"],
+      [MANGLED-CAGE,[
+          2
+        ],"2dungeon.zil"],
+      [PEARL,[
+          2
+        ],"2dungeon.zil"],
+      [EAT-ME-CAKE,[
+          2
+        ],"2dungeon.zil"],
+      [BLUE-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [ORANGE-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [RED-ICING,[
+          2
+        ],"2dungeon.zil"],
+      [COIN,[
+          2
+        ],"2dungeon.zil"],
+      [STAMP,[
+          2
+        ],"2dungeon.zil"],
+      [GREEN-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [BLUE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [WHITE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [PURPLE-BOOK,[
+          2
+        ],"2dungeon.zil"],
+      [RUBY,[
+          2
+        ],"2dungeon.zil"],
+      [IRON-BOX,[
+          2
+        ],"2dungeon.zil"],
+      [CANDY,[
+          2
+        ],"2dungeon.zil"],
+      [FUSE,[
+          2
+        ],"2dungeon.zil"],
+      [BILLS,[
+          2
+        ],"2dungeon.zil"],
+      [PORTRAIT,[
+          2
+        ],"2dungeon.zil"],
+      [BANK-BROCHURE,[
+          2
+        ],"2dungeon.zil"],
+      [DEPOSIT-BOX,[
+          2
+        ],"2dungeon.zil"],
+      [LETTER-OPENER,[
+          2
+        ],"2dungeon.zil"],
+      [KEY,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-2",[
+          2
+        ],"2dungeon.zil"],
+      [NEWSPAPER,[
+          2
+        ],"2dungeon.zil"],
+      [PLACE-MAT,[
+          2
+        ],"2dungeon.zil"],
+      [TEAPOT,[
+          2
+        ],"2dungeon.zil"],
+      [WATER,[
+          2
+        ],"2dungeon.zil"],
+      [SALTY-WATER,[
+          2
+        ],"2dungeon.zil"],
+      [GOLD-KEY,[
+          2
+        ],"2dungeon.zil"],
+      [ROSE,[
+          2
+        ],"2dungeon.zil"],
+      [WAND,[
+          2
+        ],"2dungeon.zil"],
+      [SWORD,[
+          2
+        ],"2dungeon.zil"],
+      [REPELLENT,[
+          2
+        ],"2dungeon.zil"],
+      [WATER,[
+          3
+        ],"3dungeon.zil"],
+      [BROKEN-LAMP,[
+          3
+        ],"3dungeon.zil"],
+      [LAMP,[
+          3
+        ],"3dungeon.zil"],
+      [SWORD,[
+          3
+        ],"3dungeon.zil"],
+      [WARNING-NOTE,[
+          3
+        ],"3dungeon.zil"],
+      [LORE-BOOK,[
+          3
+        ],"3dungeon.zil"],
+      [SCEPTRE,[
+          3
+        ],"3actions.zil"],
+      [JEWELLED-KNIFE,[
+          3
+        ],"3actions.zil"],
+      [RING,[
+          3
+        ],"3actions.zil"],
+      [HOOD,[
+          3
+        ],"3actions.zil"],
+      [CLOAK,[
+          3
+        ],"3actions.zil"],
+      [TORCH,[
+          3
+        ],"3actions.zil"],
+      [FRIED-TORCH,[
+          3
+        ],"3actions.zil"],
+      [AMULET,[
+          3
+        ],"3actions.zil"],
+      [FRIED-LAMP,[
+          3
+        ],"3actions.zil"],
+      [WAYBREAD,[
+          3
+        ],"3actions.zil"],
+      [STAFF,[
+          3
+        ],"3actions.zil"],
+      [BROKEN-STAFF,[
+          3
+        ],"3actions.zil"],
+      [CHEST,[
+          3
+        ],"3actions.zil"],
+      [VALUABLES,[
+          3
+        ],"3actions.zil"],
+      [TIMBERS,[
+          3
+        ],"3actions.zil"],
+      [REPELLENT,[
+          3
+        ],"3actions.zil"],
+      [KEY,[
+          3
+        ],"3actions.zil"],
+      [VIAL,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,".O",local,"MAIN-LOOP-1",[
+          1,
+          2,
+          3
+        ],"gmain.zil","<NOT <OR <FSET? .O ,TAKEBIT>"],
+      [test,",PRSO",global,V-ENCHANT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,TAKEBIT>"],
+      [test,",PRSO",global,V-ENCHANT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? ,PRSO ,TAKEBIT>>"],
+      [test,",PRSO",global,V-MOVE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,TAKEBIT>"],
+      [test,",PRSO",global,V-SHAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<NOT <FSET? ,PRSO ,TAKEBIT>>"],
+      [test,",PRSO",global,V-THROUGH,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<OR .OBJ <NOT <FSET? ,PRSO ,TAKEBIT>>>"],
+      [test,",PRSO",global,ITAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<NOT <FSET? ,PRSO ,TAKEBIT>>"],
+      [test,".X",local,ROB-MAZE,[
+          1
+        ],"1actions.zil","<COND (<AND <FSET? .X ,TAKEBIT>"],
+      [test,".OBJ",local,SLIDER,[
+          1
+        ],"1actions.zil","<COND (<FSET? .OBJ ,TAKEBIT>"],
+      [test,".X",local,STEAL-JUNK,[
+          1
+        ],"1actions.zil","<FSET? .X ,TAKEBIT>"],
+      [clear,",PRSO",global,BALLOON-BURN,[
+          2
+        ],"2actions.zil","<FCLEAR ,PRSO ,TAKEBIT>"],
+      [test,".F",local,I-FUSE,[
+          2
+        ],"2actions.zil","<COND (<FSET? .F ,TAKEBIT>"],
+      [test,".F",local,EATME-FCN,[
+          2
+        ],"2actions.zil","<FSET? .F ,TAKEBIT>>"],
+      [test,".F",local,CAKE-FCN,[
+          2
+        ],"2actions.zil","<FSET? .F ,TAKEBIT>>"],
+      [set,",PALANTIR-1",global,ROBOT-FCN,[
+          2
+        ],"2actions.zil","<FSET ,PALANTIR-1 ,TAKEBIT>"],
+      [test,",PRSO",global,WELL-FCN,[
+          2
+        ],"2actions.zil","<COND (<AND <FSET? ,PRSO ,TAKEBIT> <VERB? THROW PUT DROP>>"],
+      [test,",PRSO",global,GENIE-FCN,[
+          2
+        ],"2actions.zil","(<FSET? ,PRSO ,TAKEBIT>"],
+      [clear,",MENHIR",global,GENIE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR ,MENHIR ,TAKEBIT>"],
+      [test,",PRSO",global,IN-LAKE-F,[
+          3
+        ],"3actions.zil","(<NOT <FSET? ,PRSO ,TAKEBIT>>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX PICK UP	OBJECT (FIND TAKEBIT) (ON-GROUND MANY) = V-TAKE PRE-TAKE>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TAKE OBJECT (FIND TAKEBIT) (ON-GROUND IN-ROOM MANY) = V-TAKE PRE-TAKE>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TAKE OBJECT (FIND TAKEBIT) (CARRIED IN-ROOM MANY)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TAKE OBJECT (FIND TAKEBIT) (IN-ROOM CARRIED MANY)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [TOOLBIT,[
+      [    owner,    games,    file];
+      [PUMP,[
+          1
+        ],"1dungeon.zil"],
+      [RUSTY-KNIFE,[
+          1
+        ],"1dungeon.zil"],
+      [SCREWDRIVER,[
+          1
+        ],"1dungeon.zil"],
+      [KEYS,[
+          1
+        ],"1dungeon.zil"],
+      [SHOVEL,[
+          1
+        ],"1dungeon.zil"],
+      [PUTTY,[
+          1
+        ],"1dungeon.zil"],
+      [WRENCH,[
+          1
+        ],"1dungeon.zil"],
+      [INTNUM,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [HANDS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [LETTER-OPENER,[
+          2
+        ],"2dungeon.zil"],
+      [KEY,[
+          2
+        ],"2dungeon.zil"],
+      [INTDIR,[
+          3
+        ],"3dungeon.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSI",global,V-DIG,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSI ,TOOLBIT>"],
+      [test,",PRSI",global,EGG-OBJECT,[
+          1
+        ],"1actions.zil","<FSET? ,PRSI ,TOOLBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["OBJECT (FIND TOOLBIT) (ON-GROUND IN-ROOM HELD CARRIED) = V-INFLATE>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["WITH OBJECT (FIND TOOLBIT) (HELD CARRIED HAVE) = V-DIG>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["OBJECT (FIND TOOLBIT) (HELD CARRIED ON-GROUND IN-ROOM TAKE) = V-LOCK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX MOVE OBJECT WITH OBJECT (FIND TOOLBIT) = V-TURN PRE-TURN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["OBJECT (FIND TOOLBIT) (ON-GROUND IN-ROOM HELD CARRIED HAVE) = V-OPEN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX PUSH OBJECT WITH OBJECT (FIND TOOLBIT) = V-TURN PRE-TURN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["(FIND TOOLBIT) (ON-GROUND IN-ROOM HELD CARRIED HAVE) = V-TIE-UP>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["(FIND TOOLBIT) (HELD CARRIED ON-GROUND IN-ROOM TAKE) = V-UNLOCK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [TOUCHBIT,[
+      [    owner,    games,    file];
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [IT,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",HERE",global,GO,[
+          1
+        ],"1dungeon.zil","<COND (<NOT <FSET? ,HERE ,TOUCHBIT>>"],
+      [set,",PRSO",global,V-OPEN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,PRSO ,TOUCHBIT>"],
+      [test,".F",local,V-OPEN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<NOT <FSET? .F ,TOUCHBIT>>"],
+      [set,",PRSO",global,V-PUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,PRSO ,TOUCHBIT>"],
+      [test,",FRONT-DOOR",global,V-SAY,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","'<COND (<AND <FSET? ,FRONT-DOOR ,TOUCHBIT>"],
+      [set,".X",local,SHAKE-LOOP,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET .X ,TOUCHBIT>"],
+      [test,",HERE",global,DESCRIBE-ROOM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? ,HERE ,TOUCHBIT>>"],
+      [set,",HERE",global,DESCRIBE-ROOM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,HERE ,TOUCHBIT>"],
+      [clear,",HERE",global,DESCRIBE-ROOM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,HERE ,TOUCHBIT>)>)"],
+      [test,".OBJ",local,DESCRIBE-OBJECT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<OR <AND <NOT <FSET? .OBJ ,TOUCHBIT>>"],
+      [test,".Y",local,PRINT-CONT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<NOT <FSET? .Y ,TOUCHBIT>>"],
+      [test,".Y",local,PRINT-CONT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? .Y ,TOUCHBIT>"],
+      [clear,",WEST-OF-HOUSE",global,SCORE-UPD,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FCLEAR ,WEST-OF-HOUSE ,TOUCHBIT>"],
+      [set,",PRSO",global,ITAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET ,PRSO ,TOUCHBIT>"],
+      [set,".F",local,TOUCH-ALL,[
+          1
+        ],"1actions.zil","<FSET .F ,TOUCHBIT>"],
+      [clear,",TRAP-DOOR",global,TRAP-DOOR-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,TRAP-DOOR ,TOUCHBIT>"],
+      [test,",TRAP-DOOR",global,CELLAR-FCN,[
+          1
+        ],"1actions.zil","<NOT <FSET? ,TRAP-DOOR ,TOUCHBIT>>>"],
+      [set,",TRAP-DOOR",global,CELLAR-FCN,[
+          1
+        ],"1actions.zil","<FSET ,TRAP-DOOR ,TOUCHBIT>"],
+      [clear,",TRAP-DOOR",global,UP-CHIMNEY-FUNCTION,[
+          1
+        ],"1actions.zil","<FCLEAR ,TRAP-DOOR ,TOUCHBIT>)>"],
+      [clear,",RESERVOIR-SOUTH",global,BOLT-F,[
+          1
+        ],"1actions.zil","<FCLEAR ,RESERVOIR-SOUTH ,TOUCHBIT>"],
+      [clear,",LOUD-ROOM",global,BOLT-F,[
+          1
+        ],"1actions.zil","<FCLEAR ,LOUD-ROOM ,TOUCHBIT>"],
+      [clear,",DEEP-CANYON",global,I-RFILL,[
+          1
+        ],"1actions.zil","<FCLEAR ,DEEP-CANYON ,TOUCHBIT>"],
+      [clear,",LOUD-ROOM",global,I-RFILL,[
+          1
+        ],"1actions.zil","<FCLEAR ,LOUD-ROOM ,TOUCHBIT>"],
+      [clear,",DEEP-CANYON",global,I-REMPTY,[
+          1
+        ],"1actions.zil","<FCLEAR ,DEEP-CANYON ,TOUCHBIT>"],
+      [clear,",LOUD-ROOM",global,I-REMPTY,[
+          1
+        ],"1actions.zil","<FCLEAR ,LOUD-ROOM ,TOUCHBIT>"],
+      [clear,",DAM-ROOM",global,BUTTON-F,[
+          1
+        ],"1actions.zil","<FCLEAR ,DAM-ROOM ,TOUCHBIT>"],
+      [set,".X",local,ROB-MAZE,[
+          1
+        ],"1actions.zil","<FSET .X ,TOUCHBIT>"],
+      [set,",CANDLES",global,I-CANDLES,[
+          1
+        ],"1actions.zil","<FSET ,CANDLES ,TOUCHBIT>"],
+      [test,",CANDLES",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","<COND (<NOT <FSET? ,CANDLES ,TOUCHBIT>>"],
+      [set,",CANDLES",global,CANDLES-FCN,[
+          1
+        ],"1actions.zil","<FSET ,CANDLES ,TOUCHBIT>"],
+      [test,",BOAT-LABEL",global,IBOAT-FUNCTION,[
+          1
+        ],"1actions.zil","<COND (<NOT <FSET? ,BOAT-LABEL ,TOUCHBIT>>"],
+      [test,".RM",local,I-THIEF,[
+          1
+        ],"1actions.zil","<COND (<FSET? .RM ,TOUCHBIT>     ;\"Hack the adventurer's belongings\""],
+      [set,".X",local,STEAL-JUNK,[
+          1
+        ],"1actions.zil","<FSET .X ,TOUCHBIT>"],
+      [set,".X",local,ROB,[
+          1
+        ],"1actions.zil","<FSET .X ,TOUCHBIT>"],
+      [test,",SOUTH-TEMPLE",global,JIGS-UP,[
+          1
+        ],"1actions.zil","<COND (<FSET? ,SOUTH-TEMPLE ,TOUCHBIT>"],
+      [clear,",TRAP-DOOR",global,JIGS-UP,[
+          1
+        ],"1actions.zil","<FCLEAR ,TRAP-DOOR ,TOUCHBIT>"],
+      [test,",HERE",global,GO,[
+          2
+        ],"2dungeon.zil","<COND (<NOT <FSET? ,HERE ,TOUCHBIT>>"],
+      [clear,".BRICK-ROOM",local,I-FUSE,[
+          2
+        ],"2actions.zil","<FCLEAR .BRICK-ROOM ,TOUCHBIT>"],
+      [clear,",SAFE-ROOM",global,I-FUSE,[
+          2
+        ],"2actions.zil","<FCLEAR ,SAFE-ROOM ,TOUCHBIT>"],
+      [set,",WHITE-BOOK",global,RANDOM-BOOK,[
+          2
+        ],"2actions.zil","<FSET ,WHITE-BOOK ,TOUCHBIT>"],
+      [set,",PURPLE-BOOK",global,RANDOM-BOOK,[
+          2
+        ],"2actions.zil","<FSET ,PURPLE-BOOK ,TOUCHBIT>"],
+      [set,",GREEN-BOOK",global,RANDOM-BOOK,[
+          2
+        ],"2actions.zil","<FSET ,GREEN-BOOK ,TOUCHBIT>"],
+      [set,",BLUE-BOOK",global,RANDOM-BOOK,[
+          2
+        ],"2actions.zil","<FSET ,BLUE-BOOK ,TOUCHBIT>"],
+      [clear,",CAROUSEL-ROOM",global,BUTTONS,[
+          2
+        ],"2actions.zil","<FCLEAR ,CAROUSEL-ROOM ,TOUCHBIT>)>"],
+      [test,".OHERE",local,GO,[
+          2
+        ],"2actions.zil","<COND (<FSET? .OHERE ,TOUCHBIT>"],
+      [clear,".OHERE",local,GO,[
+          2
+        ],"2actions.zil","<COND (<NOT .OSEEN> <FCLEAR .OHERE ,TOUCHBIT>)>"],
+      [test,".P",local,DEAD-PALANTIR,[
+          2
+        ],"2actions.zil","<COND (<FSET? .P ,TOUCHBIT>"],
+      [clear,",DIAMOND-5",global,DIAMOND-MOTION,[
+          2
+        ],"2actions.zil","<FCLEAR ,DIAMOND-5 ,TOUCHBIT>"],
+      [test,",UNICORN",global,GLOBAL-UNICORN-FCN,[
+          2
+        ],"2actions.zil","<COND (<FSET? ,UNICORN ,TOUCHBIT>"],
+      [set,".X",local,RIPOFF,[
+          2
+        ],"2actions.zil","<FSET .X ,TOUCHBIT>"],
+      [clear,",DEAD-PALANTIR-1",global,JIGS-UP,[
+          2
+        ],"2actions.zil","<FCLEAR ,DEAD-PALANTIR-1 ,TOUCHBIT>"],
+      [clear,",DEAD-PALANTIR-2",global,JIGS-UP,[
+          2
+        ],"2actions.zil","<FCLEAR ,DEAD-PALANTIR-2 ,TOUCHBIT>"],
+      [clear,",DEAD-PALANTIR-3",global,JIGS-UP,[
+          2
+        ],"2actions.zil","<FCLEAR ,DEAD-PALANTIR-3 ,TOUCHBIT>"],
+      [test,",HERE",global,GO,[
+          3
+        ],"3dungeon.zil","<COND (<NOT <FSET? ,HERE ,TOUCHBIT>>"],
+      [clear,",CP",global,CPEXIT,[
+          3
+        ],"3actions.zil","<FCLEAR ,CP ,TOUCHBIT>"],
+      [clear,",HERE",global,CPGOTO,[
+          3
+        ],"3actions.zil","<FCLEAR ,HERE ,TOUCHBIT>"],
+      [clear,",MRA",global,MRSWITCH,[
+          3
+        ],"3actions.zil","<FCLEAR ,MRA ,TOUCHBIT>)"],
+      [clear,",GOOD-CELL",global,CELL-MOVE,[
+          3
+        ],"3actions.zil","<FCLEAR ,GOOD-CELL ,TOUCHBIT>"],
+      [clear,",PRISON-CELL",global,CELL-MOVE,[
+          3
+        ],"3actions.zil","<FCLEAR ,PRISON-CELL ,TOUCHBIT>"],
+      [clear,",CELL",global,DIALBUTTON,[
+          3
+        ],"3actions.zil","<FCLEAR ,CELL ,TOUCHBIT>"],
+      [set,",CHEST",global,I-MAN-APPEARS,[
+          3
+        ],"3actions.zil","<FSET ,CHEST ,TOUCHBIT>"],
+      [test,",CLIFF-LEDGE",global,CLIFF-F,[
+          3
+        ],"3actions.zil","<NOT <FSET? ,CLIFF-LEDGE ,TOUCHBIT>>>"],
+      [set,",CHEST",global,GLOBAL-ROPE-F,[
+          3
+        ],"3actions.zil","<FSET ,CHEST ,TOUCHBIT>"]
+    ],[
+
+    ],[
+
+    ]],
+  [TRANSBIT,[
+      [    owner,    games,    file];
+      [RAISED-BASKET,[
+          1
+        ],"1dungeon.zil"],
+      [TROPHY-CASE,[
+          1
+        ],"1dungeon.zil"],
+      [BOTTLE,[
+          1
+        ],"1dungeon.zil"],
+      [WOODEN-DOOR,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      ["PALANTIR-4",[
+          2
+        ],"2dungeon.zil"],
+      [WIZARD-CASE,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-3",[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-1",[
+          2
+        ],"2dungeon.zil"],
+      [FLASK,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-2",[
+          2
+        ],"2dungeon.zil"],
+      [TEAPOT,[
+          2
+        ],"2dungeon.zil"],
+      [SHADOW,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [clear,",PLAYER",global,GET-OBJECT,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<FCLEAR ,PLAYER ,TRANSBIT>"],
+      [set,",PLAYER",global,GET-OBJECT,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<FSET ,PLAYER ,TRANSBIT>)>"],
+      [test,".OBJ",local,SEARCH-LIST,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<FSET? .OBJ ,TRANSBIT>>>"],
+      [test,",PRSO",global,V-OPEN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<OR <NOT <FIRST? ,PRSO>> <FSET? ,PRSO ,TRANSBIT>>"],
+      [test,",PRSI",global,PRE-READ,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<AND ,PRSI <NOT <FSET? ,PRSI ,TRANSBIT>>>"],
+      [test,".OBJ",local,"SEE-INSIDE?",[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<OR <FSET? .OBJ ,TRANSBIT> <FSET? .OBJ ,OPENBIT>>>>"]
+    ],[
+
+    ],[
+
+    ]],
+  [TRYTAKEBIT,[
+      [    owner,    games,    file];
+      [WATER,[
+          1
+        ],"1dungeon.zil"],
+      [LOWERED-BASKET,[
+          1
+        ],"1dungeon.zil"],
+      [RAISED-BASKET,[
+          1
+        ],"1dungeon.zil"],
+      [BAT,[
+          1
+        ],"1dungeon.zil"],
+      [HOT-BELL,[
+          1
+        ],"1dungeon.zil"],
+      [AXE,[
+          1
+        ],"1dungeon.zil"],
+      [BOLT,[
+          1
+        ],"1dungeon.zil"],
+      [BUBBLE,[
+          1
+        ],"1dungeon.zil"],
+      [TOOL-CHEST,[
+          1
+        ],"1dungeon.zil"],
+      [TROPHY-CASE,[
+          1
+        ],"1dungeon.zil"],
+      [RUG,[
+          1
+        ],"1dungeon.zil"],
+      [CHALICE,[
+          1
+        ],"1dungeon.zil"],
+      [CYCLOPS,[
+          1
+        ],"1dungeon.zil"],
+      [DAM,[
+          1
+        ],"1dungeon.zil"],
+      [KNIFE,[
+          1
+        ],"1dungeon.zil"],
+      [BONES,[
+          1
+        ],"1dungeon.zil"],
+      [MACHINE,[
+          1
+        ],"1dungeon.zil"],
+      [MAILBOX,[
+          1
+        ],"1dungeon.zil"],
+      ["MIRROR-2",[
+          1
+        ],"1dungeon.zil"],
+      ["MIRROR-1",[
+          1
+        ],"1dungeon.zil"],
+      [GUNK,[
+          1
+        ],"1dungeon.zil"],
+      [BODIES,[
+          1
+        ],"1dungeon.zil"],
+      [LEAVES,[
+          1
+        ],"1dungeon.zil"],
+      [ROPE,[
+          1
+        ],"1dungeon.zil"],
+      [RUSTY-KNIFE,[
+          1
+        ],"1dungeon.zil"],
+      [LARGE-BAG,[
+          1
+        ],"1dungeon.zil"],
+      [STILETTO,[
+          1
+        ],"1dungeon.zil"],
+      [SWORD,[
+          1
+        ],"1dungeon.zil"],
+      [THIEF,[
+          1
+        ],"1dungeon.zil"],
+      [TROLL,[
+          1
+        ],"1dungeon.zil"],
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [MOSS,[
+          2
+        ],"2dungeon.zil"],
+      [ROSE-BUSH,[
+          2
+        ],"2dungeon.zil"],
+      [UNICORN,[
+          2
+        ],"2dungeon.zil"],
+      [DWINDOW,[
+          2
+        ],"2dungeon.zil"],
+      [HEADS,[
+          2
+        ],"2dungeon.zil"],
+      [ARCANA,[
+          2
+        ],"2dungeon.zil"],
+      [DEGREE,[
+          2
+        ],"2dungeon.zil"],
+      [WANDS,[
+          2
+        ],"2dungeon.zil"],
+      [TROPHY-SWORD,[
+          2
+        ],"2dungeon.zil"],
+      [TROPHY-BOTTLES,[
+          2
+        ],"2dungeon.zil"],
+      ["PALANTIR-1",[
+          2
+        ],"2dungeon.zil"],
+      [DEPOSIT-BOX,[
+          2
+        ],"2dungeon.zil"],
+      [GOLD-KEY,[
+          2
+        ],"2dungeon.zil"],
+      [WAND,[
+          2
+        ],"2dungeon.zil"],
+      [SWORD,[
+          2
+        ],"2dungeon.zil"],
+      [SWORD,[
+          3
+        ],"3dungeon.zil"],
+      [SCEPTRE,[
+          3
+        ],"3actions.zil"],
+      [JEWELLED-KNIFE,[
+          3
+        ],"3actions.zil"],
+      [RING,[
+          3
+        ],"3actions.zil"],
+      [HOOD,[
+          3
+        ],"3actions.zil"],
+      [CLOAK,[
+          3
+        ],"3actions.zil"],
+      [SHINY-OBJECT,[
+          3
+        ],"3actions.zil"],
+      [ROPE,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,".O",local,"MAIN-LOOP-1",[
+          1,
+          2,
+          3
+        ],"gmain.zil","<FSET? .O ,TRYTAKEBIT>>>>>"],
+      [test,".OBJ",local,ITAKE-CHECK,[
+          1,
+          2,
+          3
+        ],"gparser.zil","<COND (<FSET? .OBJ ,TRYTAKEBIT>"],
+      [test,",PRSO",global,V-PUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? ,PRSO ,TRYTAKEBIT>>"],
+      [set,".F",local,EATME-FCN,[
+          2
+        ],"2actions.zil","<FSET .F ,TRYTAKEBIT>"],
+      [clear,".F",local,CAKE-FCN,[
+          2
+        ],"2actions.zil","<FCLEAR .F ,TRYTAKEBIT>"],
+      [set,",COLLAR",global,CERBERUS-FCN,[
+          2
+        ],"2actions.zil","<FSET ,COLLAR ,TRYTAKEBIT>"]
+    ],[
+
+    ],[
+
+    ]],
+  [TURNBIT,[
+      [    owner,    games,    file];
+      [BOLT,[
+          1
+        ],"1dungeon.zil"],
+      [BOOK,[
+          1
+        ],"1dungeon.zil"],
+      [MACHINE-SWITCH,[
+          1
+        ],"1dungeon.zil"],
+      [MENHIR,[
+          2
+        ],"2dungeon.zil"],
+      [KEY,[
+          2
+        ],"2dungeon.zil"],
+      [SUNDIAL,[
+          3
+        ],"3dungeon.zil"],
+      [TM-DIAL,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,PRE-TURN,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<NOT <FSET? ,PRSO ,TURNBIT>>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX TURN OBJECT (FIND TURNBIT) (HELD CARRIED ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TURN OBJECT (FIND TURNBIT) TO OBJECT = V-TURN PRE-TURN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TURN OBJECT (FIND TURNBIT) FOR OBJECT = V-TURN PRE-TURN>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      [";<SYNTAX TURN OBJECT (FIND TURNBIT) = V-TURN PRE-TURN>",[
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+
+    ]],
+  [VEHBIT,[
+      [    owner,    games,    file];
+      [INFLATED-BOAT,[
+          1
+        ],"1dungeon.zil"],
+      [BALLOON,[
+          2
+        ],"2dungeon.zil"],
+      [BUCKET,[
+          2
+        ],"2dungeon.zil"],
+      [TIME-MACHINE,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,PRE-BOARD,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? ,PRSO ,VEHBIT>"],
+      [test,".AV",local,PRE-BOARD,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? .AV ,VEHBIT>"],
+      [test,",PRSO",global,V-CLIMB-ON,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,VEHBIT>"],
+      [test,",PRSO",global,V-LAUNCH,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,VEHBIT>"],
+      [test,",PRSI",global,V-PUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? ,PRSI ,VEHBIT>>)"],
+      [test,",PRSO",global,V-THROUGH,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<AND <NOT .OBJ> <FSET? ,PRSO ,VEHBIT>>"],
+      [test,".AV",local,DESCRIBE-ROOM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil",";<COND (<FSET? .AV ,VEHBIT>"],
+      [test,".AV",local,DESCRIBE-ROOM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<AND <NOT <EQUAL? ,HERE .AV>> <FSET? .AV ,VEHBIT>>"],
+      [test,".AV",local,DESCRIBE-OBJECT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? .AV ,VEHBIT>>"],
+      [test,".AV",local,PRINT-CONT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<AND <SET AV <LOC ,WINNER>> <FSET? .AV ,VEHBIT>>"],
+      [test,".WLOC",local,GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? .WLOC ,VEHBIT>"],
+      [test,".WLOC",local,GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? .WLOC ,VEHBIT>>"],
+      [test,".WLOC",local,GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<FSET? .WLOC ,VEHBIT>"],
+      [test,".WLOC",local,GOTO,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","'<COND (<FSET? .WLOC ,VEHBIT>"],
+      [test,".AV",local,WATER-F,[
+          1
+        ],"1actions.zil","<COND (<NOT <FSET? .AV ,VEHBIT>> <SET AV <>>)>"],
+      [test,".AV",local,WATER-FCN,[
+          2
+        ],"2actions.zil","<COND (<NOT <FSET? .AV ,VEHBIT>> <SET AV <>>)>"],
+      [test,".WLOC",local,I-WIZARD,[
+          2
+        ],"2actions.zil","<COND (<FSET? .WLOC ,VEHBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["<SYNTAX BOARD OBJECT (FIND VEHBIT) (ON-GROUND IN-ROOM) = V-BOARD PRE-BOARD>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX CLIMB IN OBJECT (FIND VEHBIT) (ON-GROUND IN-ROOM) = V-BOARD PRE-BOARD>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX CLIMB ON OBJECT (FIND VEHBIT) (ON-GROUND IN-ROOM) = V-CLIMB-ON>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX DISEMBARK OBJECT (FIND VEHBIT) (ON-GROUND IN-ROOM)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX LAUNCH OBJECT (FIND VEHBIT) = V-LAUNCH>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TAKE IN OBJECT (FIND VEHBIT) (ON-GROUND IN-ROOM) = V-BOARD PRE-BOARD>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX TAKE ON OBJECT (FIND VEHBIT) (ON-GROUND IN-ROOM) = V-CLIMB-ON>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+      [    routine,    games,    file,    source];
+      [V-OVERBOARD,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? <SET LOCN <LOC ,WINNER>> ,VEHBIT>"],
+      [DESCRIBE-ROOM,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? <SET AV <LOC ,WINNER>> ,VEHBIT>"]
+    ]],
+  [WEAPONBIT,[
+      [    owner,    games,    file];
+      [AXE,[
+          1
+        ],"1dungeon.zil"],
+      [SCEPTRE,[
+          1
+        ],"1dungeon.zil"],
+      [KNIFE,[
+          1
+        ],"1dungeon.zil"],
+      [RUSTY-KNIFE,[
+          1
+        ],"1dungeon.zil"],
+      [STILETTO,[
+          1
+        ],"1dungeon.zil"],
+      [SWORD,[
+          1
+        ],"1dungeon.zil"],
+      [BAT,[
+          2
+        ],"2dungeon.zil"],
+      [SWORD,[
+          2
+        ],"2dungeon.zil"],
+      [SWORD,[
+          3
+        ],"3dungeon.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSI",global,CRETIN-FCN,[
+          1,
+          2,
+          3
+        ],"gglobals.zil","<COND (<AND ,PRSI <FSET? ,PRSI ,WEAPONBIT>>"],
+      [test,",PRSI",global,V-ATTACK,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<NOT <FSET? ,PRSI ,WEAPONBIT>>"],
+      [test,",PRSI",global,V-CUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? ,PRSI ,WEAPONBIT>>"],
+      [test,",PRSI",global,V-CUT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<NOT <FSET? ,PRSI ,WEAPONBIT>>"],
+      [test,",PRSI",global,PRE-MUNG,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<NOT <FSET? ,PRSI ,WEAPONBIT>>>"],
+      [clear,",AXE",global,TROLL-FCN,[
+          1
+        ],"1actions.zil","<FCLEAR ,AXE ,WEAPONBIT>"],
+      [set,",AXE",global,TROLL-FCN,[
+          1
+        ],"1actions.zil","<FSET ,AXE ,WEAPONBIT>)>"],
+      [test,",PRSO",global,RBOAT-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET? ,PRSO ,WEAPONBIT>>"],
+      [test,",PRSO",global,RBOAT-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET? ,PRSO ,WEAPONBIT>"],
+      [test,",PRSI",global,RBOAT-FUNCTION,[
+          1
+        ],"1actions.zil","<FSET? ,PRSI ,WEAPONBIT>>>"],
+      [test,",PRSI",global,EGG-OBJECT,[
+          1
+        ],"1actions.zil","(<OR <FSET? ,PRSI ,WEAPONBIT>"],
+      [test,",PRSI",global,VILLAIN-STRENGTH,[
+          1
+        ],"1actions.zil","<FSET? ,PRSI ,WEAPONBIT>"],
+      [set,".DWEAPON",local,HERO-BLOW,[
+          1
+        ],"1actions.zil","<FSET .DWEAPON ,WEAPONBIT>"],
+      [test,".OBJ",local,AQUARIUM-FCN,[
+          2
+        ],"2actions.zil","(<OR <FSET? .OBJ ,WEAPONBIT>"]
+    ],[
+      [    rule,    games,    file];
+      ["WITH OBJECT (FIND WEAPONBIT) (HELD CARRIED HAVE) = V-ATTACK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX CUT OBJECT WITH OBJECT (FIND WEAPONBIT) (CARRIED HELD) = V-CUT>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["WITH OBJECT (FIND WEAPONBIT) (HELD CARRIED HAVE) = V-MUNG PRE-MUNG>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["(FIND WEAPONBIT) (HELD CARRIED ON-GROUND IN-ROOM HAVE) = V-ATTACK>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX SWING OBJECT (FIND WEAPONBIT) (HELD CARRIED HAVE) = V-SWING>",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"],
+      ["<SYNTAX SWING OBJECT (FIND WEAPONBIT) (HELD CARRIED HAVE)",[
+          1,
+          2,
+          3
+        ],"gsyntax.zil"]
+    ],[
+      [    routine,    games,    file,    source];
+      [FORCE-FIGHT,[
+          2
+        ],"2actions.zil","<COND (<NOT <SET W <FIND-IN ,ADVENTURER ,WEAPONBIT>>>"]
+    ]],
+  [WEARBIT,[
+      [    owner,    games,    file];
+      [GLOBAL-OBJECTS,[
+          1,
+          2,
+          3
+        ],"gglobals.zil"],
+      [CROWN,[
+          2
+        ],"2dungeon.zil"],
+      [RING,[
+          3
+        ],"3actions.zil"],
+      [HOOD,[
+          3
+        ],"3actions.zil"],
+      [CLOAK,[
+          3
+        ],"3actions.zil"],
+      [AMULET,[
+          3
+        ],"3actions.zil"]
+    ],[
+      [    operation,    target,    target_form,    routine,    games,    file,    source];
+      [test,",PRSO",global,PRE-TAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,WEARBIT>"],
+      [test,",PRSO",global,V-TAKE,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<FSET? ,PRSO ,WEARBIT>"],
+      [test,",PRSO",global,V-WEAR,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? ,PRSO ,WEARBIT>>"],
+      [test,".OBJ",local,DESCRIBE-OBJECT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","(<AND <FSET? .OBJ ,WEARBIT>"],
+      [test,".X",local,CCOUNT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<COND (<NOT <FSET? .X ,WEARBIT>>"],
+      [test,".CONT",local,WEIGHT,[
+          1,
+          2,
+          3
+        ],"gverbs.zil","<FSET? .CONT ,WEARBIT>>"],
+      [test,".F",local,GO-ON-LAKE,[
+          3
+        ],"3actions.zil","<COND (<NOT <FSET? .F ,WEARBIT>>"]
+    ],[
+
+    ],[
+
+    ]]
+]
