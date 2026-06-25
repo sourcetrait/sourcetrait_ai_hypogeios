@@ -18,10 +18,6 @@ libraries = [
   "hypogeios_dev"
 ]
 
-claude.plugins = [
-  "zork_src"
-]
-
 [[dev.repo]]
 name = "zork1"
 author = "historicalsource"
