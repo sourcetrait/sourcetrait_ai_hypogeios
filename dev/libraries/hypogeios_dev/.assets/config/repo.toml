@@ -1,0 +1,29 @@
+[[repo]]
+name = "zork1"
+author = "historicalsource"
+provider = "github"
+license.spdx = "mit"
+git.ssh = "git@github.com:historicalsource/zork1.git"
+git.https = "https://github.com/historicalsource/zork1.git"
+git.branch = "master"
+git.commit = "97b7b3d"
+
+[[repo]]
+name = "zork2"
+author = "historicalsource"
+provider = "github"
+license.spdx = "mit"
+git.ssh = "git@github.com:historicalsource/zork2.git"
+git.https = "https://github.com/historicalsource/zork2.git"
+git.branch = "master"
+git.commit = "3da9661"
+
+[[repo]]
+name = "zork3"
+author = "historicalsource"
+provider = "github"
+license.spdx = "mit"
+git.ssh = "git@github.com:historicalsource/zork3.git"
+git.https = "https://github.com/historicalsource/zork3.git"
+git.branch = "master"
+git.commit = "3ec9ed4"
