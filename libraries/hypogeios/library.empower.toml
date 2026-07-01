@@ -1,6 +1,6 @@
 name = "hypogeios"
 title = "Hypogeios"
-version = "0.0.9"
+version = "0.0.0-9"
 
 [nushell]
 version = "0.113.1"
